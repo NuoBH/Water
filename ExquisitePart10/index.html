@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | corpse proj p10</title>
+    <title>Unity WebGL Player | Exquisite Browser Corpse Part 10</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
@@ -20,7 +20,7 @@
         WebGL builds are not supported on mobile devices.
       </div>
       <div id="unity-footer">
-        <!-- <div id="unity-webgl-logo"></div> -->
+        <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
         <div id="unity-build-title">Exquisite Browser Corpse Part 10</div>
       </div>
@@ -34,7 +34,7 @@
         codeUrl: buildUrl + "/build webgl.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
-        productName: "corpse proj p10",
+        productName: "Exquisite Browser Corpse Part 10",
         productVersion: "0.1",
       };
 
@@ -53,10 +53,8 @@
           mobileWarning.style.display = "none";
         }, 5000);
       } else {
-        var cwidth = window.outerWidth * 0.8;
-        var cheight = window.outerWidth * 0.8 * 9 / 16;
-        canvas.style.width = `${cwidth}px`;
-        canvas.style.height = `${cheight}px`;
+        canvas.style.width = "1600px";
+        canvas.style.height = "900px";
       }
       loadingBar.style.display = "block";
 
