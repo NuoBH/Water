@@ -204,7 +204,7 @@ class ImageCube{
                         ev.preventDefault();
                     }
                     this.isDragging = false;
-                    // ImageCube.showAllVideoControls(this.videos);
+                    ImageCube.hideAllVideoControls(this.videos);
 
                 }.bind(this));
         
@@ -256,7 +256,7 @@ class ImageCube{
                 ev.preventDefault();
             }
             this.isDragging = false;
-            //ImageCube.showAllVideoControls(this.videos);
+            ImageCube.hideAllVideoControls(this.videos);
 
         }.bind(this));
 
