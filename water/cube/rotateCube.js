@@ -107,7 +107,7 @@ class ImageCube{
             this.lastMouseX = ev.pageX;
             this.lastMouseY = ev.pageY;
 
-            speed = 0.24;
+            speed = 0.32;
         }
         //if its touch event use touch pos to rotate cube
         else{
@@ -119,7 +119,7 @@ class ImageCube{
             this.lastMouseX = touch.pageX;
             this.lastMouseY = touch.pageY;
 
-            speed = 0.38;
+            speed = 0.5;
         }
 
         //set the degree to rotate to
