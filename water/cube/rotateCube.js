@@ -70,7 +70,7 @@ class ImageCube{
 
         //toggle if action is 1, do nothing if action is 0
         if(action === 1){
-            if(vid.getAttribute("controls") == "controls"){
+            if(vid.hasAttribute("controls")){
                 vid.removeAttribute("controls");
             }
             else{
