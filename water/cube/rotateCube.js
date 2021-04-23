@@ -166,12 +166,13 @@ class ImageCube{
 
     //drag that fires several events for rotating the cube
     dragRotate(){
+        //all elements that can be dragged
         const media = document.getElementsByClassName("todrag");
 
+        //add event listeners to all draggable elements
         for(var i = 0; i < media.length; i ++){
             var node = media.item(i);
 
-            //attach event listeners
             if(node !== null && node !== undefined){
                 node.addEventListener("mousedown", function(ev){
                     if(ev.cancelable){
@@ -182,8 +183,8 @@ class ImageCube{
                     this.lastMouseY = ev.pageY;
 
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
-
                     this.rotateCubeAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
+
                 }.bind(this));
 
                 node.addEventListener("touchstart", function(ev){
@@ -197,8 +198,8 @@ class ImageCube{
                     this.hasTouchMoved = false;
                     
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
-
                     this.rotateCubeAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
+                    
                 }.bind(this));
 
                 node.addEventListener("mouseup", function(ev){
