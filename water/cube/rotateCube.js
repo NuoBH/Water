@@ -182,7 +182,7 @@ class ImageCube{
                     this.lastMouseX = ev.pageX;
                     this.lastMouseY = ev.pageY;
 
-                    if(ev.currentTarget.id === "video"){
+                    if(ev.currentTarget.id == "video"){
                         this.clickedOnVideo = true;
                         this.videoToReset = ev.currentTarget;
                     }
@@ -233,7 +233,7 @@ class ImageCube{
                     this.isDragging = false;
 
                     if(this.hasTouchMoved){
-                        if(ev.currentTarget.id === "video"){
+                        if(ev.currentTarget.id == "video"){
                             ImageCube.checkSingleVideoControl(ev.currentTarget, 1);
                         }
                         this.hasTouchMoved = false;
