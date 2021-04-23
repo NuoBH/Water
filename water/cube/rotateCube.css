@@ -11,7 +11,7 @@
 .cube{
     --faceSize: 32vmin;
     --rotateX: -15deg;
-    --rotateY: 30deg;
+    --rotateY: 30deg; 
 
     margin: auto;
     margin-top:200px;

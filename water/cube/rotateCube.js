@@ -20,6 +20,21 @@ class ImageCube{
         this.clickedOnVideo = false;
         this.videoToReset = undefined;
         this.resetVideo = false;
+
+        //set video hover show control effect
+        var videos = this.cube.querySelectorAll("#video");
+        for(var i = 0; i < videos.length; i ++){
+            videos[i].addEventListener("mouseenter", function(ev){
+                ev.preventDefault();
+                this.setAttribute("controls", "controls")
+            });
+
+            videos[i].addEventListener("mouseleave", function(ev){
+                ev.preventDefault();
+                this.setAttribute("controls", "controls")
+            });
+        }
+
     }
 
     //function to rotate cube with mouse/touch
