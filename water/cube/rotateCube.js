@@ -130,7 +130,7 @@ class ImageCube{
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
                     this.lastRotateAF = undefined;
 
-                    requestAnimFrame(this.rotateLerp.bind(this));
+                    this.rotateCubeAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
                 }.bind(this));
 
                 node.addEventListener("touchstart", function(ev){
@@ -148,7 +148,7 @@ class ImageCube{
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
                     this.lastRotateAF = undefined;
 
-                    requestAnimFrame(this.rotateLerp.bind(this));
+                    this.rotateCubeAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
                 }.bind(this));
 
                 node.addEventListener("mouseup", function(ev){
