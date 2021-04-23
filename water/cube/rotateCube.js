@@ -98,7 +98,7 @@ class ImageCube{
         cancelAnimationFrame(this.rotateCubeAnimFrame);
 
         //test whether cur rotation is close enough to target rotation
-        if(Math.abs(curRotateX - targetX) <= 0.05){
+        if(Math.abs(curRotateX - targetX) <= 0.05 && Math.abs(curRotateY - targetY) <= 0.05){
             this.lastRotateAF = undefined;
         }
         else{
@@ -128,7 +128,6 @@ class ImageCube{
                     }
 
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
-                    this.lastRotateAF = undefined;
 
                     this.rotateCubeAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
                 }.bind(this));
@@ -146,7 +145,6 @@ class ImageCube{
                     }
                     
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
-                    this.lastRotateAF = undefined;
 
                     this.rotateCubeAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
                 }.bind(this));
