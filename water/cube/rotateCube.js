@@ -63,6 +63,24 @@ class ImageCube{
         }
     }
 
+    static checkSingleVideoControl(vid, action){
+        if(action === undefined || (action !== 0 && action !== 1)){
+            return;
+        }
+
+        var attr = vid.getAttribute("controls");
+
+        //toggle if action is 1, do nothing if action is 0
+        if(action === 1){
+            if(attr === "controls"){
+                vid.removeAttribute("controls");
+            }
+            else{
+                vid.setAttribute("controls", "controls");
+            }
+        }
+    }
+
     //check each video in vids and perform an action on their controls (show or hide)
     static checkAllVideoControls(vids, action){
         if(action === undefined || (action !== 0 && action !== 1)){
@@ -70,17 +88,8 @@ class ImageCube{
         }
 
         for(var i = 0; i < vids.length; i++){
-            var attr = vids[i].getAttribute("controls");
-
             //toggle if action is 1, do nothing if action is 0
-            if(action === 1){
-                if(attr === "controls"){
-                    vids[i].removeAttribute("controls");
-                }
-                else{
-                    vids[i].setAttribute("controls", "controls");
-                }
-            }
+            ImageCube.checkSingleVideoControl(vids[i], action);
         }
     }
 
@@ -192,7 +201,9 @@ class ImageCube{
                     this.lastMouseX = touch.pageX;
                     this.lastMouseY = touch.pageY;
 
-                    ImageCube.checkAllVideoControls(this.videos, 1);
+                    if(ev.currentTarget.id === "video"){
+                        ImageCube.checkSingleVideoControl(ev.currentTarget, 1);
+                    }
                     
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
 
