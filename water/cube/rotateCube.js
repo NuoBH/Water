@@ -63,6 +63,27 @@ class ImageCube{
         }
     }
 
+    //check each video in vids and perform an action on their controls (show or hide)
+    static checkAllVideoControls(vids, action){
+        if(action === undefined || (action !== 0 && action !== 1)){
+            return;
+        }
+
+        for(var i = 0; i < vids.length; i++){
+            var attr = vids[i].getAttribute("controls");
+
+            //toggle if action is 1, do nothing if action is 0
+            if(action === 1){
+                if(attr === "controls"){
+                    vids[i].removeAttribute("controls");
+                }
+                else{
+                    vids[i].setAttribute("controls", "controls");
+                }
+            }
+        }
+    }
+
     //function to rotate cube with mouse/touch
     rotateCubeByMousePos(ev){
         var deltaX;
@@ -170,7 +191,8 @@ class ImageCube{
                     var touch = ev.changedTouches[0];
                     this.lastMouseX = touch.pageX;
                     this.lastMouseY = touch.pageY;
-                    ImageCube.showAllVideoControls(this.videos);
+
+                    ImageCube.checkAllVideoControls(this.videos, 1);
                     
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
 
@@ -191,8 +213,6 @@ class ImageCube{
                             this.videoToReset.pause();
                         }
                     }
-
-                    ImageCube.showAllVideoControls(this.videos);
 
                     this.clickedOnVideo = false;
                     this.resetVideo = false;
@@ -243,7 +263,6 @@ class ImageCube{
                 ev.preventDefault();
             }
             this.isDragging = false;
-            ImageCube.showAllVideoControls(this.videos);
 
             this.clickedOnVideo = false;
             this.resetVideo = false;
