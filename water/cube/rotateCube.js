@@ -10,8 +10,8 @@ class ImageCube{
         this.curstate = -1;
         this.lastMouseX = 0;
         this.lastMouseY = 0;
-        this.XDeg = -15;
-        this.YDeg = 30;
+        this.XDeg = -14;
+        this.YDeg = 31;
         this.isDragging = false;
         this.draggingAnim = undefined;
         this.lastRotateAF = undefined;
@@ -35,6 +35,11 @@ class ImageCube{
             });
         }
 
+        if(mobileAndTabletCheck()){
+            for(var i = 0; i < videos.length; i++){
+                videos[i].setAttribute("controls", "controls");
+            }
+        }
     }
 
     //function to rotate cube with mouse/touch
@@ -69,6 +74,8 @@ class ImageCube{
         //set the degree to rotate to
         this.YDeg += deltaX * speed;
         this.XDeg -= deltaY * speed;
+
+
     }
 
     //rotate cube using lerp
@@ -117,7 +124,9 @@ class ImageCube{
             //attach event listeners
             if(node !== null && node !== undefined){
                 node.addEventListener("mousedown", function(ev){
-                    ev.preventDefault();
+                    if(ev.cancelable){
+                        ev.preventDefault();
+                    }
                     this.isDragging = true;
                     this.lastMouseX = ev.pageX;
                     this.lastMouseY = ev.pageY;
@@ -133,16 +142,13 @@ class ImageCube{
                 }.bind(this));
 
                 node.addEventListener("touchstart", function(ev){
-                    ev.preventDefault();
+                    if(ev.cancelable){
+                        ev.preventDefault();
+                    }
                     this.isDragging = true;
                     var touch = ev.changedTouches[0];
                     this.lastMouseX = touch.pageX;
                     this.lastMouseY = touch.pageY;
-
-                    if(ev.currentTarget.id === "video"){
-                        this.clickedOnVideo = true;
-                        this.videoToReset = ev.currentTarget;
-                    }
                     
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
 
@@ -150,7 +156,9 @@ class ImageCube{
                 }.bind(this));
 
                 node.addEventListener("mouseup", function(ev){
-                    ev.preventDefault();
+                    if(ev.cancelable){
+                        ev.preventDefault();
+                    }
                     this.isDragging = false;
 
                     if(this.resetVideo){
@@ -168,26 +176,18 @@ class ImageCube{
                 }.bind(this));
 
                 node.addEventListener("touchend", function(ev){
-                    ev.preventDefault();
-                    this.isDragging = false;
-
-                    if(this.resetVideo){
-                        if(this.videoToReset.paused){
-                            this.videoToReset.play();
-                        }
-                        else{
-                            this.videoToReset.pause();
-                        }
+                    if(ev.cancelable){
+                        ev.preventDefault();
                     }
-
-                    this.clickedOnVideo = false;
-                    this.resetVideo = false;
-                    this. videoToReset = undefined;
+                    this.isDragging = false;
                 }.bind(this));
         
                 node.addEventListener("mousemove", function(ev){
                     if(this.isDragging){
-                        ev.preventDefault();
+                        console.log("!!!");
+                        if(ev.cancelable){
+                            ev.preventDefault();
+                        }
                         this.rotateCubeByMousePos(ev);
 
                         if(this.clickedOnVideo){
@@ -198,7 +198,9 @@ class ImageCube{
 
                 node.addEventListener("touchmove", function(ev){
                     if(this.isDragging){
-                        ev.preventDefault();
+                        if(ev.cancelable){
+                            ev.preventDefault();
+                        }
                         this.rotateCubeByMousePos(ev);
 
                         if(this.clickedOnVideo){
@@ -210,7 +212,9 @@ class ImageCube{
         }
 
         document.addEventListener("mouseup", function(ev){
-            ev.preventDefault();
+            if(ev.cancelable){
+                ev.preventDefault();
+            }
             this.isDragging = false;
 
             this.clickedOnVideo = false;
@@ -219,25 +223,17 @@ class ImageCube{
         }.bind(this));
 
         document.addEventListener("touchend", function(ev){
-            this.isDragging = false;
-
-            if(this.resetVideo){
-                if(this.videoToReset.paused){
-                    this.videoToReset.play();
-                }
-                else{
-                    this.videoToReset.pause();
-                }
+            if(ev.cancelable){
+                ev.preventDefault();
             }
-
-            this.clickedOnVideo = false;
-            this.resetVideo = false;
-            this. videoToReset = undefined;
+            this.isDragging = false;
         }.bind(this));
 
         document.addEventListener("mousemove", function(ev){
             if(this.isDragging){
-                ev.preventDefault();
+                if(ev.cancelable){
+                    ev.preventDefault();
+                }
                 this.rotateCubeByMousePos(ev);
 
                 if(this.clickedOnVideo){
@@ -248,7 +244,6 @@ class ImageCube{
 
         document.addEventListener("touchmove", function(ev){
             if(this.isDragging){
-                ev.preventDefault();
                 this.rotateCubeByMousePos(ev);
 
                 if(this.clickedOnVideo){
