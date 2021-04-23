@@ -1,16 +1,20 @@
 class ImageCube{
     constructor(){
         this.cube = document.getElementById("image-cube");
-        this.curstate = -1;
+
+        //properties used to rotate cube
         this.lastMouseX = 0;
         this.lastMouseY = 0;
         this.XDeg = -14;
         this.YDeg = 31;
+
         this.isDragging = false;
-        this.draggingAnim = undefined;
+
+        //properties used to lerp rotation
         this.lastRotateAF = undefined;
         this.rotateCubeAnimFrame = undefined;
 
+        //used to test if touch moves on mobile after touch start
         this.hasTouchMoved = false;
 
         //set video hover show control effect
@@ -199,7 +203,7 @@ class ImageCube{
                     
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
                     this.rotateCubeAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
-                    
+
                 }.bind(this));
 
                 node.addEventListener("mouseup", function(ev){
