@@ -22,23 +22,44 @@ class ImageCube{
         this.resetVideo = false;
 
         //set video hover show control effect
-        var videos = this.cube.querySelectorAll("#video");
-        for(var i = 0; i < videos.length; i ++){
-            videos[i].addEventListener("mouseenter", function(ev){
-                ev.preventDefault();
-                this.setAttribute("controls", "controls")
-            });
+        this.videos = this.cube.querySelectorAll("#video");
+        for(var i = 0; i < this.videos.length; i ++){
+            this.videos[i].addEventListener("mouseenter", function(ev){
+                if(!this.isDragging){
+                    if(ev.cancelable){
+                        ev.preventDefault();
+                    }
+                    ev.target.setAttribute("controls", "controls");
+                }
+            }.bind(this));
 
-            videos[i].addEventListener("mouseleave", function(ev){
-                ev.preventDefault();
-                this.setAttribute("controls", "controls")
-            });
+            this.videos[i].addEventListener("mouseleave", function(ev){
+                if(!this.isDragging){
+                    if(ev.cancelable){
+                        ev.preventDefault();
+                    }
+                    ev.target.removeAttribute("controls");
+                }
+            }.bind(this));
         }
 
         if(mobileAndTabletCheck()){
-            for(var i = 0; i < videos.length; i++){
-                videos[i].setAttribute("controls", "controls");
+            for(var i = 0; i < this.videos.length; i++){
+                this.videos[i].setAttribute("controls", "controls");
             }
+        }
+    }
+
+    //hide or show videos controls --- vids --- is a NodeList
+    static hideAllVideoControls(vids){
+        for(var i = 0; i < vids.length; i++){
+            vids[i].removeAttribute("controls");
+        }
+    }
+
+    static showAllVideoControls(vids){
+        for(var i = 0; i < vids.length; i++){
+            vids[i].setAttribute("controls", "controls");
         }
     }
 
@@ -170,6 +191,8 @@ class ImageCube{
                         }
                     }
 
+                    ImageCube.showAllVideoControls(this.videos);
+
                     this.clickedOnVideo = false;
                     this.resetVideo = false;
                     this. videoToReset = undefined;
@@ -180,11 +203,14 @@ class ImageCube{
                         ev.preventDefault();
                     }
                     this.isDragging = false;
+                    ImageCube.showAllVideoControls(this.videos);
+
                 }.bind(this));
         
                 node.addEventListener("mousemove", function(ev){
                     if(this.isDragging){
-                        console.log("!!!");
+                        ImageCube.hideAllVideoControls(this.videos);
+
                         if(ev.cancelable){
                             ev.preventDefault();
                         }
@@ -198,6 +224,7 @@ class ImageCube{
 
                 node.addEventListener("touchmove", function(ev){
                     if(this.isDragging){
+                        ImageCube.hideAllVideoControls(this.videos);
                         if(ev.cancelable){
                             ev.preventDefault();
                         }
@@ -216,6 +243,7 @@ class ImageCube{
                 ev.preventDefault();
             }
             this.isDragging = false;
+            ImageCube.showAllVideoControls(this.videos);
 
             this.clickedOnVideo = false;
             this.resetVideo = false;
@@ -227,10 +255,13 @@ class ImageCube{
                 ev.preventDefault();
             }
             this.isDragging = false;
+            ImageCube.showAllVideoControls(this.videos);
+
         }.bind(this));
 
         document.addEventListener("mousemove", function(ev){
             if(this.isDragging){
+                ImageCube.hideAllVideoControls(this.videos);
                 if(ev.cancelable){
                     ev.preventDefault();
                 }
@@ -244,6 +275,7 @@ class ImageCube{
 
         document.addEventListener("touchmove", function(ev){
             if(this.isDragging){
+                ImageCube.hideAllVideoControls(this.videos);
                 this.rotateCubeByMousePos(ev);
 
                 if(this.clickedOnVideo){
