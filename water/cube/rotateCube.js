@@ -17,10 +17,6 @@ class ImageCube{
         this.lastRotateAF = undefined;
         this.rotateCubeAnimFrame = undefined;
 
-        this.clickedOnVideo = false;
-        this.videoToReset = undefined;
-        this.resetVideo = false;
-
         this.hasTouchMoved = false;
 
         //set video hover show control effect
@@ -182,11 +178,6 @@ class ImageCube{
                     this.lastMouseX = ev.pageX;
                     this.lastMouseY = ev.pageY;
 
-                    if(ev.currentTarget.id == "video"){
-                        this.clickedOnVideo = true;
-                        this.videoToReset = ev.currentTarget;
-                    }
-
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
 
                     this.rotateCubeAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
@@ -212,19 +203,6 @@ class ImageCube{
                         ev.preventDefault();
                     }
                     this.isDragging = false;
-
-                    if(this.resetVideo){
-                        if(this.videoToReset.paused){
-                            this.videoToReset.play();
-                        }
-                        else{
-                            this.videoToReset.pause();
-                        }
-                    }
-
-                    this.clickedOnVideo = false;
-                    this.resetVideo = false;
-                    this. videoToReset = undefined;
                 }.bind(this));
 
                 node.addEventListener("touchend", function(ev){
@@ -250,10 +228,6 @@ class ImageCube{
                             ev.preventDefault();
                         }
                         this.rotateCubeByMousePos(ev);
-
-                        if(this.clickedOnVideo){
-                            this.resetVideo = true;
-                        }
                     }
                 }.bind(this));
 
@@ -265,10 +239,6 @@ class ImageCube{
                             ev.preventDefault();
                         }
                         this.rotateCubeByMousePos(ev);
-
-                        if(this.clickedOnVideo){
-                            this.resetVideo = true;
-                        }
                     }
                 }.bind(this));
             }
@@ -279,10 +249,6 @@ class ImageCube{
                 ev.preventDefault();
             }
             this.isDragging = false;
-
-            this.clickedOnVideo = false;
-            this.resetVideo = false;
-            this. videoToReset = undefined;
         }.bind(this));
 
         document.addEventListener("touchend", function(ev){
@@ -300,10 +266,6 @@ class ImageCube{
                     ev.preventDefault();
                 }
                 this.rotateCubeByMousePos(ev);
-
-                if(this.clickedOnVideo){
-                    this.resetVideo = true;
-                }
             }
         }.bind(this));
 
@@ -312,10 +274,6 @@ class ImageCube{
                 this.hasTouchMoved = true;
                 ImageCube.hideAllVideoControls(this.videos);
                 this.rotateCubeByMousePos(ev);
-
-                if(this.clickedOnVideo){
-                    this.resetVideo = true;
-                }
             }
         }.bind(this));
     }
