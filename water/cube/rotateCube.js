@@ -1,9 +1,3 @@
-const lerp = function (value1, value2, amount) {
-    amount = amount < 0 ? 0 : amount;
-    amount = amount > 1 ? 1 : amount;
-    return value1 + (value2 - value1) * amount;
-};
-
 class ImageCube{
     constructor(){
         this.cube = document.getElementById("image-cube");
@@ -41,12 +35,19 @@ class ImageCube{
             }.bind(this));
         }
 
+        //show video controls at start if device is mobile
         if(mobileAndTabletCheck()){
-            for(var i = 0; i < this.videos.length; i++){
-                this.videos[i].setAttribute("controls", "controls");
-            }
+            ImageCube.showAllVideoControls(this.videos);
         }
     }
+    
+    /** ---------------------------helper functions-------------------------- */
+
+    static lerp(value1, value2, amount) {
+        amount = amount < 0 ? 0 : amount;
+        amount = amount > 1 ? 1 : amount;
+        return value1 + (value2 - value1) * amount;
+    };
 
     //hide or show videos controls --- vids --- is a NodeList
     static hideAllVideoControls(vids){
@@ -88,6 +89,8 @@ class ImageCube{
             ImageCube.checkSingleVideoControl(vids[i], action);
         }
     }
+
+    /** -------------------------------------------------------------- */
 
     //function to rotate cube with mouse/touch
     rotateCubeByMousePos(ev){
@@ -143,8 +146,8 @@ class ImageCube{
         var targetY = this.YDeg;
 
         //lerp currrent rotation to target rotation
-        curRotateX = lerp(curRotateX, targetX, 1 - Math.pow(0.2, deltaTime));
-        curRotateY = lerp(curRotateY, targetY, 1 - Math.pow(0.2, deltaTime));
+        curRotateX = ImageCube.lerp(curRotateX, targetX, 1 - Math.pow(0.2, deltaTime));
+        curRotateY = ImageCube.lerp(curRotateY, targetY, 1 - Math.pow(0.2, deltaTime));
         //set rotate deg to css
         this.cube.style.setProperty("--rotateX", `${curRotateX}deg`);
         this.cube.style.setProperty("--rotateY", `${curRotateY}deg`);
