@@ -200,6 +200,7 @@ class ImageCube{
                     var touch = ev.changedTouches[0];
                     this.lastMouseX = touch.pageX;
                     this.lastMouseY = touch.pageY;
+                    this.hasTouchMoved = false;
                     
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
 
