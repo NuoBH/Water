@@ -170,6 +170,7 @@ class ImageCube{
                     var touch = ev.changedTouches[0];
                     this.lastMouseX = touch.pageX;
                     this.lastMouseY = touch.pageY;
+                    ImageCube.showAllVideoControls(this.videos);
                     
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
 
@@ -203,7 +204,7 @@ class ImageCube{
                         ev.preventDefault();
                     }
                     this.isDragging = false;
-                    ImageCube.showAllVideoControls(this.videos);
+                    // ImageCube.showAllVideoControls(this.videos);
 
                 }.bind(this));
         
@@ -255,7 +256,7 @@ class ImageCube{
                 ev.preventDefault();
             }
             this.isDragging = false;
-            ImageCube.showAllVideoControls(this.videos);
+            //ImageCube.showAllVideoControls(this.videos);
 
         }.bind(this));
 
