@@ -236,8 +236,8 @@ class ImageCube{
                         if(ev.currentTarget.id == "video"){
                             ImageCube.checkSingleVideoControl(ev.currentTarget, 1);
                         }
-                        this.hasTouchMoved = false;
                     }
+                    this.hasTouchMoved = false;
 
                 }.bind(this));
         
@@ -289,7 +289,7 @@ class ImageCube{
                 ev.preventDefault();
             }
             this.isDragging = false;
-
+            this.hasTouchMoved = false;
         }.bind(this));
 
         document.addEventListener("mousemove", function(ev){
