@@ -68,11 +68,9 @@ class ImageCube{
             return;
         }
 
-        var attr = vid.getAttribute("controls");
-
         //toggle if action is 1, do nothing if action is 0
         if(action === 1){
-            if(attr === "controls"){
+            if(vid.getAttribute("controls") == "controls"){
                 vid.removeAttribute("controls");
             }
             else{
