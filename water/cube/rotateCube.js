@@ -21,8 +21,6 @@ class ImageCube{
         this.videoToReset = undefined;
         this.resetVideo = false;
 
-        this.hasTouchMoved = false;
-
         //set video hover show control effect
         this.videos = this.cube.querySelectorAll("#video");
         for(var i = 0; i < this.videos.length; i ++){
@@ -201,6 +199,10 @@ class ImageCube{
                     this.lastMouseX = touch.pageX;
                     this.lastMouseY = touch.pageY;
                     
+                    if(ev.currentTarget.id == "video"){
+                        ImageCube.checkSingleVideoControl(ev.currentTarget, 1);
+                    }
+
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
 
                     this.rotateCubeAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
@@ -232,13 +234,6 @@ class ImageCube{
                     }
                     this.isDragging = false;
 
-                    if(!this.hasTouchMoved){
-                        if(ev.currentTarget.id == "video"){
-                            ImageCube.checkSingleVideoControl(ev.currentTarget, 1);
-                        }
-                    }
-                    this.hasTouchMoved = false;
-
                 }.bind(this));
         
                 node.addEventListener("mousemove", function(ev){
@@ -258,7 +253,6 @@ class ImageCube{
 
                 node.addEventListener("touchmove", function(ev){
                     if(this.isDragging){
-                        this.hasTouchMoved = true;
                         ImageCube.hideAllVideoControls(this.videos);
                         if(ev.cancelable){
                             ev.preventDefault();
@@ -289,12 +283,10 @@ class ImageCube{
                 ev.preventDefault();
             }
             this.isDragging = false;
-            this.hasTouchMoved = false;
         }.bind(this));
 
         document.addEventListener("mousemove", function(ev){
             if(this.isDragging){
-                this.hasTouchMoved = true;
                 ImageCube.hideAllVideoControls(this.videos);
                 if(ev.cancelable){
                     ev.preventDefault();
