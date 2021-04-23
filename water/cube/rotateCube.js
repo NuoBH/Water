@@ -128,6 +128,7 @@ class ImageCube{
                     }
 
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
+                    this.lastRotateAF = undefined;
 
                     requestAnimFrame(this.rotateLerp.bind(this));
                 }.bind(this));
@@ -145,6 +146,7 @@ class ImageCube{
                     }
                     
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
+                    this.lastRotateAF = undefined;
 
                     requestAnimFrame(this.rotateLerp.bind(this));
                 }.bind(this));
