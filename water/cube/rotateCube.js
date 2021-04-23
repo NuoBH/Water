@@ -21,6 +21,8 @@ class ImageCube{
         this.videoToReset = undefined;
         this.resetVideo = false;
 
+        this.hasTouchMoved = false;
+
         //set video hover show control effect
         this.videos = this.cube.querySelectorAll("#video");
         for(var i = 0; i < this.videos.length; i ++){
@@ -198,10 +200,6 @@ class ImageCube{
                     var touch = ev.changedTouches[0];
                     this.lastMouseX = touch.pageX;
                     this.lastMouseY = touch.pageY;
-
-                    if(ev.currentTarget.id === "video"){
-                        ImageCube.checkSingleVideoControl(ev.currentTarget, 1);
-                    }
                     
                     cancelAnimationFrame(this.rotateCubeAnimFrame);
 
@@ -234,6 +232,13 @@ class ImageCube{
                     }
                     this.isDragging = false;
 
+                    if(this.hasTouchMoved){
+                        if(ev.currentTarget.id === "video"){
+                            ImageCube.checkSingleVideoControl(ev.currentTarget, 1);
+                        }
+                        this.hasTouchMoved = false;
+                    }
+
                 }.bind(this));
         
                 node.addEventListener("mousemove", function(ev){
@@ -253,6 +258,7 @@ class ImageCube{
 
                 node.addEventListener("touchmove", function(ev){
                     if(this.isDragging){
+                        this.hasTouchMoved = true;
                         ImageCube.hideAllVideoControls(this.videos);
                         if(ev.cancelable){
                             ev.preventDefault();
@@ -288,6 +294,7 @@ class ImageCube{
 
         document.addEventListener("mousemove", function(ev){
             if(this.isDragging){
+                this.hasTouchMoved = true;
                 ImageCube.hideAllVideoControls(this.videos);
                 if(ev.cancelable){
                     ev.preventDefault();
