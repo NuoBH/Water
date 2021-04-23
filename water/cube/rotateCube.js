@@ -232,7 +232,7 @@ class ImageCube{
                     }
                     this.isDragging = false;
 
-                    if(this.hasTouchMoved){
+                    if(!this.hasTouchMoved){
                         if(ev.currentTarget.id == "video"){
                             ImageCube.checkSingleVideoControl(ev.currentTarget, 1);
                         }
