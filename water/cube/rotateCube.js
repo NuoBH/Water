@@ -127,9 +127,8 @@ class ImageCube{
                         this.videoToReset = ev.currentTarget;
                     }
 
-                    if(this.rotateCubeAnimFrame !== undefined){
-                        cancelAnimationFrame(this.rotateCubeAnimFrame);
-                    }
+                    cancelAnimationFrame(this.rotateCubeAnimFrame);
+
                     requestAnimFrame(this.rotateLerp.bind(this));
                 }.bind(this));
 
@@ -144,10 +143,9 @@ class ImageCube{
                         this.clickedOnVideo = true;
                         this.videoToReset = ev.currentTarget;
                     }
+                    
+                    cancelAnimationFrame(this.rotateCubeAnimFrame);
 
-                    if(this.rotateCubeAnimFrame !== undefined){
-                        cancelAnimationFrame(this.rotateCubeAnimFrame);
-                    }
                     requestAnimFrame(this.rotateLerp.bind(this));
                 }.bind(this));
 
@@ -189,6 +187,7 @@ class ImageCube{
         
                 node.addEventListener("mousemove", function(ev){
                     if(this.isDragging){
+                        ev.preventDefault();
                         this.rotateCubeByMousePos(ev);
 
                         if(this.clickedOnVideo){
@@ -198,8 +197,8 @@ class ImageCube{
                 }.bind(this));
 
                 node.addEventListener("touchmove", function(ev){
-                    ev.preventDefault();
                     if(this.isDragging){
+                        ev.preventDefault();
                         this.rotateCubeByMousePos(ev);
 
                         if(this.clickedOnVideo){
@@ -238,6 +237,7 @@ class ImageCube{
 
         document.addEventListener("mousemove", function(ev){
             if(this.isDragging){
+                ev.preventDefault();
                 this.rotateCubeByMousePos(ev);
 
                 if(this.clickedOnVideo){
@@ -248,6 +248,7 @@ class ImageCube{
 
         document.addEventListener("touchmove", function(ev){
             if(this.isDragging){
+                ev.preventDefault();
                 this.rotateCubeByMousePos(ev);
 
                 if(this.clickedOnVideo){
