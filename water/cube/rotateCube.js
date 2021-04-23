@@ -102,7 +102,7 @@ class ImageCube{
             this.lastRotateAF = undefined;
         }
         else{
-            requestAnimFrame(this.rotateLerp.bind(this));
+            this.rotateCubeAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
         }
 
     }
