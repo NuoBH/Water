@@ -1,18 +1,19 @@
 class ImageCube{
-    constructor(){
+    constructor(startRotateX, startRotateY, lerpV){
         this.cube = document.getElementById("image-cube");
 
         //properties used to rotate cube
         this.lastMouseX = 0;
         this.lastMouseY = 0;
-        this.XDeg = -14;
-        this.YDeg = 31;
+        this.XDeg = startRotateX + 1;
+        this.YDeg = startRotateY + 1;
 
         this.isDragging = false;
 
         //properties used to lerp rotation
         this.lastRotateAF = undefined;
         this.rotateCubeAnimFrame = undefined;
+        this.lerpSpeed = lerpV;
 
         //used to test if touch moves on mobile after touch start
         this.hasTouchMoved = false;
@@ -46,12 +47,6 @@ class ImageCube{
     }
     
     /** ---------------------------helper functions-------------------------- */
-
-    static lerp(value1, value2, amount) {
-        amount = amount < 0 ? 0 : amount;
-        amount = amount > 1 ? 1 : amount;
-        return value1 + (value2 - value1) * amount;
-    };
 
     //hide or show videos controls --- vids --- is a NodeList
     static hideAllVideoControls(vids){
@@ -144,17 +139,17 @@ class ImageCube{
         this.lastRotateAF = curRotateAF;
 
         //get current rotate degrees
-        var curRotateX = parseFloat(getComputedStyle(this.cube).getPropertyValue("--rotateX"));
-        var curRotateY = parseFloat(getComputedStyle(this.cube).getPropertyValue("--rotateY"));
+        var curRotateX = parseFloat(getComputedStyle(this.cube).getPropertyValue("--imageRotateX"));
+        var curRotateY = parseFloat(getComputedStyle(this.cube).getPropertyValue("--imageRotateY"));
         var targetX = this.XDeg;
         var targetY = this.YDeg;
 
         //lerp currrent rotation to target rotation
-        curRotateX = ImageCube.lerp(curRotateX, targetX, 1 - Math.pow(0.2, deltaTime));
-        curRotateY = ImageCube.lerp(curRotateY, targetY, 1 - Math.pow(0.2, deltaTime));
+        curRotateX = lerp(curRotateX, targetX, 1 - Math.pow(this.lerpSpeed, deltaTime));
+        curRotateY = lerp(curRotateY, targetY, 1 - Math.pow(this.lerpSpeed, deltaTime));
         //set rotate deg to css
-        this.cube.style.setProperty("--rotateX", `${curRotateX}deg`);
-        this.cube.style.setProperty("--rotateY", `${curRotateY}deg`);
+        this.cube.style.setProperty("--imageRotateX", `${curRotateX}deg`);
+        this.cube.style.setProperty("--imageRotateY", `${curRotateY}deg`);
 
         cancelAnimationFrame(this.rotateCubeAnimFrame);
 
@@ -287,50 +282,9 @@ class ImageCube{
     }
 
 
-
-    // rotate(){
-    //     if(this.curstate !== -1){
-    //         //if is at front, go to top;
-    //         if(this.curstate === 0){
-    //             this.cube.classList.remove("cube-facing-front");
-    //             this.cube.classList.add("cube-facing-top");
-    //         }
-    //         //go to left
-    //         else if(this.curstate === 1){
-    //             this.cube.classList.remove("cube-facing-top");
-    //             this.cube.classList.add("cube-facing-left");
-    //         }
-    //         //go to bottom
-    //         else if(this.curstate === 2){
-    //             this.cube.classList.remove("cube-facing-left");
-    //             this.cube.classList.add("cube-facing-bottom");
-    //         }
-    //         // go to right
-    //         else if(this.curstate === 3){
-    //             this.cube.classList.remove("cube-facing-bottom");
-    //             this.cube.classList.add("cube-facing-right");
-    //         }
-    //         //go to back
-    //         else if(this.curstate === 4){
-    //             this.cube.classList.remove("cube-facing-right");
-    //             this.cube.classList.add("cube-facing-back");
-    //         }
-    //         //go to front
-    //         else if(this.curstate === 5){
-    //             this.cube.classList.remove("cube-facing-back");
-    //             this.cube.classList.add("cube-facing-front");
-    //         }
-    //         this.curstate = (this.curstate + 1) % 6;
-    //     }
-    //     else{
-    //         this.cube.classList.remove("cube-start");
-    //         this.cube.classList.add("cube-facing-front");
-    //         this.curstate = 0;
-    //     }
-    // }
 }
 
-let c = new ImageCube();
+let c = new ImageCube(-15, 30, 0.2);
 c.dragRotate();
 // document.getElementById("image-cube").addEventListener("click", function(){
 //     c.rotate();
