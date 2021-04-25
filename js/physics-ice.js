@@ -186,17 +186,24 @@ Events.on(iceCubes, "afterRemove", function(e){
 });
 
 //CHANGE GRAVITY
-let zeroGravity = false;
+let collisionCount = 0;
 
 function firstCollision(e){
   var pairs = e.pairs;
   for (var i = 0; i < pairs.length; i++) {
     var pair = pairs[i];
     if(pair.bodyA.label == "bottom-boundary" || pair.bodyB.label == "bottom-boundary"){
-      zeroGravity = true;
-      if(zeroGravity){
+      collisionCount += 1;
+      if(collisionCount == 1){
         //chat-cube appear
-        //chatCubeDOM.classList.add(`show`);
+        $({scale: 0}).animate({scale: 1},{
+          duration: 450,
+          easing: `easeOutBack`,
+          step: function(now){
+            console.log(now);
+            chatCubeDOM.style.setProperty(`--chatCubeScale`, `${now}`);
+          }
+        });
         //zero gravity
         requestTimeout(function(){
           engine.gravity.x = 0;

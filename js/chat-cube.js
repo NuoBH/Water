@@ -25,8 +25,8 @@ class ChatCube{
         this.x = 0;
         this.y = 0;
         //properties used to tilt the cube
-        this.tiltXRate = 5;
-        this.tiltYRate = 4;
+        this.tiltXRate = 10;
+        this.tiltYRate = 8;
         //properties for lerp rotation
         this.lastRotateLerpAF = undefined;
         this.lerpSpeedRotate = lerpVRotate;
@@ -138,9 +138,6 @@ class ChatCube{
         }.bind(this));
 
         window.addEventListener("touchmove", function(ev){
-            if(ev.cancelable){
-                ev.preventDefault();
-            }
             this.setTiltAngles(ev);
             
             cancelAnimationFrame(this.rotateAnimFrame);
@@ -158,15 +155,13 @@ class ChatCube{
         }
         else{
             let touch = ev.changedTouches[0];
-            
+            console.log(touch);
             rxRate = (touch.clientY - window.innerHeight/2) / (window.innerHeight/2);
             ryRate = (touch.clientX - window.innerWidth/2) / (window.innerWidth/2);
         }
         
         var rotateXAdd = rxRate * this.tiltXRate;
         var rotateYAdd = ryRate * this.tiltYRate;
-
-        //console.debug(`rate${rxRate}, ${ryRate}; ang${rotateXAdd}, ${rotateYAdd}`);
 
         this.targetRotateX = this.x - rotateXAdd;
         this.targetRotateY = this.y + rotateYAdd;
@@ -191,8 +186,6 @@ class ChatCube{
 
         this.cube.style.setProperty("--chatRotateX", `${curRotateX}deg`);
         this.cube.style.setProperty("--chatRotateY", `${curRotateY}deg`);
-
-        console.debug(curRotateX, curRotateY);
 
         cancelAnimationFrame(this.rotateAnimFrame);
 
@@ -285,21 +278,21 @@ class ChatCube{
 }
 
 var chatCube = new ChatCube(0.25, 0.25);
-requestTimeout(function(){
-    chatCube.rotate();
-    requestTimeout(function(){
-        chatCube.rotate();
-        requestTimeout(function(){
-            chatCube.rotate();
-            requestTimeout(function(){
-                chatCube.rotate();
-                requestTimeout(function(){
-                    chatCube.rotate();
-                    requestTimeout(function(){
-                        chatCube.rotate();
-                    }, 5000);
-                }, 5000);
-            }, 5000);
-        }, 5000);
-    }, 5000);
-}, 5000);
+// requestTimeout(function(){
+//     chatCube.rotate();
+//     requestTimeout(function(){
+//         chatCube.rotate();
+//         requestTimeout(function(){
+//             chatCube.rotate();
+//             requestTimeout(function(){
+//                 chatCube.rotate();
+//                 requestTimeout(function(){
+//                     chatCube.rotate();
+//                     requestTimeout(function(){
+//                         chatCube.rotate();
+//                     }, 5000);
+//                 }, 5000);
+//             }, 5000);
+//         }, 5000);
+//     }, 5000);
+// }, 5000);
