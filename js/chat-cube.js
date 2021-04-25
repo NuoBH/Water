@@ -40,7 +40,6 @@ class ChatCube{
 
         frontFace.style.setProperty(`z-index`, `2`);
 
-        if(mobileAndTabletCheck()
     }
 
     //resize each face of the cube after window resize
