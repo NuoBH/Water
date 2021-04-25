@@ -166,7 +166,7 @@ class ChatCube{
         var rotateXAdd = rxRate * this.tiltXRate;
         var rotateYAdd = ryRate * this.tiltYRate;
 
-        console.debug(`rate${rxRate}, ${ryRate}; ang${rotateXAdd}, ${rotateYAdd}`);
+        //console.debug(`rate${rxRate}, ${ryRate}; ang${rotateXAdd}, ${rotateYAdd}`);
 
         this.targetRotateX = this.x - rotateXAdd;
         this.targetRotateY = this.y + rotateYAdd;
@@ -191,6 +191,8 @@ class ChatCube{
 
         this.cube.style.setProperty("--chatRotateX", `${curRotateX}deg`);
         this.cube.style.setProperty("--chatRotateY", `${curRotateY}deg`);
+
+        console.debug(this.targetRotateX, this.targetRotateY);
 
         cancelAnimationFrame(this.rotateAnimFrame);
 
