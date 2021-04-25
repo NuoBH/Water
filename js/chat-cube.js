@@ -155,10 +155,12 @@ class ChatCube{
         }
         else{
             let touch = ev.changedTouches[0];
-            console.log(touch);
-            rxRate = (touch.clientY - window.innerHeight/2) / (window.innerHeight/2);
-            ryRate = (touch.clientX - window.innerWidth/2) / (window.innerWidth/2);
+            
+            rxRate = (touch.pageY - window.innerHeight/2) / (window.innerHeight/2);
+            ryRate = (touch.pageX - window.innerWidth/2) / (window.innerWidth/2);
         }
+
+        console.log(rxRate, ryRate);
         
         var rotateXAdd = rxRate * this.tiltXRate;
         var rotateYAdd = ryRate * this.tiltYRate;
