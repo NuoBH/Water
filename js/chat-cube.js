@@ -25,8 +25,8 @@ class ChatCube{
         this.x = 0;
         this.y = 0;
         //properties used to tilt the cube
-        this.tiltXRate = 10;
-        this.tiltYRate = 8;
+        this.tiltXRate = 12;
+        this.tiltYRate = 12;
         //properties for lerp rotation
         this.lastRotateLerpAF = undefined;
         this.lerpSpeedRotate = lerpVRotate;
@@ -155,7 +155,6 @@ class ChatCube{
         }
         else{
             let touch = ev.changedTouches[0];
-            console.log(touch);
             rxRate = (touch.clientY - window.innerHeight/2) / (window.innerHeight/2);
             ryRate = (touch.clientX - window.innerWidth/2) / (window.innerWidth/2);
         }
@@ -277,22 +276,22 @@ class ChatCube{
     }
 }
 
-var chatCube = new ChatCube(0.25, 0.25);
-// requestTimeout(function(){
-//     chatCube.rotate();
-//     requestTimeout(function(){
-//         chatCube.rotate();
-//         requestTimeout(function(){
-//             chatCube.rotate();
-//             requestTimeout(function(){
-//                 chatCube.rotate();
-//                 requestTimeout(function(){
-//                     chatCube.rotate();
-//                     requestTimeout(function(){
-//                         chatCube.rotate();
-//                     }, 5000);
-//                 }, 5000);
-//             }, 5000);
-//         }, 5000);
-//     }, 5000);
-// }, 5000);
+var chatCube = new ChatCube(0.1, 0.1);
+requestTimeout(function(){
+    chatCube.rotate();
+    requestTimeout(function(){
+        chatCube.rotate();
+        requestTimeout(function(){
+            chatCube.rotate();
+            requestTimeout(function(){
+                chatCube.rotate();
+                requestTimeout(function(){
+                    chatCube.rotate();
+                    requestTimeout(function(){
+                        chatCube.rotate();
+                    }, 5000);
+                }, 5000);
+            }, 5000);
+        }, 5000);
+    }, 5000);
+}, 5000);
