@@ -192,7 +192,7 @@ class ChatCube{
         this.cube.style.setProperty("--chatRotateX", `${curRotateX}deg`);
         this.cube.style.setProperty("--chatRotateY", `${curRotateY}deg`);
 
-        console.debug(this.targetRotateX, this.targetRotateY);
+        console.debug(curRotateX, curRotateY);
 
         cancelAnimationFrame(this.rotateAnimFrame);
 
@@ -285,21 +285,21 @@ class ChatCube{
 }
 
 var chatCube = new ChatCube(0.25, 0.25);
-// requestTimeout(function(){
-//     chatCube.rotate();
-//     requestTimeout(function(){
-//         chatCube.rotate();
-//         requestTimeout(function(){
-//             chatCube.rotate();
-//             requestTimeout(function(){
-//                 chatCube.rotate();
-//                 requestTimeout(function(){
-//                     chatCube.rotate();
-//                     requestTimeout(function(){
-//                         chatCube.rotate();
-//                     }, 5000);
-//                 }, 5000);
-//             }, 5000);
-//         }, 5000);
-//     }, 5000);
-// }, 5000);
+requestTimeout(function(){
+    chatCube.rotate();
+    requestTimeout(function(){
+        chatCube.rotate();
+        requestTimeout(function(){
+            chatCube.rotate();
+            requestTimeout(function(){
+                chatCube.rotate();
+                requestTimeout(function(){
+                    chatCube.rotate();
+                    requestTimeout(function(){
+                        chatCube.rotate();
+                    }, 5000);
+                }, 5000);
+            }, 5000);
+        }, 5000);
+    }, 5000);
+}, 5000);
