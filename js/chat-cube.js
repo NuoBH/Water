@@ -166,6 +166,8 @@ class ChatCube{
         var rotateXAdd = rxRate * this.tiltXRate;
         var rotateYAdd = ryRate * this.tiltYRate;
 
+        console.debug(`rate${rxRate}, ${ryRate}; ang${rotateXAdd}, ${rotateYAdd}`);
+
         this.targetRotateX = this.x - rotateXAdd;
         this.targetRotateY = this.y + rotateYAdd;
     }
