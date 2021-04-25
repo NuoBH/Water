@@ -197,7 +197,6 @@ function firstCollision(e){
       if(zeroGravity){
         //chat-cube appear
         chatCubeDOM.classList.add(`show`);
-        cubeContent.blotterTextAppear();
         //zero gravity
         requestTimeout(function(){
           engine.gravity.x = 0;
@@ -205,7 +204,7 @@ function firstCollision(e){
           mouseConstraint.constraint.stiffness = 0.000002;
 
           Events.off(engine, `collisionEnd`, firstCollision);
-        }, 1500);
+        }, 1000);
       }   
     }
   }
