@@ -37,6 +37,8 @@ class ChatCube{
 
         this.cubeOnResize();
         window.addEventListener(`resize`, this.cubeOnResize.bind(this));
+
+        frontFace.style.setProperty(`z-index`, `2`);
     }
 
     //resize each face of the cube after window resize
@@ -197,6 +199,11 @@ class ChatCube{
         }
     }
 
+    resetZIndex(toRemove, toAdd){
+        toRemove.style.setProperty(`z-index`, `initial`);
+        toAdd.style.setProperty(`z-index`, `2`);
+    }
+
     //alternate rotation among all 6 faces of the cube
     rotate(){
         //if is at front, go to top;
@@ -204,6 +211,7 @@ class ChatCube{
             this.x = -90;
             this.y = 0;
             this.startRotateToTargetAngles();
+            this.resetZIndex(frontFace, topFace);
         }
         //go to left
         else if(this.curstate === 1){
@@ -211,6 +219,7 @@ class ChatCube{
             this.y = 90;
             this.startRotateToTargetAngles();
             this.toggleFaceChange(1);
+            this.resetZIndex(topFace, leftFace);
         }
         //go to bottom
         else if(this.curstate === 2){
@@ -218,6 +227,7 @@ class ChatCube{
             this.y = 0;
             this.startRotateToTargetAngles();
             this.toggleFaceChange(0);
+            this.resetZIndex(leftFace, bottomFace);
         }
         // go to right
         else if(this.curstate === 3){
@@ -225,6 +235,7 @@ class ChatCube{
             this.y = -90;
             this.startRotateToTargetAngles();
             this.toggleFaceChange(1);
+            this.resetZIndex(bottomFace, rightFace);
         }
         //go to back
         else if(this.curstate === 4){
@@ -232,12 +243,14 @@ class ChatCube{
             this.y = 180;
             this.startRotateToTargetAngles();
             this.toggleFaceChange(0);
+            this.resetZIndex(rightFace, backFace);
         }
         //go to front
         else if(this.curstate === 5){
             this.x = 0;
             this.y = 0;
             this.startRotateToTargetAngles();
+            this.resetZIndex(backFace, frontFace);
         }
         this.curstate = (this.curstate + 1) % 6;
     }

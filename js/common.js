@@ -95,3 +95,9 @@ var vis = (function(){
 /***************************************************************** */
 
 var chatCubeDOM = document.getElementById("chat-cube");
+var frontFace = document.getElementById(`front`);
+var leftFace = document.getElementById(`left`);
+var rightFace = document.getElementById(`right`);
+var topFace = document.getElementById(`top`);
+var bottomFace = document.getElementById(`bottom`);
+var backFace = document.getElementById(`back`);
