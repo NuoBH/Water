@@ -138,6 +138,9 @@ class ChatCube{
         }.bind(this));
 
         window.addEventListener("touchmove", function(ev){
+            if(ev.cancelable){
+                ev.preventDefault();
+            }
             this.setTiltAngles(ev);
             
             cancelAnimationFrame(this.rotateAnimFrame);
@@ -156,11 +159,9 @@ class ChatCube{
         else{
             let touch = ev.changedTouches[0];
             
-            rxRate = (touch.pageY - window.innerHeight/2) / (window.innerHeight/2);
-            ryRate = (touch.pageX - window.innerWidth/2) / (window.innerWidth/2);
+            rxRate = (touch.clientY - window.innerHeight/2) / (window.innerHeight/2);
+            ryRate = (touch.clientX - window.innerWidth/2) / (window.innerWidth/2);
         }
-
-        console.log(rxRate, ryRate);
         
         var rotateXAdd = rxRate * this.tiltXRate;
         var rotateYAdd = ryRate * this.tiltYRate;
