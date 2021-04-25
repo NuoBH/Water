@@ -277,21 +277,21 @@ class ChatCube{
 }
 
 var chatCube = new ChatCube(0.1, 0.1);
-// requestTimeout(function(){
-//     chatCube.rotate();
-//     requestTimeout(function(){
-//         chatCube.rotate();
-//         requestTimeout(function(){
-//             chatCube.rotate();
-//             requestTimeout(function(){
-//                 chatCube.rotate();
-//                 requestTimeout(function(){
-//                     chatCube.rotate();
-//                     requestTimeout(function(){
-//                         chatCube.rotate();
-//                     }, 5000);
-//                 }, 5000);
-//             }, 5000);
-//         }, 5000);
-//     }, 5000);
-// }, 5000);
+requestTimeout(function(){
+    chatCube.rotate();
+    requestTimeout(function(){
+        chatCube.rotate();
+        requestTimeout(function(){
+            chatCube.rotate();
+            requestTimeout(function(){
+                chatCube.rotate();
+                requestTimeout(function(){
+                    chatCube.rotate();
+                    requestTimeout(function(){
+                        chatCube.rotate();
+                    }, 5000);
+                }, 5000);
+            }, 5000);
+        }, 5000);
+    }, 5000);
+}, 5000);
