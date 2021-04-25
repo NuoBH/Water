@@ -93,3 +93,5 @@ var vis = (function(){
     }
   })();
 /***************************************************************** */
+
+var chatCubeDOM = document.getElementById("chat-cube");

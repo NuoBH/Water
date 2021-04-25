@@ -259,7 +259,7 @@ class ChatCube{
             isChromium = window.chrome;
         if (notIE && !isChromium) {
             // checks for Firefox and other  NON IE Chrome versions
-            $(window).on("focusout", function () {
+            window.addEventListener("focusout", function () {
                 // blur
                 this.lastFaceChangeLerpAF = undefined;
                 this.lastRotateLerpAF = undefined;
@@ -277,7 +277,7 @@ class ChatCube{
     }
 }
 
-let chatCube = new ChatCube(0.25, 0.25);
+var chatCube = new ChatCube(0.25, 0.25);
 // requestTimeout(function(){
 //     chatCube.rotate();
 //     requestTimeout(function(){

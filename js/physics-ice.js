@@ -192,9 +192,13 @@ function firstCollision(e){
   var pairs = e.pairs;
   for (var i = 0; i < pairs.length; i++) {
     var pair = pairs[i];
-    if(pair.bodyA.label == "bottom-boundary" || pair.bodyB.label == "bottom-boundary");
+    if(pair.bodyA.label == "bottom-boundary" || pair.bodyB.label == "bottom-boundary"){
       zeroGravity = true;
       if(zeroGravity){
+        //chat-cube appear
+        chatCubeDOM.classList.add(`show`);
+        cubeContent.blotterTextAppear();
+        //zero gravity
         requestTimeout(function(){
           engine.gravity.x = 0;
           engine.gravity.y = 0;
@@ -203,6 +207,7 @@ function firstCollision(e){
           Events.off(engine, `collisionEnd`, firstCollision);
         }, 1500);
       }   
+    }
   }
 //
 }
