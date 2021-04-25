@@ -136,9 +136,16 @@ class ChatCube{
             cancelAnimationFrame(this.rotateAnimFrame);
             this.rotateAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
         }.bind(this));
+
+        window.addEventListener("touchmove", function(ev){
+            this.setTiltAngles(ev);
+            
+            cancelAnimationFrame(this.rotateAnimFrame);
+            this.rotateAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
+        }.bind(this));
     }
 
-    //set tilt angles based on the position of the mouse in window
+    //set tilt angles based on the position of the mouse / touch in window
     setTiltAngles(ev){
         var rxRate;
         var ryRate;
@@ -148,22 +155,10 @@ class ChatCube{
         }
         else{
             let touch = ev.changedTouches[0];
-
+            console.log(touch);
             rxRate = (touch.clientY - window.innerHeight/2) / (window.innerHeight/2);
             ryRate = (touch.clientX - window.innerWidth/2) / (window.innerWidth/2);
         }
-        
-        var rotateXAdd = rxRate * this.tiltXRate;
-        var rotateYAdd = ryRate * this.tiltYRate;
-
-        this.targetRotateX = this.x - rotateXAdd;
-        this.targetRotateY = this.y + rotateYAdd;
-    }
-
-    //set tilt angles based on the position of touch
-    setTiltAnglesTouch(ev){
-        var rxRate = (ev.clientY - window.innerHeight/2) / (window.innerHeight/2);
-        var ryRate = (ev.clientX - window.innerWidth/2) / (window.innerWidth/2);
         
         var rotateXAdd = rxRate * this.tiltXRate;
         var rotateYAdd = ryRate * this.tiltYRate;
