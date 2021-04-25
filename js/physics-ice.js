@@ -38,16 +38,16 @@ let render = Render.create({
 
 //============
 //CREATE OBJECTS
-let mouse = Mouse.create(render.canvas);
-mouse.pixelRatio = window.devicePixelRatio;
-let mouseConstraint = Matter.MouseConstraint.create(engine,{
-  mouse: mouse,
-  constraint:{
-    stiffness: 0.0003,
-    render: {visible: true}
-  }
-})
-render.mouse = mouse;
+// let mouse = Mouse.create(render.canvas);
+// mouse.pixelRatio = window.devicePixelRatio;
+// let mouseConstraint = Matter.MouseConstraint.create(engine,{
+//   mouse: mouse,
+//   constraint:{
+//     stiffness: 0.0003,
+//     render: {visible: true}
+//   }
+// })
+// render.mouse = mouse;
 
 //boundary
 let initialWindow = {
@@ -89,7 +89,7 @@ let iceCubes = Composites.stack(posX, posY, col, row, eachWidth / 3, eachWidth /
 
 //============
 //ADD BODIES
-Composite.add(engine.world, [mouseConstraint, iceCubes, leftBound, rightBound, topBound, bottomBound]);
+Composite.add(engine.world, [iceCubes, leftBound, rightBound, topBound, bottomBound]);
 
 //============
 //RUN + CREATE RUNNER
@@ -114,7 +114,7 @@ function windowOnResize(){
   render.options.height = window.innerHeight;
   render.options.width = window.innerWidth;
   Render.setPixelRatio(render, window.devicePixelRatio);
-  mouse.pixelRatio = window.devicePixelRatio;
+  //mouse.pixelRatio = window.devicePixelRatio;
   
   //change boundary size and position
   let leftPos = Vector.create(- 1 * boundThickness, window.innerHeight/2);
@@ -207,7 +207,7 @@ function firstCollision(e){
         requestTimeout(function(){
           engine.gravity.x = 0;
           engine.gravity.y = 0;
-          mouseConstraint.constraint.stiffness = 0.000002;
+          //mouseConstraint.constraint.stiffness = 0.000002;
 
           Events.off(engine, `collisionEnd`, firstCollision);
         }, 1000);

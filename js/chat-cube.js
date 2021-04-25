@@ -137,12 +137,12 @@ class ChatCube{
             this.rotateAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
         }.bind(this));
 
-        window.addEventListener("touchmove", function(ev){
-            this.setTiltAngles(ev);
+        // window.addEventListener("touchmove", function(ev){
+        //     this.setTiltAngles(ev);
             
-            cancelAnimationFrame(this.rotateAnimFrame);
-            this.rotateAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
-        }.bind(this));
+        //     cancelAnimationFrame(this.rotateAnimFrame);
+        //     this.rotateAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
+        // }.bind(this));
     }
 
     //set tilt angles based on the position of the mouse / touch in window
