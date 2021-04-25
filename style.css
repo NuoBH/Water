@@ -109,8 +109,6 @@ transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
 
     backface-visibility: visible;
     background: rgba(255,255,255,0.5);
-
-    overflow: auto;
 }
 /* initial state: face four are front top bottom back, face two are left right */
 .face-four{
@@ -160,6 +158,7 @@ transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
 }
 
 .text{
+    overflow: auto;
     width: 100%;
 
     font-family: 'marola';
