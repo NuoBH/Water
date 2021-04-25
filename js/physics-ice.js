@@ -196,7 +196,7 @@ function firstCollision(e){
       zeroGravity = true;
       if(zeroGravity){
         //chat-cube appear
-        chatCubeDOM.classList.add(`show`);
+        //chatCubeDOM.classList.add(`show`);
         //zero gravity
         requestTimeout(function(){
           engine.gravity.x = 0;
