@@ -163,6 +163,7 @@ transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
     overflow: auto;
     width: 100%;
     height: 100%;
+    color:red;
 
     font-family: 'marola';
     font-size: 10rem;
