@@ -21,6 +21,7 @@ class ChatCube{
         //properties used to rotate
         this.targetRotateX = 0;
         this.targetRotateY = 0;
+        //original rotation agles without tilt
         this.x = 0;
         this.y = 0;
         //properties used to tilt the cube
@@ -38,14 +39,13 @@ class ChatCube{
         window.addEventListener(`resize`, this.cubeOnResize.bind(this));
     }
 
+    //resize each face of the cube after window resize
     cubeOnResize(){
         this.cube.style.setProperty(`width`, `${0.75 * window.innerWidth}px`);
         this.cube.style.setProperty(`height`, `${0.421875 * window.innerWidth}px`);
 
         let canChange = this.curstate == 2 || this.curstate == 4 ? 1 : 0;
         this.toggleFaceChange(canChange);
-        // cancelAnimationFrame(this.faceChangeAnimFrame);
-        // this.faceChangeAnimFrame = requestAnimationFrame(this.faceChangeLerp.bind(this));
 
         this.cube.style.setProperty(`left`, `${0.5 * window.innerWidth - this.cube.offsetWidth / 2}px`);
         this.cube.style.setProperty(`top`, `${0.5 * window.innerHeight - this.cube.offsetHeight / 2}px`);
@@ -76,6 +76,7 @@ class ChatCube{
         this.faceChangeAnimFrame = requestAnimFrame(this.faceChangeLerp.bind(this));
     }
 
+    //lerp face size change
     faceChangeLerp(timestamp){
         if(this.lastFaceChangeLerpAF === undefined){
             this.lastFaceChangeLerpAF = timestamp;
@@ -118,6 +119,7 @@ class ChatCube{
         }
     }
 
+    //set target rotate angles and start rotation
     startRotateToTargetAngles(){
         this.targetRotateX = this.x;
         this.targetRotateY = this.y;
@@ -126,6 +128,7 @@ class ChatCube{
         this.rotateAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
     }
 
+    //set tilt angles and start rotation
     startTilt(){
         window.addEventListener("mousemove", function(ev){
             this.setTiltAngles(ev);
@@ -135,7 +138,30 @@ class ChatCube{
         }.bind(this));
     }
 
+    //set tilt angles based on the position of the mouse in window
     setTiltAngles(ev){
+        var rxRate;
+        var ryRate;
+        if(ev.type === "mouseup" || ev.type === "mousedown" || ev.type === "mousemove"){
+            rxRate = (ev.clientY - window.innerHeight/2) / (window.innerHeight/2);
+            ryRate = (ev.clientX - window.innerWidth/2) / (window.innerWidth/2);
+        }
+        else{
+            let touch = ev.changedTouches[0];
+
+            rxRate = (touch.clientY - window.innerHeight/2) / (window.innerHeight/2);
+            ryRate = (touch.clientX - window.innerWidth/2) / (window.innerWidth/2);
+        }
+        
+        var rotateXAdd = rxRate * this.tiltXRate;
+        var rotateYAdd = ryRate * this.tiltYRate;
+
+        this.targetRotateX = this.x - rotateXAdd;
+        this.targetRotateY = this.y + rotateYAdd;
+    }
+
+    //set tilt angles based on the position of touch
+    setTiltAnglesTouch(ev){
         var rxRate = (ev.clientY - window.innerHeight/2) / (window.innerHeight/2);
         var ryRate = (ev.clientX - window.innerWidth/2) / (window.innerWidth/2);
         
@@ -144,10 +170,9 @@ class ChatCube{
 
         this.targetRotateX = this.x - rotateXAdd;
         this.targetRotateY = this.y + rotateYAdd;
-
-
     }
 
+    //lerp rotation of the cube
     rotateLerp(timestamp){
         if(this.lastRotateLerpAF === undefined){
             this.lastRotateLerpAF = timestamp;
@@ -178,6 +203,7 @@ class ChatCube{
         }
     }
 
+    //alternate rotation among all 6 faces of the cube
     rotate(){
         //if is at front, go to top;
         if(this.curstate === 0){
