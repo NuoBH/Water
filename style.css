@@ -95,6 +95,8 @@ transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
     height: var(--faceHeightFour);
     border: none;
 
+    z-index: 1;
+
     transform-style: preserve-3d;
     transform: rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
 }
@@ -166,8 +168,9 @@ transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
     font-family: 'marola';
     font-size: 10rem;
     text-align: center;
-}
 
+    touch-action: pan-x pan-y;
+}
 
 
 /* ************************************************************************ */
