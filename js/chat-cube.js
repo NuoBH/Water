@@ -25,8 +25,8 @@ class ChatCube{
         this.x = 0;
         this.y = 0;
         //properties used to tilt the cube
-        this.tiltXRate = 12;
-        this.tiltYRate = 12;
+        this.tiltXRate = mobileAndTabletCheck() ? 20 : 12;
+        this.tiltYRate = mobileAndTabletCheck() ? 20 : 12;
         //properties for lerp rotation
         this.lastRotateLerpAF = undefined;
         this.lerpSpeedRotate = lerpVRotate;
@@ -39,6 +39,8 @@ class ChatCube{
         window.addEventListener(`resize`, this.cubeOnResize.bind(this));
 
         frontFace.style.setProperty(`z-index`, `2`);
+
+        if(mobileAndTabletCheck()
     }
 
     //resize each face of the cube after window resize

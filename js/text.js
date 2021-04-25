@@ -1,6 +1,6 @@
 class CubeContent{
     constructor(){
-
+        
     }
     
     addTitle(face, str, factor=1.75){
