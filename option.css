@@ -1,0 +1,25 @@
+.option-container{
+    display:block;
+}
+
+.option-button{
+    --buttonMargin:0px;
+    display: inline;
+    margin-left: var(--buttonMargin);
+    margin-right: var(--buttonMargin);
+
+    box-sizing: border-box;
+    line-height: 4rem;
+    text-align: center;
+    font-size: 2rem;
+    overflow-wrap: break-word;
+
+    transition: margin-left 0.5s ease, margin-right 0.5s ease;
+}
+.option-button:hover{
+    text-decoration: underline;
+}
+
+
+
+
