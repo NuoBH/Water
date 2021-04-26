@@ -150,7 +150,7 @@ class Option{
             button.style.setProperty("--buttonTextDecoration", "none");
         });
 
-        button.addEventListener("touchend", function(){
+        button.addEventListener("touchend", function(ev){
             if(ev.cancelable){
                 ev.preventDefault();
             }
