@@ -74,7 +74,7 @@ class Option{
                     childWidthIncrement -= buttons[i].offsetWidth;
                     incrementSteps -= 1; 
                     childrenToSet.pop();
-                    margin = (parentWidth - 30 - childWidthIncrement) / (incrementSteps * 2);
+                    margin = (parentWidth - childWidthIncrement) / (incrementSteps * 2);
 
                     //set margin of children to set
                     for(let j = 0; j < childrenToSet.length; j++){
@@ -103,7 +103,7 @@ class Option{
         if(incrementSteps > 0){
             let margin;
             if(incrementSteps > 1){
-                margin = (parentWidth - 30 - childWidthIncrement) / (incrementSteps * 2);
+                margin = (parentWidth - childWidthIncrement) / (incrementSteps * 2);
                 for(let j = 0; j < childrenToSet.length; j++){
                     childrenToSet[j].style.setProperty("--buttonMargin", `${margin}px`);
                     childrenToSet[j].style.setProperty("--buttonMargin", `${margin}px`);
