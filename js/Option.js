@@ -151,6 +151,9 @@ class Option{
         });
 
         button.addEventListener("touchend", function(){
+            if(ev.cancelable){
+                ev.preventDefault();
+            }
             button.style.setProperty("--buttonTextDecoration", "none");
         });
     }
