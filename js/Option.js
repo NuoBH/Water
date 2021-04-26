@@ -138,7 +138,10 @@ class Option{
             button.style.setProperty("--buttonTextDecoration", "underline");
         });
 
-        button.addEventListener("touchstart", function(){
+        button.addEventListener("touchstart", function(ev){
+            if(ev.cancelable){
+                ev.preventDefault();
+            }
             button.style.setProperty("--buttonTextDecoration", "underline");
         });
     }
