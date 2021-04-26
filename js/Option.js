@@ -74,15 +74,22 @@ class Option{
                     childWidthIncrement -= buttons[i].offsetWidth;
                     incrementSteps -= 1; 
                     childrenToSet.pop();
-                    margin = (parentWidth - childWidthIncrement) / (incrementSteps * 2);
+                    if(incrementSteps > 1){
+                        margin = (parentWidth - childWidthIncrement) / (incrementSteps * 2);
 
-                    //set margin of children to set
-                    for(let j = 0; j < childrenToSet.length; j++){
-                        childrenToSet[j].style.setProperty("--buttonMargin", `${margin}px`);
-                        childrenToSet[j].style.setProperty("--buttonMargin", `${margin}px`);
-                        if(j < childrenToSet.length - 1){
-                            childrenToSet[j].innerHTML = childrenToSet[j].innerHTML.slice(0,-4);
+                        //set margin of children to set
+                        for(let j = 0; j < childrenToSet.length; j++){
+                            childrenToSet[j].style.setProperty("--buttonMargin", `${margin}px`);
+                            childrenToSet[j].style.setProperty("--buttonMargin", `${margin}px`);
+                            if(j < childrenToSet.length - 1){
+                                childrenToSet[j].innerHTML = childrenToSet[j].innerHTML.slice(0,-4);
+                            }
                         }
+                    }
+                    else{
+                        margin = 0;
+                        childrenToSet[0].style.setProperty("--buttonMargin", `auto`);
+                        childrenToSet[0].style.setProperty("--buttonMargin", `auto`);
                     }
                     //back one step, to set current button margin if overflows with this button included
                     i -= 1;
