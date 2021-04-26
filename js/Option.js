@@ -71,9 +71,11 @@ class Option{
                 //if total two or more buttons overflow, subtract current button width and set all previous
                 //button margin
                 if(incrementSteps > 1){
+                    //removed the overflowed button from the list of buttons to be set
                     childWidthIncrement -= buttons[i].offsetWidth;
                     incrementSteps -= 1; 
                     childrenToSet.pop();
+                    //if there are more than one button on one line, calculate the margins
                     if(incrementSteps > 1){
                         margin = (parentWidth - childWidthIncrement) / (incrementSteps * 2);
 
@@ -86,6 +88,7 @@ class Option{
                             }
                         }
                     }
+                    //if only one button a line, set the margin to auto
                     else{
                         margin = 0;
                         childrenToSet[0].style.setProperty("--buttonMargin", `auto`);
