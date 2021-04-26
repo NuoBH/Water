@@ -23,6 +23,8 @@ class Option{
             //add break after each option button so that when use cnterOptionButtons, it 
             //will get the correct offsetWidth of each <span> element of the buttons
             button.innerHTML = `${buttonTexts[i]}<br>`;
+            this.onMouseTouchEnterOptionButton(button);
+            this.onMouseTouchLeaveOptionButton(button);
             optionDOM.appendChild(button);
         }
 
@@ -131,11 +133,23 @@ class Option{
     }
 
     //mouse and touch event for option buttons 
-    onMouseEnterOptionButton(button){
+    onMouseTouchEnterOptionButton(button){
+        button.addEventListener("mouseenter", function(){
+            button.style.setProperty("--buttonTextDecoration", "underline");
+        });
 
+        button.addEventListener("touchstart", function(){
+            button.style.setProperty("--buttonTextDecoration", "underline");
+        });
     }
-    onMouseLeaveOptionButton(button){
+    onMouseTouchLeaveOptionButton(button){
+        button.addEventListener("mouseleave", function(){
+            button.style.setProperty("--buttonTextDecoration", "none");
+        });
 
+        button.addEventListener("touchend", function(){
+            button.style.setProperty("--buttonTextDecoration", "none");
+        });
     }
     onMouseUpOptionButton(button){
 
