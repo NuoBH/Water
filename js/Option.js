@@ -26,6 +26,14 @@ class Option{
             optionDOM.appendChild(button);
         }
 
+        //center all buttons in option container and update it when window is resized
+        this.centerOptionButtons(optionDOM);
+        window.addEventListener("resize", function(){
+            requestTimeout(function(){
+                this.centerOptionButtons(optionDOM);
+            }.bind(this), 100);
+        }.bind(this));
+
         return optionDOM;
     }
 
@@ -38,6 +46,8 @@ class Option{
         let parentWidth = chatCube.targetFaceWidthFour - 20 * 2;
         let maxWidth = parentWidth - parentWidth / 3;
 
+        console.debug(chatCube.targetFaceWidthFour);
+
         let incrementSteps = 0;
         let childWidthIncrement = 0;
         let childrenToSet = [];
@@ -45,7 +55,7 @@ class Option{
 
         //reset all buttons by adding <br> at end
         for(let i = 0; i < buttons.length; i ++){
-            if(buttons[i].innerHTML.slice(-4) != "<br>"){
+            if(buttons[i].innerHTML.slice(-4) !== "<br>"){
                 buttons[i].innerHTML = buttons[i].innerHTML + "<br>";
             }
         }
@@ -79,10 +89,9 @@ class Option{
                 }
                 //do not set button margin if the single button(increment = 1) overflows
                 else {
-                    console.log(childrenToSet[0]);
                     margin = 0;
-                    childrenToSet[0].style.setProperty("--buttonMargin", `${margin}px`);
-                    childrenToSet[0].style.setProperty("--buttonMargin", `${margin}px`);
+                    childrenToSet[0].style.setProperty("--buttonMargin", `auto`);
+                    childrenToSet[0].style.setProperty("--buttonMargin", `auto`);
                 }
                 //reset incrememnts
                 childWidthIncrement = 0;
@@ -91,7 +100,7 @@ class Option{
             }
         }
 
-        if(childWidthIncrement > 0){
+        if(incrementSteps > 0){
             let margin;
             if(incrementSteps > 1){
                 margin = (parentWidth - 30 - childWidthIncrement) / (incrementSteps * 2);
@@ -105,20 +114,27 @@ class Option{
             }
             else{
                 margin = 0;
-                childrenToSet[0].style.setProperty("--buttonMargin", `0px`);
-                childrenToSet[0].style.setProperty("--buttonMargin", `0px`);
+                childrenToSet[0].style.setProperty("--buttonMargin", `auto`);
+                childrenToSet[0].style.setProperty("--buttonMargin", `auto`);
             }
         }
+    }
+
+    //mouse and touch event for option buttons 
+    onMouseEnterOptionButton(button){
+
+    }
+    onMouseLeaveOptionButton(button){
+
+    }
+    onMouseUpOptionButton(button){
+
     }
 }
 
 let optionCreator = new Option();
 let optionDOM = optionCreator.addOptionButtons(frontFace, ["nuobebebebdasdadase", "nuoebe", "asdfasfas", "dsada", "dasdas"]);
 
-optionCreator.centerOptionButtons(optionDOM);
-window.addEventListener("resize", function(){
-    optionCreator.centerOptionButtons(optionDOM);
-});
 
 
 
