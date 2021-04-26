@@ -1,5 +1,12 @@
 .option-container{
+    --optionRotateX: 0deg;
+    --optionOpacity: 1;
+
     display:block;
+    transform: rotateX(var(--optionRotateX));
+    opacity: var(--optionOpacity);
+
+    transition: transform 0.5s ease-in-out, opacity 0.4s ease-in-out;
 }
 
 .option-button{
@@ -16,6 +23,8 @@
     text-decoration: var(--buttonTextDecoration);
     font-size: 2rem;
     overflow-wrap: break-word;
+    /* transform: scaleY(var(--buttonScaleY));
+    opacity: var(--buttonOpacity); */
 
     transition: margin-left 0.5s ease, margin-right 0.5s ease;
 }

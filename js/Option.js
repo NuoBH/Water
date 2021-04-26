@@ -25,6 +25,7 @@ class Option{
             button.innerHTML = `${buttonTexts[i]}<br>`;
             this.onMouseTouchEnterOptionButton(button);
             this.onMouseTouchLeaveOptionButton(button);
+            this.onMouseUpOptionButton(button, optionDOM);
             optionDOM.appendChild(button);
         }
 
@@ -57,7 +58,7 @@ class Option{
 
         //reset all buttons by adding <br> at end
         for(let i = 0; i < buttons.length; i ++){
-            if(buttons[i].innerHTML.slice(-4) !== "<br>"){
+            if(buttons[i].innerHTML.slice(-4) != "<br>"){
                 buttons[i].innerHTML = buttons[i].innerHTML + "<br>";
             }
         }
@@ -157,13 +158,24 @@ class Option{
             button.style.setProperty("--buttonTextDecoration", "none");
         });
     }
-    onMouseUpOptionButton(button){
 
+    onMouseUpOptionButton(button, optionDOM){
+        button.addEventListener("mouseup", function(){
+            let chosenText = button.innerHTML;
+            if(chosenText.slice(-4) == '<br>'){
+                chosenText = chosenText.slice(0, -4);
+            }
+            optionDOM.style.setProperty("--optionRotateX", "90deg");
+            optionDOM.style.setProperty("--optionOpacity", "0");
+            requestTimeout(function(){
+                optionDOM.remove();
+            }, 550);
+        });
     }
 }
 
 let optionCreator = new Option();
-let optionDOM = optionCreator.addOptionButtons(frontFace, ["nuobebebebdasdadase", "nuoebe", "asdfasfas", "dsada", "dasdas"]);
+// let optionDOM = optionCreator.addOptionButtons(frontFace, ["nuobebebebdasdadase", "nuoebe", "asdfasfas", "dsada", "dasdas"]);
 
 
 

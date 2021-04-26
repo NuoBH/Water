@@ -1,6 +1,6 @@
 class CubeContent{
     constructor(){
-        
+
     }
     
     addTitle(face, str, factor=1.75){
@@ -25,4 +25,4 @@ class CubeContent{
 }
 
 var cubeContent = new CubeContent();
-// cubeContent.addTitle(frontFace, `mate<br>rials`, 1.75);
+cubeContent.addTitle(frontFace, `mate<br>rials`, 1.75);
