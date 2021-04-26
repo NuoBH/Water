@@ -31,7 +31,7 @@ class Option{
         window.addEventListener("resize", function(){
             requestTimeout(function(){
                 this.centerOptionButtons(optionDOM);
-            }.bind(this), 100);
+            }.bind(this), 500);
         }.bind(this));
 
         return optionDOM;
