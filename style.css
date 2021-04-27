@@ -210,11 +210,38 @@ transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
     font-family:'marola';
     overflow-wrap: break-word;
     transition: font-size 1s ease;
+    margin-bottom: 15%;
 }
 
 .paragraph{
     font-family: 'para', monospace;
     font-size: 2.7rem;
+    margin-bottom: 7.5%;
+    margin-left: 10%;
+    width: 50%;
+    text-align: initial;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.chat{
+    direction: ltr;
+    opacity: 0;
+    transform: rotateX(90deg);
+}
+
+.response{
+    direction: rtl;
+    opacity: 0;
+    transform: rotateX(90deg);
+}
+
+.chat.send{
+    opacity: 1;
+    transform: rotateX(0deg);
+}
+.response.send{
+    opacity: 1;
+    transform: rotateX(0deg);
 }
 
 /* *******************Option Container and Button Style ************************* */
