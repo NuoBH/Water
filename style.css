@@ -57,7 +57,7 @@ body{
 /* -------------------style for image cube--------------------- */
 
 #image-cube{
-    --faceSize: 32vmin;
+    --faceSize: 20vmin;
     --imageRotateX: -15deg;
     --imageRotateY: 30deg; 
 
@@ -78,13 +78,18 @@ body{
     width: var(--faceSize);
     height: var(--faceSize);
     border:none;
+    cursor: grab;
 }
 .image-cube-face .image-cube-media{
+    display: block;
     position: absolute;
     width:100%;
     height:100%;
     margin:0;
     border:none;
+}
+.image-cube-face:active{
+    cursor:grabbing;
 }
 
 .image-cube-front {
