@@ -7,6 +7,38 @@
 
 }
 
+@font-face{
+    font-family: 'para';
+    src: url('fonts/para/AveriaSans-Regular.woff2') format('woff2'),
+         url('fonts/para/AveriaSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'para';
+    src: url('fonts/para/AveriaSans-Italic.woff2') format('woff2'),
+         url('fonts/para/AveriaSans-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face{
+    font-family: 'para';
+    src: url('fonts/para/AveriaSans-Bold.woff2') format('woff2'),
+         url('fonts/para/AveriaSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'para';
+    src: url('fonts/para/AveriaSans-BoldItalic.woff2') format('woff2'),
+         url('fonts/para/AveriaSans-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
 html{
     isolation: isolate;
 }
@@ -180,6 +212,10 @@ transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
     transition: font-size 1s ease;
 }
 
+.paragraph{
+    font-family: 'para', monospace;
+    font-size: 2.7rem;
+}
 
 /* ************************************************************************ */
 .noselect {

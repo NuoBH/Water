@@ -34,7 +34,7 @@ class Option{
         window.addEventListener("resize", function(){
             requestTimeout(function(){
                 this.centerOptionButtons(optionDOM);
-            }.bind(this), 500);
+            }.bind(this), 250);
         }.bind(this));
 
         return optionDOM;
@@ -46,10 +46,10 @@ class Option{
             return;
         }
 
-        let parentWidth = chatCube.targetFaceWidthFour - 20 * 2;
+        //get parent width = target width - [padding size(20) + factor(5)]*2
+        let padding = parseFloat(getComputedStyle(optionDOM.parentElement).getPropertyValue(`padding-left`));
+        let parentWidth = chatCube.targetFaceWidthFour - (padding + 5) * 2;
         let maxWidth = parentWidth - parentWidth / 3;
-
-        console.debug(chatCube.targetFaceWidthFour);
 
         let incrementSteps = 0;
         let childWidthIncrement = 0;
@@ -175,7 +175,7 @@ class Option{
 }
 
 let optionCreator = new Option();
-// let optionDOM = optionCreator.addOptionButtons(frontFace, ["nuobebebebdasdadase", "nuoebe", "asdfasfas", "dsada", "dasdas"]);
+let optionDOM = optionCreator.addOptionButtons(frontFace, ["nuobebe is xiang xiang hapizhugigingi", "nFDebe", "asdfFDSas", "dsaFDa", "dasdas"]);
 
 
 
