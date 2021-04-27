@@ -49,9 +49,9 @@ class Option{
         }, {
             duration: 500,
             easing: "swing",
-            step: function(now){
-                console.log(now);
-            }
+            // step: function(now){
+            //     console.log(now);
+            // }
         });
 
         return optionDOM;
@@ -212,19 +212,22 @@ class Option{
                 chosenText = chosenText.slice(0, -4);
             }
 
+            lastResponse = chosenText;
+
             let secLastChild = textDOM.children[textDOM.children.length-2];
+            let previousPadding = parseFloat(getComputedStyle(secLastChild.previousElementSibling).getPropertyValue(`margin-bottom`));
 
             optionDOM.style.setProperty("--optionRotateX", "90deg");
             optionDOM.style.setProperty("--optionOpacity", "0");
 
             $(textDOM).animate({
-                scrollTop: secLastChild.offsetTop + secLastChild.offsetHeight
+                scrollTop: $(secLastChild).offset().top - previousPadding
             }, {
                 duration: 500,
                 easing: "swing",
-                step: function(now){
-                    console.log(now);
-                }
+                // step: function(now){
+                //     console.log(now);
+                // }
             });
             requestTimeout(function(){
                 optionDOM.remove();
@@ -244,6 +247,17 @@ let optionCreator = new Option();
 //         "dsaFDa", 
 //         "dasdas"]);
 // },2000);
+
+// function test(){
+//     let optionDOM = optionCreator.addOptionButtons(frontFace, 
+//                 ["nuobebe is xiang xiang hapizhugigingi", 
+//                 "nFDebe", 
+//                 "asdfFDSas", 
+//                 "dsaFDa", 
+//                 "dasdas"]);
+//     window.removeEventListener(`mouseup`, test);
+// }
+// window.addEventListener(`mouseup`, test);
 
 
 

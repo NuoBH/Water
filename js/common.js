@@ -101,3 +101,5 @@ var rightFace = document.getElementById(`right`);
 var topFace = document.getElementById(`top`);
 var bottomFace = document.getElementById(`bottom`);
 var backFace = document.getElementById(`back`);
+const firstCollideEvent = new CustomEvent(`firstCollide`);
+var lastResponse = '';

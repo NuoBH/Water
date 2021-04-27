@@ -35,17 +35,43 @@ class CubeContent{
         $(textDOM).animate({
             scrollTop: textDOM.scrollHeight
         }, {
-            duration: 500,
+            duration: 450,
             easing: "swing"
         });
 
         chatDOM.classList.add(`send`);
     }
+
+    addResponse(face, str){
+        let textDOM = face.children[0];
+
+        let responseDOM = document.createElement(`p`);
+        responseDOM.classList.add(`paragraph`);
+        responseDOM.classList.add(`response`);
+        responseDOM.innerHTML = str;
+        textDOM.append(responseDOM);
+
+        $(textDOM).animate({
+            scrollTop: textDOM.scrollHeight
+        }, {
+            duration: 450,
+            easing: "swing"
+        });
+
+        responseDOM.classList.add(`send`);
+    }
 }
 
 var cubeContent = new CubeContent();
-cubeContent.addTitle(frontFace, `mate<br>rials`, 1.75);
 
-window.addEventListener(`mouseup`, function(){
-    cubeContent.addChat(frontFace, `Water is an imaginary data structure.`);
+//add to main later
+cubeContent.addTitle(frontFace, `water`, 1.8);
+window.addEventListener(`firstCollide`, function(){
+    requestTimeout(function(){
+        cubeContent.addChat(frontFace, `Water is an imaginary data structure.`);
+    }, 1000);
 });
+
+// window.addEventListener(`mouseup`, function(){
+//     cubeContent.addResponse(frontFace, `Okay, I can see that.`)
+// });
