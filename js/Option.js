@@ -11,6 +11,7 @@ class Option{
         }
 
         let textDOM = face.children[0];
+        
 
         //create option container and append to textDOM
         let optionDOM = document.createElement("div");
