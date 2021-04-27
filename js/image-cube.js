@@ -12,14 +12,48 @@ function addImageCube(face, mediaLinks){
     let faceClasses = ["image-cube-front", "image-cube-left", "image-cube-right", 
                        "image-cube-top", "image-cube-bottom", "image-cube-back"];
     let allFaceClass = "image-cube-face";
+    let mediaClass = "image-cube-media";
+    let dragClass = "todrag";
 
     for(let i = 0; i < faceClasses.length; i ++){
         let faceDOM = document.createElement("div");
         faceDOM.classList.add(`${allFaceClass}`, `${faceClasses[i]}`);
 
-        // if()
-        // let mediaDOM = 
+        let filepath = mediaLinks[i];
+        let fileExtension = filepath.split('.').pop().toLowerCase();
+
+        if( fileExtension == "jpg" || fileExtension == "jpeg" || fileExtension == "png" || fileExtension == "gif"){
+            let mediaDOM = document.createElement("img");
+            mediaDOM.classList.add(`${mediaClass}`);
+            mediaDOM.src = filepath;
+
+            let cover = document.createElement("div");
+            cover.classList.add(`${mediaClass}`, `${dragClass}`);
+
+            faceDOM.appendChild(mediaDOM);
+            faceDOM.appendChild(cover);
+        }
+        else if(fileExtension == "mp4" || fileExtension == "mov" || fileExtension == "mkv"){
+            let mediaDOM = document.createElement("video");
+            mediaDOM.id = "video";
+            mediaDOM.classList.add(`${mediaClass}`, `${dragClass}`);
+            mediaDOM.setAttribute("muted", "muted");
+            mediaDOM.setAttribute("autoplay", "autoplay");
+            mediaDOM.setAttribute("loop", "loop");
+            mediaDOM.setAttribute("playsinline", "playsinline");
+
+            let sourceDOM = document.createElement("source");
+            sourceDOM.src = filepath;
+            sourceDOM.type = `video/${fileExtension}`;
+
+            mediaDOM.appendChild(sourceDOM);
+            faceDOM.appendChild(mediaDOM);
+        }
+        imageCubeDOM.appendChild(faceDOM);
     }
+
+    textDOM.appendChild(imageCubeDOM);
+    return new ImageCube(-15, 30, 0.2);
 }
 
 class ImageCube{
@@ -336,3 +370,12 @@ class ImageCube{
         }
     }
 }
+
+addImageCube(frontFace, [
+    "../media/test.JPG",
+    "../media/prepare water fast.mp4",
+    "../media/test.JPG",
+    "../media/test.JPG",
+    "../media/test.JPG",
+    "../media/test.JPG",
+])
