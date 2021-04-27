@@ -208,31 +208,34 @@ transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
 
 .title{
     font-family:'marola';
-    overflow-wrap: break-word;
+    /* overflow-wrap: break-word; */
     transition: font-size 1s ease;
-    margin-bottom: 15%;
+    margin-bottom: 12%;
 }
 
 .paragraph{
     font-family: 'para', monospace;
     font-size: 2.7rem;
-    margin-bottom: 7.5%;
-    margin-left: 10%;
+    margin-bottom: 5%;
+    padding-left: 7.5%;
+    text-align: left;
+    
     width: 50%;
-    text-align: initial;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transition: transform 0.55s ease-in-out, opacity 0.55s ease-in-out;
+    clear: both;
 }
 
 .chat{
-    direction: ltr;
     opacity: 0;
+    float: left;
     transform: rotateX(90deg);
 }
 
 .response{
-    direction: rtl;
+    float: right;
+    /* text-align: right; */
     opacity: 0;
-    transform: rotateX(90deg);
+    transform: rotateX(90deg) rotateY(180deg);
 }
 
 .chat.send{
@@ -241,7 +244,7 @@ transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
 }
 .response.send{
     opacity: 1;
-    transform: rotateX(0deg);
+    transform: rotateX(0deg) rotateY(180deg);
 }
 
 /* *******************Option Container and Button Style ************************* */

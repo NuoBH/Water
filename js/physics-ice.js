@@ -195,6 +195,7 @@ function firstCollision(e){
     if(pair.bodyA.label == "bottom-boundary" || pair.bodyB.label == "bottom-boundary"){
       collisionCount += 1;
       if(collisionCount == 1){
+        window.dispatchEvent(firstCollideEvent);
         //chat-cube appear
         $({scale: 0}).animate({scale: 1},{
           duration: 550,
