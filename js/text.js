@@ -72,6 +72,6 @@ window.addEventListener(`firstCollide`, function(){
     }, 1000);
 });
 
-window.addEventListener(`mouseup`, function(){
-    cubeContent.addResponse(frontFace, `Okay, I can see that.`)
-});
+// window.addEventListener(`mouseup`, function(){
+//     cubeContent.addResponse(frontFace, `Okay, I can see that.`)
+// });
