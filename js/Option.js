@@ -1,5 +1,6 @@
 class Option{
     constructor(){
+        this.optionDomAnimFrame = undefined;
     }
 
     //apend option buttons to the end of textDOM
@@ -18,24 +19,38 @@ class Option{
 
         //add option buttons to option container(optionDOM)
         for(let i = 0; i < buttonTexts.length; i ++){
-            let button = document.createElement("span");
+            let button = document.createElement("div");
             button.classList.add("option-button");
             //add break after each option button so that when use cnterOptionButtons, it 
             //will get the correct offsetWidth of each <span> element of the buttons
             button.innerHTML = `${buttonTexts[i]}<br>`;
             this.onMouseTouchEnterOptionButton(button);
             this.onMouseTouchLeaveOptionButton(button);
-            this.onMouseUpOptionButton(button, optionDOM);
+            this.onMouseUpOptionButton(button, optionDOM, textDOM);
             optionDOM.appendChild(button);
         }
 
         //center all buttons in option container and update it when window is resized
         this.centerOptionButtons(optionDOM);
         window.addEventListener("resize", function(){
-            requestTimeout(function(){
-                this.centerOptionButtons(optionDOM);
-            }.bind(this), 250);
+            clearRequestTimeout(this.optionDomAnimFrame);
+            this.optionDomAnimFrame = requestTimeout(function(){
+                    this.centerOptionButtons(optionDOM);
+                }.bind(this), 250);
         }.bind(this));
+
+        optionDOM.style.setProperty("--optionRotateX", "0deg");
+        optionDOM.style.setProperty("--optionOpacity", "1");
+
+        $(textDOM).animate({
+            scrollTop: $(optionDOM).offset().top
+        }, {
+            duration: 500,
+            easing: "swing",
+            step: function(now){
+                console.log(now);
+            }
+        });
 
         return optionDOM;
     }
@@ -133,49 +148,101 @@ class Option{
         }
     }
 
+/**help function */
+    hoverChange(button, state){
+        if(button == undefined || button == null){
+            console.debug(`button is not defined`);
+            return;
+        }
+
+        if(state != 0 && state != 1){
+            console.debug(`state error`);
+            return;
+        }
+
+        // 0 is mouse enter; 1 is mouse leave
+        if(state == 0){
+            button.style.setProperty("font-weight", "bold");
+            button.style.setProperty("--buttonTextDecoration", "underline");
+        }
+        else{
+            button.style.setProperty("font-weight", "normal");
+            button.style.setProperty("--buttonTextDecoration", "none");
+        }
+
+    }
+
+/************ */
+
+
     //mouse and touch event for option buttons 
     onMouseTouchEnterOptionButton(button){
         button.addEventListener("mouseenter", function(){
-            button.style.setProperty("--buttonTextDecoration", "underline");
-        });
+            this.hoverChange(button, 0);
+        }.bind(this));
 
         button.addEventListener("touchstart", function(ev){
             if(ev.cancelable){
                 ev.preventDefault();
             }
-            button.style.setProperty("--buttonTextDecoration", "underline");
-        });
+            this.hoverChange(button, 0);
+        }.bind(this));
     }
+
+
     onMouseTouchLeaveOptionButton(button){
         button.addEventListener("mouseleave", function(){
-            button.style.setProperty("--buttonTextDecoration", "none");
-        });
+            this.hoverChange(button, 1);
+        }.bind(this));
 
         button.addEventListener("touchend", function(ev){
             if(ev.cancelable){
                 ev.preventDefault();
             }
-            button.style.setProperty("--buttonTextDecoration", "none");
-        });
+            this.hoverChange(button, 1);
+        }.bind(this));
     }
 
-    onMouseUpOptionButton(button, optionDOM){
+    onMouseUpOptionButton(button, optionDOM, textDOM){
         button.addEventListener("mouseup", function(){
             let chosenText = button.innerHTML;
             if(chosenText.slice(-4) == '<br>'){
                 chosenText = chosenText.slice(0, -4);
             }
+
+            let secLastChild = textDOM.children[textDOM.children.length-2];
+
             optionDOM.style.setProperty("--optionRotateX", "90deg");
             optionDOM.style.setProperty("--optionOpacity", "0");
+
+            $(textDOM).animate({
+                scrollTop: secLastChild.offsetTop + secLastChild.offsetHeight
+            }, {
+                duration: 500,
+                easing: "swing",
+                step: function(now){
+                    console.log(now);
+                }
+            });
             requestTimeout(function(){
                 optionDOM.remove();
+                /*********** add chosen text here!!! ************/
             }, 550);
         });
     }
 }
 
 let optionCreator = new Option();
-let optionDOM = optionCreator.addOptionButtons(frontFace, ["nuobebe is xiang xiang hapizhugigingi", "nFDebe", "asdfFDSas", "dsaFDa", "dasdas"]);
+let whiteConnector = "<span class='white'>[</span>";
+requestTimeout(()=>{
+    let optionDOM = optionCreator.addOptionButtons(frontFace, 
+        [`[${whiteConnector}nuobebe is xiang xiang hapizhugigingi${whiteConnector}]`, 
+        `[${whiteConnector}nFDebe${whiteConnector}]`, 
+        `[${whiteConnector}asdfFDSas${whiteConnector}]`, 
+        `[${whiteConnector}dsaFDa${whiteConnector}]`, 
+        `[${whiteConnector}dasdas${whiteConnector}]`]);
+},2000);
+
 
 
 

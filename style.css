@@ -23,13 +23,13 @@
     font-style: italic;
 }
 
-@font-face{
+/* @font-face{
     font-family: 'para';
     src: url('fonts/para/AveriaSans-Bold.woff2') format('woff2'),
          url('fonts/para/AveriaSans-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
-}
+} */
 
 @font-face{
     font-family: 'para';
@@ -147,7 +147,7 @@ transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
 
             backface-visibility: visible;
     background: rgba(255,255,255,0.5);
-    overflow: auto;
+    overflow: hidden;
 }
 /* initial state: face four are front top bottom back, face two are left right */
 .face-four{
@@ -215,6 +215,116 @@ transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
 .paragraph{
     font-family: 'para', monospace;
     font-size: 2.7rem;
+}
+
+/* *******************Option Container and Button Style ************************* */
+.option-container{
+    --optionRotateX: 90deg;
+    --optionOpacity: 0;
+
+    display:block;
+    transform: rotateX(var(--optionRotateX));
+    opacity: var(--optionOpacity);
+
+    line-height: 5.2rem;
+    font-family: 'para', monospace;
+
+    transition: transform 0.5s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.white{
+    color: white;
+}
+
+.option-button{
+    --buttonMargin:0px;
+    --buttonTextDecoration: none;
+
+    display: inline;
+    margin-left: var(--buttonMargin);
+    margin-right: var(--buttonMargin);
+    box-sizing: border-box;
+
+    text-align: center;
+    text-decoration: var(--buttonTextDecoration);
+    font-size: 2.7rem;
+    overflow-wrap: break-word;
+
+    transition: margin-left 0.5s ease, margin-right 0.5s ease;
+}
+@media only screen and (max-width: 2560px){
+    .option-container{
+        line-height: 5rem;
+    }
+    .option-button{
+        font-size: 2.5rem;
+    }
+    .paragraph{
+        font-size: 2.5rem;
+    }
+    .text{
+        padding: 20px;
+    }
+}
+@media only screen and (max-width: 1650px){
+    .option-container{
+        line-height: 4rem;
+    }
+    .option-button{
+        font-size: 2rem;
+        /* line-height: 4rem; */
+    }
+    .paragraph{
+        font-size: 2.0rem;
+    }
+    .text{
+        padding: 20px;
+    }
+}
+@media only screen and (max-width: 1000px){
+    .option-container{
+        line-height: 3.5rem;
+    }
+    .option-button{
+        font-size: 1.7rem;
+        /* line-height: 3.5rem; */
+    }
+    .paragraph{
+        font-size: 1.7rem;
+    }
+    .text{
+        padding: 15px;
+    }
+}
+@media only screen and (max-width: 600px){
+    .option-container{
+        line-height: 2.7rem;
+    }
+    .option-button{
+        font-size: 1.3rem;
+        /* line-height: 2.7rem; */
+    }
+    .paragraph{
+        font-size: 1.3rem;
+    }
+    .text{
+        padding: 12px;
+    }
+}
+@media only screen and (max-width: 350px){
+    .option-container{
+        line-height: 2.1rem;
+    }
+    .option-button{
+        font-size: 1rem;
+        /* line-height: 2.1rem; */
+    }
+    .paragraph{
+        font-size: 1rem;
+    }
+    .text{
+        padding: 8px;
+    }
 }
 
 /* ************************************************************************ */
