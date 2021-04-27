@@ -8,6 +8,7 @@ class Option{
     //buttonTesxt is an array container texts for each button
     addOptionButtons(face, buttonTexts){
         if(!Array.isArray(buttonTexts) || buttonTexts.length <= 0){
+            console.debug("add option buttons, button texts not valid");
             return undefined;
         }
 
@@ -235,14 +236,14 @@ class Option{
 
 let optionCreator = new Option();
 
-requestTimeout(()=>{
-    let optionDOM = optionCreator.addOptionButtons(frontFace, 
-        ["nuobebe is xiang xiang hapizhugigingi", 
-        "nFDebe", 
-        "asdfFDSas", 
-        "dsaFDa", 
-        "dasdas"]);
-},2000);
+// requestTimeout(()=>{
+//     let optionDOM = optionCreator.addOptionButtons(frontFace, 
+//         ["nuobebe is xiang xiang hapizhugigingi", 
+//         "nFDebe", 
+//         "asdfFDSas", 
+//         "dsaFDa", 
+//         "dasdas"]);
+// },2000);
 
 
 

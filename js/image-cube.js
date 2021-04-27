@@ -1,3 +1,27 @@
+function addImageCube(face, mediaLinks){
+    if(!Array.isArray(mediaLinks) || mediaLinks.length != 6){
+        console.debug("add image cube, media links not valid");
+        return;
+    }
+
+    let textDOM = face.children[0];
+    let imageCubeDOM = document.createElement("div");
+    imageCubeDOM.id = "image-cube";
+    imageCubeDOM.classList.add("noselect");
+
+    let faceClasses = ["image-cube-front", "image-cube-left", "image-cube-right", 
+                       "image-cube-top", "image-cube-bottom", "image-cube-back"];
+    let allFaceClass = "image-cube-face";
+
+    for(let i = 0; i < faceClasses.length; i ++){
+        let faceDOM = document.createElement("div");
+        faceDOM.classList.add(`${allFaceClass}`, `${faceClasses[i]}`);
+
+        // if()
+        // let mediaDOM = 
+    }
+}
+
 class ImageCube{
     constructor(startRotateX, startRotateY, lerpV){
         this.cube = document.getElementById("image-cube");
