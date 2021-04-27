@@ -1,6 +1,7 @@
 class Option{
     constructor(){
         this.optionDomAnimFrame = undefined;
+        this.whiteConnector = "<span class='white'>[</span>";
     }
 
     //apend option buttons to the end of textDOM
@@ -23,7 +24,7 @@ class Option{
             button.classList.add("option-button");
             //add break after each option button so that when use cnterOptionButtons, it 
             //will get the correct offsetWidth of each <span> element of the buttons
-            button.innerHTML = `${buttonTexts[i]}<br>`;
+            button.innerHTML = `[${this.whiteConnector}${buttonTexts[i]}${this.whiteConnector}]<br>`;
             this.onMouseTouchEnterOptionButton(button);
             this.onMouseTouchLeaveOptionButton(button);
             this.onMouseUpOptionButton(button, optionDOM, textDOM);
@@ -233,14 +234,14 @@ class Option{
 }
 
 let optionCreator = new Option();
-let whiteConnector = "<span class='white'>[</span>";
+
 requestTimeout(()=>{
     let optionDOM = optionCreator.addOptionButtons(frontFace, 
-        [`[${whiteConnector}nuobebe is xiang xiang hapizhugigingi${whiteConnector}]`, 
-        `[${whiteConnector}nFDebe${whiteConnector}]`, 
-        `[${whiteConnector}asdfFDSas${whiteConnector}]`, 
-        `[${whiteConnector}dsaFDa${whiteConnector}]`, 
-        `[${whiteConnector}dasdas${whiteConnector}]`]);
+        ["nuobebe is xiang xiang hapizhugigingi", 
+        "nFDebe", 
+        "asdfFDSas", 
+        "dsaFDa", 
+        "dasdas"]);
 },2000);
 
 
