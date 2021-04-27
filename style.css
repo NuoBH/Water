@@ -62,7 +62,6 @@ body{
     --imageRotateY: 30deg; 
 
     margin: auto;
-    margin-top:200px;
 
     width: var(--faceSize);
     height: var(--faceSize);
