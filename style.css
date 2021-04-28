@@ -81,6 +81,7 @@ body{
     border: none;
     box-sizing: border-box;
     cursor: grab;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 .image-cube-face .image-cube-media{
