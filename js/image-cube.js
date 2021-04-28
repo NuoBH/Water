@@ -234,9 +234,9 @@ class ImageCube{
 
             if(node !== null && node !== undefined){
                 node.addEventListener("mousedown", function(ev){
-                    if(ev.cancelable){
-                        ev.preventDefault();
-                    }
+                    // if(ev.cancelable){
+                    //     ev.preventDefault();
+                    // }
                     this.isDragging = true;
                     this.lastMouseX = ev.pageX;
                     this.lastMouseY = ev.pageY;
@@ -262,9 +262,9 @@ class ImageCube{
                 }.bind(this));
 
                 node.addEventListener("mouseup", function(ev){
-                    if(ev.cancelable){
-                        ev.preventDefault();
-                    }
+                    // if(ev.cancelable){
+                    //     ev.preventDefault();
+                    // }
                     this.isDragging = false;
                 }.bind(this));
 
@@ -287,9 +287,9 @@ class ImageCube{
                     if(this.isDragging){
                         ImageCube.hideAllVideoControls(this.videos);
 
-                        if(ev.cancelable){
-                            ev.preventDefault();
-                        }
+                        // if(ev.cancelable){
+                        //     ev.preventDefault();
+                        // }
                         this.rotateCubeByMousePos(ev);
                     }
                 }.bind(this));
