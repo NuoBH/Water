@@ -68,7 +68,7 @@ var cubeContent = new CubeContent();
 cubeContent.addTitle(frontFace, `water`, 1.8);
 window.addEventListener(`firstCollide`, function(){
     requestTimeout(function(){
-        cubeContent.addChat(frontFace, `Water is an imaginary data structure.`);
+        cubeContent.addChat(frontFace, `1Water is an imaginary data structure.`);
     }, 1000);
 });
 
