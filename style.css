@@ -94,27 +94,27 @@ body{
 }
 
 .image-cube-front {
-transform: translateZ( calc(var(--faceSize)/2) );
+transform: translateZ( calc(var(--faceSize)/2 + 5px) );
 background-color: rebeccapurple;
 }
 .image-cube-back {
-transform: rotateY(180deg) translateZ(calc(var(--faceSize)/2));
+transform: rotateY(180deg) translateZ(calc(var(--faceSize)/2 + 5px));
 background-color: red;
 }
 .image-cube-right {
-transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2));
+transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2 + 5px));
 background-color: yellow;
 }
 .image-cube-left {
-transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2));
+transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2 + 5px));
 background-color: blue;
 }
 .image-cube-top {
-transform: rotateX(90deg) translateZ(calc(var(--faceSize)/2));
+transform: rotateX(90deg) translateZ(calc(var(--faceSize)/2 + 5px));
 background-color: aqua;
 }
 .image-cube-bottom {
-transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
+transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2 + 5px));
 background-color: green;
 }
 
