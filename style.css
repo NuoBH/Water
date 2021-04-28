@@ -76,6 +76,8 @@ body{
     position: absolute;
     width: var(--faceSize);
     height: var(--faceSize);
+    background: white;
+    
     border: none;
     box-sizing: border-box;
     cursor: grab;
