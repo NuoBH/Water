@@ -24,13 +24,13 @@ function addImageCube(face, mediaLinks){
 
         if( fileExtension == "jpg" || fileExtension == "jpeg" || fileExtension == "png" || fileExtension == "gif"){
             let mediaDOM = document.createElement("img");
-            mediaDOM.classList.add(`${mediaClass}`, `${dragClass}`);
+            mediaDOM.classList.add(`${mediaClass}`);
             mediaDOM.src = filepath;
 
             let cover = document.createElement("div");
             cover.classList.add(`${mediaClass}`, `${dragClass}`);
 
-            faceDOM.appendChild(mediaDOM);
+            //faceDOM.appendChild(mediaDOM);
             //faceDOM.appendChild(cover);
         }
         else if(fileExtension == "mp4" || fileExtension == "mov" || fileExtension == "mkv"){
@@ -47,7 +47,7 @@ function addImageCube(face, mediaLinks){
             sourceDOM.type = `video/${fileExtension}`;
 
             mediaDOM.appendChild(sourceDOM);
-            faceDOM.appendChild(mediaDOM);
+            //faceDOM.appendChild(mediaDOM);
         }
         imageCubeDOM.appendChild(faceDOM);
     }
