@@ -96,24 +96,64 @@ body{
 }
 
 .image-cube-front {
-transform: translateZ( calc(var(--faceSize)/2 + 0.15px));
+transform: translateZ(calc(var(--faceSize)/2));
 }
 .image-cube-back {
-transform: rotateY(180deg) translateZ(calc(var(--faceSize)/2 + 0.15px));
+transform: rotateY(180deg) translateZ(calc(var(--faceSize)/2));
 }
 .image-cube-right {
-transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2 + 0.15px));
+transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2));
 }
 .image-cube-left {
-transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2 + 0.15px));
+transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2));
 }
 .image-cube-top {
-transform: rotateX(90deg) translateZ(calc(var(--faceSize)/2 + 0.15px));
+transform: rotateX(90deg) translateZ(calc(var(--faceSize)/2));
 }
 .image-cube-bottom {
-transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2 + 0.15px));
+transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
 }
 
+@media only screen and (max-width: 723px){
+    .image-cube-front {
+        transform: translateZ( calc(var(--faceSize)/2 + 0.2px));
+        }
+        .image-cube-back {
+        transform: rotateY(180deg) translateZ(calc(var(--faceSize)/2 + 0.2px));
+        }
+        .image-cube-right {
+        transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2 + 0.2px));
+        }
+        .image-cube-left {
+        transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2 + 0.2px));
+        }
+        .image-cube-top {
+        transform: rotateX(90deg) translateZ(calc(var(--faceSize)/2 + 0.2px));
+        }
+        .image-cube-bottom {
+        transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2 + 0.2px));
+    }
+}
+@media only screen and (max-width:500){
+    .image-cube-front {
+        transform: translateZ( calc(var(--faceSize)/2 + 0.1px));
+        }
+        .image-cube-back {
+        transform: rotateY(180deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
+        }
+        .image-cube-right {
+        transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
+        }
+        .image-cube-left {
+        transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
+        }
+        .image-cube-top {
+        transform: rotateX(90deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
+        }
+        .image-cube-bottom {
+        transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
+    }
+}
 /* -------------------style for chat cube--------------------- */
 
 #chat-cube{
