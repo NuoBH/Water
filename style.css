@@ -87,6 +87,7 @@ body{
     height:100%;
     margin:0;
     border:none;
+    opacity: 0;
 }
 .image-cube-face:active{
     cursor:grabbing;
