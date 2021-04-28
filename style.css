@@ -76,7 +76,8 @@ body{
     position: absolute;
     width: var(--faceSize);
     height: var(--faceSize);
-    border:none;
+    border: 0.01px transparent;
+    box-sizing: border-box;
     cursor: grab;
     backface-visibility: hidden;
 }
@@ -87,35 +88,28 @@ body{
     height:100%;
     margin:0;
     border:none;
-    opacity: 0;
 }
 .image-cube-face:active{
     cursor:grabbing;
 }
 
 .image-cube-front {
-transform: translateZ( calc(var(--faceSize)/2 + 0.1px) );
-background-color: rebeccapurple;
+transform: translateZ( calc(var(--faceSize)/2) );
 }
 .image-cube-back {
-transform: rotateY(180deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
-background-color: red;
+transform: rotateY(180deg) translateZ(calc(var(--faceSize)/2));
 }
 .image-cube-right {
-transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
-background-color: yellow;
+transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2));
 }
 .image-cube-left {
-transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
-background-color: blue;
+transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2));
 }
 .image-cube-top {
-transform: rotateX(90deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
-background-color: aqua;
+transform: rotateX(90deg) translateZ(calc(var(--faceSize)/2));
 }
 .image-cube-bottom {
-transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
-background-color: green;
+transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
 }
 
 /* -------------------style for chat cube--------------------- */
