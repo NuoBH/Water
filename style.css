@@ -94,21 +94,27 @@ body{
 
 .image-cube-front {
 transform: translateZ( calc(var(--faceSize)/2) );
+background-color: rebeccapurple;
 }
 .image-cube-back {
 transform: rotateY(180deg) translateZ(calc(var(--faceSize)/2));
+background-color: red;
 }
 .image-cube-right {
 transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2));
+background-color: brown;
 }
 .image-cube-left {
 transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2));
+background-color: blue;
 }
 .image-cube-top {
 transform: rotateX(90deg) translateZ(calc(var(--faceSize)/2));
+background-color: aqua;
 }
 .image-cube-bottom {
 transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2));
+background-color: green;
 }
 
 /* -------------------style for chat cube--------------------- */
