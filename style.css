@@ -76,7 +76,7 @@ body{
     position: absolute;
     width: var(--faceSize);
     height: var(--faceSize);
-    border: 0.01px transparent;
+    border: 0.1px transparent;
     box-sizing: border-box;
     cursor: grab;
     backface-visibility: hidden;
