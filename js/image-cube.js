@@ -24,14 +24,14 @@ function addImageCube(face, mediaLinks){
 
         if( fileExtension == "jpg" || fileExtension == "jpeg" || fileExtension == "png" || fileExtension == "gif"){
             let mediaDOM = document.createElement("img");
-            mediaDOM.classList.add(`${mediaClass}`);
+            mediaDOM.classList.add(`${mediaClass}`, `${dragClass}`);
             mediaDOM.src = filepath;
 
             let cover = document.createElement("div");
             cover.classList.add(`${mediaClass}`, `${dragClass}`);
 
             faceDOM.appendChild(mediaDOM);
-            faceDOM.appendChild(cover);
+            //faceDOM.appendChild(cover);
         }
         else if(fileExtension == "mp4" || fileExtension == "mov" || fileExtension == "mkv"){
             let mediaDOM = document.createElement("video");
