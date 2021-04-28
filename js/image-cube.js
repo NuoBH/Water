@@ -30,8 +30,8 @@ function addImageCube(face, mediaLinks){
             let cover = document.createElement("div");
             cover.classList.add(`${mediaClass}`, `${dragClass}`);
 
-            //faceDOM.appendChild(mediaDOM);
-            //faceDOM.appendChild(cover);
+            faceDOM.appendChild(mediaDOM);
+            faceDOM.appendChild(cover);
         }
         else if(fileExtension == "mp4" || fileExtension == "mov" || fileExtension == "mkv"){
             let mediaDOM = document.createElement("video");
@@ -47,7 +47,7 @@ function addImageCube(face, mediaLinks){
             sourceDOM.type = `video/${fileExtension}`;
 
             mediaDOM.appendChild(sourceDOM);
-            //faceDOM.appendChild(mediaDOM);
+            faceDOM.appendChild(mediaDOM);
         }
         imageCubeDOM.appendChild(faceDOM);
     }
