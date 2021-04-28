@@ -103,7 +103,7 @@ background-color: red;
 }
 .image-cube-right {
 transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2));
-background-color: brown;
+background-color: yellow;
 }
 .image-cube-left {
 transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2));
