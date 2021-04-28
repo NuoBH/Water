@@ -94,22 +94,22 @@ body{
 }
 
 .image-cube-front {
-transform: translateZ( calc(var(--faceSize)/2 + 0.01px));
+transform: translateZ( calc(var(--faceSize)/2 + 0.05px));
 }
 .image-cube-back {
-transform: rotateY(180deg) translateZ(calc(var(--faceSize)/2 + 0.01px));
+transform: rotateY(180deg) translateZ(calc(var(--faceSize)/2 + 0.05px));
 }
 .image-cube-right {
-transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2 + 0.01px));
+transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2 + 0.05px));
 }
 .image-cube-left {
-transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2 + 0.01px));
+transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2 + 0.05px));
 }
 .image-cube-top {
-transform: rotateX(90deg) translateZ(calc(var(--faceSize)/2 + 0.01px));
+transform: rotateX(90deg) translateZ(calc(var(--faceSize)/2 + 0.05px));
 }
 .image-cube-bottom {
-transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2 + 0.01px));
+transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2 + 0.05px));
 }
 
 /* -------------------style for chat cube--------------------- */
