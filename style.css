@@ -67,6 +67,7 @@ body{
     height: var(--faceSize);
     border: none;
 
+    perspective: 10000px;
     transform-style: preserve-3d;
     transform: rotateX(var(--imageRotateX)) rotateY(var(--imageRotateY));
 }
@@ -81,8 +82,8 @@ body{
     border: none;
     box-sizing: border-box;
     cursor: grab;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    /* -webkit-backface-visibility: hidden;
+    backface-visibility: hidden; */
 }
 .image-cube-face .image-cube-media{
     display: block;
