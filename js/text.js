@@ -13,14 +13,25 @@ class CubeContent{
 
         let fontSize = chatCube.targetFaceHeightFour / factor
         titleDOM.style.setProperty(`font-size`, `${fontSize}px`);
-        console.log(fontSize);
 
         window.addEventListener(`resize`, ()=>{this.resizeTitle(titleDOM, factor)});
     }
 
     resizeTitle(title, factor){
-        console.log(chatCube.targetFaceHeightFour)
         title.style.setProperty(`font-size`, `${chatCube.targetFaceHeightFour / factor}px`);
+    }
+
+    scrollDown(textDOM, textToSend){
+        $(textDOM).stop().animate({
+            scrollTop: textDOM.scrollHeight - $(textToSend).outerHeight()
+        }, {
+            duration: 1000,
+            easing: "swing"
+        });
+
+        requestTimeout(function(){
+            textToSend.classList.add(`send`);
+        }, 350);
     }
 
     addChat(face, str){
@@ -32,18 +43,7 @@ class CubeContent{
         chatDOM.innerHTML = str;
         textDOM.append(chatDOM);
 
-        $(textDOM).animate({
-            scrollTop: textDOM.scrollHeight - $(chatDOM).outerHeight()
-        }, {
-            duration: 1000,
-            easing: "swing",
-            step: function(now, fx){
-                let progress = now / fx.end;
-                if(progress > 0.15){
-                    chatDOM.classList.add(`send`);
-                }
-            }
-        });
+        this.scrollDown(textDOM, chatDOM);
     }
 
     addResponse(face, str){
@@ -55,18 +55,7 @@ class CubeContent{
         responseDOM.innerHTML = str;
         textDOM.append(responseDOM);
 
-        $(textDOM).animate({
-            scrollTop: textDOM.scrollHeight - $(responseDOM).outerHeight()
-        }, {
-            duration: 1000,
-            easing: "swing",
-            step: function(now, fx){
-                let progress = now / fx.end;
-                if(progress > 0.15){
-                    responseDOM.classList.add(`send`);
-                }
-            }
-        });
+        this.scrollDown(textDOM, responseDOM);
     }
 
     addSlider(face, min, max, initialVal){
@@ -80,6 +69,38 @@ class CubeContent{
         
         slider.classList.add(`slider`);
         textDOM.append(slider);
+
+        
+
+        slider.addEventListener(`input`, function(e){
+            let val = e.target.value;
+            let max = e.target.max;
+            let min = e.target.min;
+
+            let total = max - min;
+            let scale = 1;
+            let color = 0;
+
+            if( total > Math.max(Math.abs(max), Math.abs(min)) ){
+                scale = Math.abs(val) / ((max-min)*1.25);
+                if(val <= 0){
+                    let maxmap = Math.max(Math.abs(max), Math.abs(min)) / ((max-min)*1.25)
+                    color = map(scale*50, 0, maxmap*50, 0, 255);
+                }
+                else{
+                    color = 0;
+                }
+            }
+            else{
+                scale = Math.abs(val) / ((max-min)*2.5);
+            }
+            scale += 1;
+            e.target.style.setProperty(`--scaling`, scale);
+            e.target.style.setProperty(`--coloring`, color);
+        });
+
+        slider.previousElementSibling.style.setProperty(`padding-bottom`, `5%`);
+        this.scrollDown(textDOM, slider);
     }
 }
 
@@ -91,11 +112,10 @@ cubeContent.addTitle(frontFace, `water`, 1.8);
 window.addEventListener(`firstCollide`, function(){
     requestTimeout(function(){
         cubeContent.addChat(frontFace, `Water is an imaginary data structure.`);
-        cubeContent.addSlider(frontFace, -1000, 1000, 0);
-        // cubeContent.addChat(frontFace, `Water is an imaginary data structure.`);
     }, 1000);
 });
 
 // window.addEventListener(`mouseup`, function(){
-//     cubeContent.addResponse(frontFace, `Okay, I can see that.`)
+//     // cubeContent.addResponse(frontFace, `Okay, I can see that.`)
+//     cubeContent.addSlider(frontFace, -1000, 1000, 0)
 // });

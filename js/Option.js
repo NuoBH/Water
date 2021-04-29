@@ -41,19 +41,17 @@ class Option{
                 }.bind(this), 250);
         }.bind(this));
 
-        $(textDOM).animate({
+        $(textDOM).stop().animate({
             scrollTop: textDOM.scrollHeight - $(optionDOM).outerHeight()
         }, {
             duration: 1000,
-            easing: "swing",
-            step: function(now, fx){
-                let progress = now / fx.end;
-                if(progress >= 0.15){
-                    optionDOM.style.setProperty("--optionRotateX", "0deg");
-                    optionDOM.style.setProperty("--optionOpacity", "1");
-                }
-            }
+            easing: "swing"
         });
+
+        requestTimeout(function(){
+            optionDOM.style.setProperty("--optionRotateX", "0deg");
+            optionDOM.style.setProperty("--optionOpacity", "1");
+        }, 350);
 
         return optionDOM;
     }
@@ -221,16 +219,16 @@ class Option{
             optionDOM.style.setProperty("--optionRotateX", "90deg");
             optionDOM.style.setProperty("--optionOpacity", "0");
 
-            $(textDOM).animate({
+            $(textDOM).stop().animate({
                 scrollTop: textDOM.scrollTop - $(optionDOM).outerHeight() - previousPadding - $(secLastChild).outerHeight()
             }, {
                 duration: 1000,
                 easing: "swing",
-                complete: function(){
-                    optionDOM.remove();
-                    /*********** add chosen text here!!! ************/
-                }
             });
+            requestTimeout(function(){
+                optionDOM.remove();
+                /*********** add chosen text here!!! ************/
+            }, 850);
         });
     }
 }

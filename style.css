@@ -276,13 +276,13 @@ body{
 .paragraph{
     font-family: 'para', monospace;
     font-size: 2.7rem;
-    margin-bottom: 10%;
-    /* margin-top: 0; */
+    margin: 0;
+    padding-bottom: 10%;
     padding-left: 7.5%;
     text-align: left;
     
     width: 50%;
-    transition: transform 0.55s ease-in-out, opacity 0.55s ease-in-out;
+    transition: all 0.55s ease-in-out;
     clear: both;
 }
 
@@ -312,7 +312,7 @@ body{
 /* hide default */
 input[type=range]{
     -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-    width: 100%; /* Specific width is required for Firefox. */
+    width: 40%; /* Specific width is required for Firefox. */
     background: transparent; /* Otherwise white in Chrome */
 }
 
@@ -339,39 +339,42 @@ input[type=range]::-ms-track {
 input[type=range]::-webkit-slider-thumb{
     -webkit-appearance: none;
     border: 1px solid #000000;
-    height: 20px;
-    width: 20px;
+    height: 22px;
+    width: 22px;
     border-radius: 100%;
-    background: black;
+    background: rgb(var(--coloring), var(--coloring), var(--coloring));
     cursor: pointer;
 
-    margin-top: -10px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+    margin-top: -11px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+
+    transform: scale(var(--scaling));
 }
 /* All the same stuff for Firefox */
 input[type=range]::-moz-range-thumb {
     border: 1px solid #000000;
-    height: 20px;
-    width: 20px;
+    height: 22px;
+    width: 22px;
     border-radius: 100%;
-    background: black;
+    background: rgb(var(--coloring), var(--coloring), var(--coloring));
     cursor: pointer;
+
+    transform: scale(var(--scaling));
 }
   
   /* All the same stuff for IE */
 input[type=range]::-ms-thumb {
     border: 1px solid #000000;
-    height: 20px;
-    width: 20px;
+    height: 22px;
+    width: 22px;
     border-radius: 100%;
-    background: black;
+    background: rgb(var(--coloring), var(--coloring), var(--coloring));
     cursor: pointer;
+
+    transform: scale(var(--scaling));
 }
 
 /* ================ */
 /* styling the track */
-input[type=range]{
-    width: 40%;
-}
 
 input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
@@ -386,14 +389,16 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 
 input[type=range]::-moz-range-track {
     width: 100%;
-    height: 0px;
+    /* height is diff for mozilla */
+    height: 1px;
     cursor: pointer;
+    background-color: black;
     border: 1px solid #010101;
 }
 
 input[type=range]::-ms-track {
     width: 100%;
-    height: 0px;
+    height: 2px;
     cursor: pointer;
     background: transparent;
     border-color: transparent;
@@ -402,21 +407,37 @@ input[type=range]::-ms-track {
 }
 input[type=range]::-ms-fill-lower {
     border: 1px solid #010101;
+    background-color: black;
 }
 input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]::-ms-fill-upper {
     border: 1px solid #010101;
+    background-color: black;
 }
 input[type=range]:focus::-ms-fill-upper {
 }
 
 /* === */
 .slider{
-    float: left;
+    --scaling: 1;
+    --coloring: 0;
+
+    float: right;
     clear: both;
+    margin: 0;
     padding-left: 7.5%;
-    margin-bottom: 10%;
+    padding-bottom: 10%;
+    padding-top: 5%;
+    padding-right: 7.5%;
+
+    opacity: 0;
+    transform: rotateX(90deg) rotateY(180deg);
+    transition: all 0.55s ease-in-out;
+}
+.slider.send{
+    opacity: 1;
+    transform: rotateX(0deg) rotateY(180deg);
 }
 
 /* *******************Option Container and Button Style ************************* */
@@ -469,6 +490,23 @@ input[type=range]:focus::-ms-fill-upper {
     .text{
         padding: 20px;
     }
+
+    input[type=range]::-webkit-slider-thumb{
+        height: 18px;
+        width: 18px;
+        margin-top: -9px;
+    }
+    /* All the same stuff for Firefox */
+    input[type=range]::-moz-range-thumb {
+        height: 18px;
+        width: 18px;
+    }
+      
+      /* All the same stuff for IE */
+    input[type=range]::-ms-thumb {
+        height: 18px;
+        width: 18px;
+    }
 }
 @media only screen and (max-width: 1650px){
     .option-container{
@@ -483,6 +521,23 @@ input[type=range]:focus::-ms-fill-upper {
     }
     .text{
         padding: 20px;
+    }
+
+    input[type=range]::-webkit-slider-thumb{
+        height: 16px;
+        width: 16px;
+        margin-top: -8px;
+    }
+    /* All the same stuff for Firefox */
+    input[type=range]::-moz-range-thumb {
+        height: 16px;
+        width: 16px;
+    }
+      
+      /* All the same stuff for IE */
+    input[type=range]::-ms-thumb {
+        height: 16px;
+        width: 16px;
     }
 }
 @media only screen and (max-width: 1000px){
@@ -499,6 +554,23 @@ input[type=range]:focus::-ms-fill-upper {
     .text{
         padding: 15px;
     }
+
+    input[type=range]::-webkit-slider-thumb{
+        height: 14px;
+        width: 14px;
+        margin-top: -7px;
+    }
+    /* All the same stuff for Firefox */
+    input[type=range]::-moz-range-thumb {
+        height: 14px;
+        width: 14px;
+    }
+      
+      /* All the same stuff for IE */
+    input[type=range]::-ms-thumb {
+        height: 14px;
+        width: 14px;
+    }
 }
 @media only screen and (max-width: 600px){
     .option-container{
@@ -514,8 +586,25 @@ input[type=range]:focus::-ms-fill-upper {
     .text{
         padding: 12px;
     }
+
+    input[type=range]::-webkit-slider-thumb{
+        height: 11px;
+        width: 11px;
+        margin-top: -5.5px;
+    }
+    /* All the same stuff for Firefox */
+    input[type=range]::-moz-range-thumb {
+        height: 11px;
+        width: 11px;
+    }
+      
+      /* All the same stuff for IE */
+    input[type=range]::-ms-thumb {
+        height: 11px;
+        width: 11px;
+    }
 }
-@media only screen and (max-width: 350px){
+@media only screen and (max-width: 490px){
     .option-container{
         line-height: 2.1rem;
     }
@@ -528,6 +617,23 @@ input[type=range]:focus::-ms-fill-upper {
     }
     .text{
         padding: 8px;
+    }
+
+    input[type=range]::-webkit-slider-thumb{
+        height: 8px;
+        width: 8px;
+        margin-top: -4px;
+    }
+    /* All the same stuff for Firefox */
+    input[type=range]::-moz-range-thumb {
+        height: 8px;
+        width: 8px;
+    }
+      
+      /* All the same stuff for IE */
+    input[type=range]::-ms-thumb {
+        height: 8px;
+        width: 8px;
     }
 }
 

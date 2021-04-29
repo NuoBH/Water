@@ -3,7 +3,7 @@ var lerp = function (value1, value2, amount) {
     amount = amount > 1 ? 1 : amount;
     return value1 + (value2 - value1) * amount;
 };
-var scale = (num, in_min, in_max, out_min, out_max) => {
+var map = (num, in_min, in_max, out_min, out_max) => {
     return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
 };
 
