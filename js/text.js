@@ -33,13 +33,17 @@ class CubeContent{
         textDOM.append(chatDOM);
 
         $(textDOM).animate({
-            scrollTop: textDOM.scrollHeight
+            scrollTop: textDOM.scrollHeight - $(chatDOM).outerHeight()
         }, {
-            duration: 450,
-            easing: "swing"
+            duration: 1000,
+            easing: "swing",
+            step: function(now, fx){
+                let progress = now / fx.end;
+                if(progress > 0.15){
+                    chatDOM.classList.add(`send`);
+                }
+            }
         });
-
-        chatDOM.classList.add(`send`);
     }
 
     addResponse(face, str){
@@ -52,13 +56,30 @@ class CubeContent{
         textDOM.append(responseDOM);
 
         $(textDOM).animate({
-            scrollTop: textDOM.scrollHeight
+            scrollTop: textDOM.scrollHeight - $(responseDOM).outerHeight()
         }, {
-            duration: 450,
-            easing: "swing"
+            duration: 1000,
+            easing: "swing",
+            step: function(now, fx){
+                let progress = now / fx.end;
+                if(progress > 0.15){
+                    responseDOM.classList.add(`send`);
+                }
+            }
         });
+    }
 
-        responseDOM.classList.add(`send`);
+    addSlider(face, min, max, initialVal){
+        let textDOM = face.children[0];
+        
+        let slider = document.createElement(`input`);
+        slider.setAttribute(`type`, `range`);
+        slider.setAttribute(`min`, `${min}`);
+        slider.setAttribute(`max`, `${max}`);
+        slider.setAttribute(`value`, `${initialVal}`);
+        
+        slider.classList.add(`slider`);
+        textDOM.append(slider);
     }
 }
 
@@ -66,9 +87,12 @@ var cubeContent = new CubeContent();
 
 //add to main later
 cubeContent.addTitle(frontFace, `water`, 1.8);
+
 window.addEventListener(`firstCollide`, function(){
     requestTimeout(function(){
         cubeContent.addChat(frontFace, `Water is an imaginary data structure.`);
+        cubeContent.addSlider(frontFace, -1000, 1000, 0);
+        // cubeContent.addChat(frontFace, `Water is an imaginary data structure.`);
     }, 1000);
 });
 

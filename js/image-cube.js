@@ -1,4 +1,4 @@
-function addImageCube(face, mediaLinks){
+function addImageCube(id, face, mediaLinks){
     if(!Array.isArray(mediaLinks) || mediaLinks.length != 6){
         console.debug("add image cube, media links not valid");
         return;
@@ -6,8 +6,8 @@ function addImageCube(face, mediaLinks){
 
     let textDOM = face.children[0];
     let imageCubeDOM = document.createElement("div");
-    imageCubeDOM.id = "image-cube";
-    imageCubeDOM.classList.add("noselect");
+    imageCubeDOM.id = id;
+    imageCubeDOM.classList.add("image-cube", "noselect");
 
     let faceClasses = ["image-cube-front", "image-cube-left", "image-cube-right", 
                        "image-cube-top", "image-cube-bottom", "image-cube-back"];
@@ -57,8 +57,8 @@ function addImageCube(face, mediaLinks){
 }
 
 class ImageCube{
-    constructor(startRotateX, startRotateY, lerpV){
-        this.cube = document.getElementById("image-cube");
+    constructor(id, startRotateX, startRotateY, lerpV){
+        this.cube = document.getElementById(id);
 
         //properties used to rotate cube
         this.lastMouseX = 0;
@@ -104,6 +104,8 @@ class ImageCube{
         }
 
         this.dragRotate();
+
+        this.checkBlur();
     }
     
     /** ---------------------------helper functions-------------------------- */
@@ -371,11 +373,11 @@ class ImageCube{
     }
 }
 
-addImageCube(frontFace, [
-    "./media/test.JPG",
-    "./media/prepare water fast.mp4",
-    "./media/test.JPG",
-    "./media/test.JPG",
-    "./media/test.JPG",
-    "./media/test.JPG",
-])
+// addImageCube(frontFace, [
+//     "./media/test.JPG",
+//     "./media/prepare water fast.mp4",
+//     "./media/test.JPG",
+//     "./media/test.JPG",
+//     "./media/test.JPG",
+//     "./media/test.JPG",
+// ])

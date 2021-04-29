@@ -17,7 +17,7 @@ class Option{
         //create option container and append to textDOM
         let optionDOM = document.createElement("div");
         optionDOM.classList.add("option-container");
-        textDOM.appendChild(optionDOM);
+        textDOM.append(optionDOM);
 
         //add option buttons to option container(optionDOM)
         for(let i = 0; i < buttonTexts.length; i ++){
@@ -41,17 +41,18 @@ class Option{
                 }.bind(this), 250);
         }.bind(this));
 
-        optionDOM.style.setProperty("--optionRotateX", "0deg");
-        optionDOM.style.setProperty("--optionOpacity", "1");
-
         $(textDOM).animate({
-            scrollTop: $(optionDOM).offset().top
+            scrollTop: textDOM.scrollHeight - $(optionDOM).outerHeight()
         }, {
-            duration: 500,
+            duration: 1000,
             easing: "swing",
-            // step: function(now){
-            //     console.log(now);
-            // }
+            step: function(now, fx){
+                let progress = now / fx.end;
+                if(progress >= 0.15){
+                    optionDOM.style.setProperty("--optionRotateX", "0deg");
+                    optionDOM.style.setProperty("--optionOpacity", "1");
+                }
+            }
         });
 
         return optionDOM;
@@ -221,18 +222,15 @@ class Option{
             optionDOM.style.setProperty("--optionOpacity", "0");
 
             $(textDOM).animate({
-                scrollTop: $(secLastChild).offset().top - previousPadding
+                scrollTop: textDOM.scrollTop - $(optionDOM).outerHeight() - previousPadding - $(secLastChild).outerHeight()
             }, {
-                duration: 500,
+                duration: 1000,
                 easing: "swing",
-                // step: function(now){
-                //     console.log(now);
-                // }
+                complete: function(){
+                    optionDOM.remove();
+                    /*********** add chosen text here!!! ************/
+                }
             });
-            requestTimeout(function(){
-                optionDOM.remove();
-                /*********** add chosen text here!!! ************/
-            }, 550);
         });
     }
 }
