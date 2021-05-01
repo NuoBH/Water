@@ -191,6 +191,10 @@ body{
 
     z-index: 1;
 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+
     transform-style: preserve-3d;
     transform: perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
 }
@@ -264,6 +268,10 @@ body{
 
     text-align: center;
     padding: 20px;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 .title{
@@ -441,11 +449,67 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .videoContainer{
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    left: 0;
+    left: 0; */
+    width: 20%;
+    height: 33%;
+    /* margin: 0; */
+    margin-bottom: 10%;
+    margin-left: 7.5%;
+    float: left;
+    clear: both;
+
+    border: 2px solid black ;
+    background: linear-gradient(270deg, #000000, #272727ce, #e2e2e259, #ffffff00);
+    background-size: 900% 900%;
+
+    -webkit-animation: load 5s ease infinite;
+    -moz-animation: load 5s ease infinite;
+    animation: load 5s ease infinite;
+
+    opacity: 0;
+    transform: rotateX(90deg);
+    transition: all 0.55s ease-in-out;
+}
+
+.vid{
+    width: 100%;
+    opacity: 0;
+    transition: all 0.25s ease-in-out;
+}
+
+.videoContainer.send{
+    opacity: 1;
+    transform: rotateX(0deg);
+}
+
+.videoContainer.showVid{
+    margin-left: 0;
     width: 100%;
     height: 100%;
+    border-color: transparent;
+    border-width: 0px;
+}
+
+.vid.show{
+    opacity: 1;
+}
+
+@-webkit-keyframes load {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes load {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes load {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
 
 /* *******************Option Container and Button Style ************************* */

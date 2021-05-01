@@ -213,14 +213,14 @@ class Option{
 
             lastResponse = chosenText;
 
-            let secLastChild = textDOM.children[textDOM.children.length-2];
-            let previousPadding = parseFloat(getComputedStyle(secLastChild.previousElementSibling).getPropertyValue(`margin-bottom`));
+            let prev = optionDOM.previousElementSibling;
+            let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
 
             optionDOM.style.setProperty("--optionRotateX", "90deg");
             optionDOM.style.setProperty("--optionOpacity", "0");
 
             $(textDOM).stop().animate({
-                scrollTop: textDOM.scrollTop - $(optionDOM).outerHeight() - previousPadding - $(secLastChild).outerHeight()
+                scrollTop: textDOM.scrollHeight - $(optionDOM).position().top - $(textDOM).outerHeight() + (textDOM.scrollHeight - textDOM.scrollTop - $(textDOM).outerHeight()) + padding * 0.75
             }, {
                 duration: 1000,
                 easing: "swing",
@@ -228,7 +228,7 @@ class Option{
             requestTimeout(function(){
                 optionDOM.remove();
                 /*********** add chosen text here!!! ************/
-            }, 850);
+            }, 900);
         });
     }
 }
@@ -244,16 +244,19 @@ let optionCreator = new Option();
 //         "dasdas"]);
 // },2000);
 
-// function test(){
-//     let optionDOM = optionCreator.addOptionButtons(frontFace, 
-//                 ["nuobebe is xiang xiang hapizhugigingi", 
-//                 "nFDebe", 
-//                 "asdfFDSas", 
-//                 "dsaFDa", 
-//                 "dasdas"]);
-//     window.removeEventListener(`mouseup`, test);
-// }
-// window.addEventListener(`mouseup`, test);
+function test(e){
+    if(e.key=='o'){
+        let optionDOM = optionCreator.addOptionButtons(frontFace, 
+            ["nuobebe is xiang xiang hapizhugigingi", 
+            "nFDebe", 
+            "asdfFDSas", 
+            "dsaFDa", 
+            "dasdas"]);
+    }
+    
+    // window.removeEventListener(`keydown`, test);
+}
+window.addEventListener(`keydown`, test);
 
 
 

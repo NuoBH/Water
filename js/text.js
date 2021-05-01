@@ -22,8 +22,9 @@ class CubeContent{
     }
 
     scrollDown(textDOM, textToSend){
+        let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
         $(textDOM).stop().animate({
-            scrollTop: textDOM.scrollHeight - $(textToSend).outerHeight()
+            scrollTop: textDOM.scrollHeight - $(textToSend).outerHeight() - padding*1.75
         }, {
             duration: 1000,
             easing: "swing"
@@ -70,8 +71,6 @@ class CubeContent{
         slider.classList.add(`slider`);
         textDOM.append(slider);
 
-        
-
         slider.addEventListener(`input`, function(e){
             let val = e.target.value;
             let max = e.target.max;
@@ -99,19 +98,88 @@ class CubeContent{
             e.target.style.setProperty(`--coloring`, color);
         });
 
-        slider.previousElementSibling.style.setProperty(`padding-bottom`, `5%`);
+        if(slider.previousElementSibling.classList.value.includes('videoContainer')){
+            slider.previousElementSibling.style.setProperty(`margin-bottom`, `5%`);
+        }
+        else{slider.previousElementSibling.style.setProperty(`padding-bottom`, `5%`);}
         this.scrollDown(textDOM, slider);
     }
 
     showVideo(face, src){
         let textDOM = face.children[0];
 
-        let video = document.createElement(`video`);
-        video.classList.add(`videoContainer`);
-        video.src = src;
+        let videoContainer = document.createElement(`div`);
+        videoContainer.classList.add(`videoContainer`);
 
-        textDOM.append(video)
+        let video = document.createElement(`video`);
+        video.classList.add(`vid`);
+
+        let source = document.createElement("source"); 
+        source.type = "video/mp4";
+        source.src = src;
+
+        video.setAttribute(`controls`, `controls`);
+        
+
+        videoContainer.append(video);
+        textDOM.append(videoContainer);
+        this.scrollDown(textDOM, videoContainer);
+
+        requestTimeout(function(){
+            //
+            video.addEventListener(`loadeddata`, function(e){
+                console.log(e)
+                let video = e.target;
+                let videoContainer = video.parentElement;
+                videoContainer.classList.add(`showVid`);
+
+                requestTimeout(function(){
+                    video.classList.add(`show`);
+                    this.snapToVideo(videoContainer, textDOM);
+
+                    video.addEventListener(`play`, function(){
+                        this.snapToVideo(videoContainer, textDOM);
+                    }.bind(this));
+
+                }.bind(this), 750);
+
+            }.bind(this));
+
+            video.append(source);
+
+        }.bind(this), 1500);
     }
+    
+    snapToVideo(videoContainer, textDOM){
+        let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
+        let marginBottom = parseFloat(getComputedStyle(videoContainer).getPropertyValue(`margin-bottom`));
+
+        console.log($(videoContainer).offset().top)
+        // console.log(textDOM.scrollTop + $(videoContainer).position().top)
+
+        let textBounding = textDOM.getBoundingClientRect(),
+              videoBounding = videoContainer.getBoundingClientRect();
+        
+        let textBottom = textBounding.bottom,
+        textTop = textBounding.top,
+        videoBottom = videoBounding.bottom,
+        videoTop = videoBounding.top;
+
+        let scrollTo;
+        if (textTop >= videoTop) {
+            scrollTo = -(textTop - videoTop);
+        } 
+        else if (videoBottom > textBottom) {
+            scrollTo = videoBottom - textBottom;
+        }
+        $(textDOM).stop().animate({
+            scrollTop: scrollTo
+        }, {
+            duration: 1000,
+            easing: "swing"
+        });
+    }
+//class end    
 }
 
 var cubeContent = new CubeContent();
@@ -125,6 +193,11 @@ window.addEventListener(`firstCollide`, function(){
     }, 1000);
 });
 
-window.addEventListener(`mouseup`, function(){
-    // cubeContent.showVideo()
+window.addEventListener(`keypress`, function(e){
+    if(e.key == 'b'){
+        cubeContent.showVideo(backFace, `./videos/freeze.mp4`)
+    }
+    else if(e.key == 'f'){
+        cubeContent.showVideo(frontFace, `./videos/freeze.mp4`)
+    }
 });
