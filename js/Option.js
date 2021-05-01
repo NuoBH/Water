@@ -41,12 +41,10 @@ class Option{
                 }.bind(this), 250);
         }.bind(this));
 
-        $(textDOM).stop().animate({
-            scrollTop: textDOM.scrollHeight - $(optionDOM).outerHeight()
-        }, {
-            duration: 1000,
-            easing: "swing"
-        });
+        scrollIntoView(optionDOM, {
+            time: 1000,
+            align:{top: 1}
+        })
 
         requestTimeout(function(){
             optionDOM.style.setProperty("--optionRotateX", "0deg");
@@ -219,12 +217,12 @@ class Option{
             optionDOM.style.setProperty("--optionRotateX", "90deg");
             optionDOM.style.setProperty("--optionOpacity", "0");
 
-            $(textDOM).stop().animate({
-                scrollTop: textDOM.scrollHeight - $(optionDOM).position().top - $(textDOM).outerHeight() + (textDOM.scrollHeight - textDOM.scrollTop - $(textDOM).outerHeight()) + padding * 0.75
-            }, {
-                duration: 1000,
-                easing: "swing",
-            });
+            scrollIntoView(prev, {
+                time: 1000,
+                align:{top: 1, topOffset: padding * 2},
+                debug: true
+            })
+
             requestTimeout(function(){
                 optionDOM.remove();
                 /*********** add chosen text here!!! ************/

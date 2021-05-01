@@ -21,13 +21,12 @@ class CubeContent{
         title.style.setProperty(`font-size`, `${chatCube.targetFaceHeightFour / factor}px`);
     }
 
-    scrollDown(textDOM, textToSend){
-        let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
-        $(textDOM).stop().animate({
-            scrollTop: textDOM.scrollHeight - $(textToSend).outerHeight() - padding*1.75
-        }, {
-            duration: 1000,
-            easing: "swing"
+    scrollDown(textToSend){
+        // let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
+
+        scrollIntoView(textToSend, {
+            time: 1000,
+            align:{ top: 1 } 
         });
 
         requestTimeout(function(){
@@ -44,7 +43,7 @@ class CubeContent{
         chatDOM.innerHTML = str;
         textDOM.append(chatDOM);
 
-        this.scrollDown(textDOM, chatDOM);
+        this.scrollDown(chatDOM);
     }
 
     addResponse(face, str){
@@ -56,7 +55,7 @@ class CubeContent{
         responseDOM.innerHTML = str;
         textDOM.append(responseDOM);
 
-        this.scrollDown(textDOM, responseDOM);
+        this.scrollDown(responseDOM);
     }
 
     addSlider(face, min, max, initialVal){
@@ -81,9 +80,9 @@ class CubeContent{
             let color = 0;
 
             if( total > Math.max(Math.abs(max), Math.abs(min)) ){
-                scale = Math.abs(val) / ((max-min)*1.25);
+                scale = Math.abs(val) / ((max-min)*0.75);
                 if(val <= 0){
-                    let maxmap = Math.max(Math.abs(max), Math.abs(min)) / ((max-min)*1.25)
+                    let maxmap = Math.max(Math.abs(max), Math.abs(min)) / ((max-min)*0.75)
                     color = map(scale*50, 0, maxmap*50, 0, 255);
                 }
                 else{
@@ -91,7 +90,7 @@ class CubeContent{
                 }
             }
             else{
-                scale = Math.abs(val) / ((max-min)*2.5);
+                scale = Math.abs(val) / ((max-min)*1.5);
             }
             scale += 1;
             e.target.style.setProperty(`--scaling`, scale);
@@ -102,7 +101,7 @@ class CubeContent{
             slider.previousElementSibling.style.setProperty(`margin-bottom`, `5%`);
         }
         else{slider.previousElementSibling.style.setProperty(`padding-bottom`, `5%`);}
-        this.scrollDown(textDOM, slider);
+        this.scrollDown(slider);
     }
 
     showVideo(face, src){
@@ -123,7 +122,7 @@ class CubeContent{
 
         videoContainer.append(video);
         textDOM.append(videoContainer);
-        this.scrollDown(textDOM, videoContainer);
+        this.scrollDown(videoContainer);
 
         requestTimeout(function(){
             //
@@ -152,31 +151,13 @@ class CubeContent{
     
     snapToVideo(videoContainer, textDOM){
         let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
-        let marginBottom = parseFloat(getComputedStyle(videoContainer).getPropertyValue(`margin-bottom`));
 
-        console.log($(videoContainer).offset().top)
-        // console.log(textDOM.scrollTop + $(videoContainer).position().top)
-
-        let textBounding = textDOM.getBoundingClientRect(),
-              videoBounding = videoContainer.getBoundingClientRect();
-        
-        let textBottom = textBounding.bottom,
-        textTop = textBounding.top,
-        videoBottom = videoBounding.bottom,
-        videoTop = videoBounding.top;
-
-        let scrollTo;
-        if (textTop >= videoTop) {
-            scrollTo = -(textTop - videoTop);
-        } 
-        else if (videoBottom > textBottom) {
-            scrollTo = videoBottom - textBottom;
-        }
-        $(textDOM).stop().animate({
-            scrollTop: scrollTo
-        }, {
-            duration: 1000,
-            easing: "swing"
+        scrollIntoView(videoContainer, {
+            time: 1000,
+            align: {
+                    top: 0, 
+                    topOffset: padding*0.85
+                   }
         });
     }
 //class end    
@@ -199,5 +180,11 @@ window.addEventListener(`keypress`, function(e){
     }
     else if(e.key == 'f'){
         cubeContent.showVideo(frontFace, `./videos/freeze.mp4`)
+    }
+    else if(e.key == 's'){
+        cubeContent.addSlider(frontFace, -100, 100, 0);
+    }
+    else if(e.key == 'r'){
+        cubeContent.addResponse(frontFace, 'okokookokkokok');
     }
 });

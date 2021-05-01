@@ -248,10 +248,6 @@ body{
 }
 
 /********************************* Text  ************************************/
-/* .blotter-text{
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-} */
 .appear{
     opacity: 1;
 }
@@ -461,12 +457,12 @@ input[type=range]:focus::-ms-fill-upper {
     clear: both;
 
     border: 2px solid black ;
-    background: linear-gradient(270deg, #000000, #272727ce, #e2e2e259, #ffffff00);
+    background: linear-gradient(270deg, #000000, #363636ce, #c9c9c959, #ffffff00);
     background-size: 900% 900%;
 
-    -webkit-animation: load 5s ease infinite;
-    -moz-animation: load 5s ease infinite;
-    animation: load 5s ease infinite;
+    -webkit-animation: load 2s ease infinite;
+    -moz-animation: load 2s ease infinite;
+    animation: load 2s ease infinite;
 
     opacity: 0;
     transform: rotateX(90deg);
