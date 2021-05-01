@@ -102,6 +102,16 @@ class CubeContent{
         slider.previousElementSibling.style.setProperty(`padding-bottom`, `5%`);
         this.scrollDown(textDOM, slider);
     }
+
+    showVideo(face, src){
+        let textDOM = face.children[0];
+
+        let video = document.createElement(`video`);
+        video.classList.add(`videoContainer`);
+        video.src = src;
+
+        textDOM.append(video)
+    }
 }
 
 var cubeContent = new CubeContent();
@@ -115,7 +125,6 @@ window.addEventListener(`firstCollide`, function(){
     }, 1000);
 });
 
-// window.addEventListener(`mouseup`, function(){
-//     // cubeContent.addResponse(frontFace, `Okay, I can see that.`)
-//     cubeContent.addSlider(frontFace, -1000, 1000, 0)
-// });
+window.addEventListener(`mouseup`, function(){
+    // cubeContent.showVideo()
+});
