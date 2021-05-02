@@ -226,21 +226,15 @@ class Option{
             requestTimeout(function(){
                 optionDOM.remove();
                 /*********** add chosen text here!!! ************/
+                cubeContent.addResponse(textDOM.parentElement, chosenText);
+                optionDOM.dispatchEvent(optionEnded);
+                
             }, 900);
         });
     }
 }
 
 let optionCreator = new Option();
-
-// requestTimeout(()=>{
-//     let optionDOM = optionCreator.addOptionButtons(frontFace, 
-//         ["nuobebe is xiang xiang hapizhugigingi", 
-//         "nFDebe", 
-//         "asdfFDSas", 
-//         "dsaFDa", 
-//         "dasdas"]);
-// },2000);
 
 function test(e){
     if(e.key=='o'){
@@ -250,6 +244,10 @@ function test(e){
             "asdfFDSas", 
             "dsaFDa", 
             "dasdas"]);
+
+        optionDOM.addEventListener(`optionEnded`, function(e){
+            cubeContent.addChat(frontFace, lastResponse)
+        })
     }
     
     // window.removeEventListener(`keydown`, test);

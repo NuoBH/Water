@@ -103,3 +103,4 @@ var bottomFace = document.getElementById(`bottom`);
 var backFace = document.getElementById(`back`);
 const firstCollideEvent = new CustomEvent(`firstCollide`);
 var lastResponse = '';
+const optionEnded = new CustomEvent(`optionEnded`);
