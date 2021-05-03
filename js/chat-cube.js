@@ -159,8 +159,8 @@ class ChatCube{
         else{
             let touch = ev.changedTouches[0];
             //times 1.5 because on phone the tilt angle seems too small / slow
-            rxRate = 1.5 * (touch.clientY - window.innerHeight/2) / (window.innerHeight/2);
-            ryRate = 1.5 * (touch.clientX - window.innerWidth/2) / (window.innerWidth/2);
+            rxRate = 2 * (touch.clientY - window.innerHeight/2) / (window.innerHeight/2);
+            ryRate = 2 * (touch.clientX - window.innerWidth/2) / (window.innerWidth/2);
         }
         
         var rotateXAdd = rxRate * this.tiltXRate;
