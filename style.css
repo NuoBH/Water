@@ -182,8 +182,8 @@ body{
     position: fixed;
     /* left: calc(50% - var(--faceWidthFour)/2);
     top: calc(50% - var(--faceHeightFour)/2); */
-    max-height: 85vh;
-    max-width: 151.11111111vh;
+    max-height: 80vh;
+    max-width: 142.222222222vh;
     
     width: var(--faceWidthFour);
     height: var(--faceHeightFour);
