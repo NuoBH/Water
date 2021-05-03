@@ -233,7 +233,40 @@ class Option{
                 
             }, 900);
         });
+
+        //
+        button.addEventListener("touchend", function(){
+            let chosenText = button.innerHTML;
+            if(chosenText.slice(-4) == '<br>'){
+                chosenText = chosenText.slice(0, -4);
+            }
+
+            lastResponse = chosenText;
+
+            let prev = optionDOM.previousElementSibling;
+            let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
+
+            optionDOM.style.setProperty("--optionRotateX", "90deg");
+            optionDOM.style.setProperty("--optionOpacity", "0");
+
+            scrollIntoView(prev, {
+                time: 1000,
+                align:{top: 1, topOffset: padding * 2}
+            })
+
+            requestTimeout(function(){
+                optionDOM.remove();
+                /*********** add chosen text here!!! ************/
+                console.log(chosenText)
+                if(!chosenText.includes(`--&gt`)){
+                    cubeContent.addResponse(textDOM.parentElement, chosenText);
+                }
+                optionDOM.dispatchEvent(optionEnded);
+                
+            }, 900);
+        });
     }
+//class ends
 }
 
 let optionCreator = new Option();

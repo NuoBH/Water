@@ -169,10 +169,10 @@ body{
 /* -------------------style for chat cube--------------------- */
 
 #chat-cube{
-    --faceWidthFour: 75vw;
-    --faceHeightFour: 42.1875vw;
-    --faceWidthTwo: 42.1875vw;
-    --faceHeightTwo: 42.1875vw;
+    --faceWidthFour: 85vw;
+    --faceHeightFour: 47.8125vw;
+    --faceWidthTwo: 47.8125vw;
+    --faceHeightTwo: 47.8125vw;
 
     --chatRotateX: 0deg;
     --chatRotateY: 0deg;
@@ -182,8 +182,8 @@ body{
     position: fixed;
     /* left: calc(50% - var(--faceWidthFour)/2);
     top: calc(50% - var(--faceHeightFour)/2); */
-    max-height: 80vh;
-    max-width: 142.22222vh;
+    max-height: 85vh;
+    max-width: 151.11111111vh;
     
     width: var(--faceWidthFour);
     height: var(--faceHeightFour);
