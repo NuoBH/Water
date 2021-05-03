@@ -219,14 +219,16 @@ class Option{
 
             scrollIntoView(prev, {
                 time: 1000,
-                align:{top: 1, topOffset: padding * 2},
-                debug: true
+                align:{top: 1, topOffset: padding * 2}
             })
 
             requestTimeout(function(){
                 optionDOM.remove();
                 /*********** add chosen text here!!! ************/
-                cubeContent.addResponse(textDOM.parentElement, chosenText);
+                console.log(chosenText)
+                if(!chosenText.includes(`--&gt`)){
+                    cubeContent.addResponse(textDOM.parentElement, chosenText);
+                }
                 optionDOM.dispatchEvent(optionEnded);
                 
             }, 900);
@@ -236,23 +238,23 @@ class Option{
 
 let optionCreator = new Option();
 
-function test(e){
-    if(e.key=='o'){
-        let optionDOM = optionCreator.addOptionButtons(frontFace, 
-            ["nuobebe is xiang xiang hapizhugigingi", 
-            "nFDebe", 
-            "asdfFDSas", 
-            "dsaFDa", 
-            "dasdas"]);
+// function test(e){
+//     if(e.key=='o'){
+//         let optionDOM = optionCreator.addOptionButtons(frontFace, 
+//             ["nuobebe is xiang xiang hapizhugigingi", 
+//             "nFDebe", 
+//             "asdfFDSas", 
+//             "dsaFDa", 
+//             "dasdas"]);
 
-        optionDOM.addEventListener(`optionEnded`, function(e){
-            cubeContent.addChat(frontFace, lastResponse)
-        })
-    }
+//         optionDOM.addEventListener(`optionEnded`, function(e){
+//             cubeContent.addChat(frontFace, lastResponse)
+//         })
+//     }
     
-    // window.removeEventListener(`keydown`, test);
-}
-window.addEventListener(`keydown`, test);
+//     // window.removeEventListener(`keydown`, test);
+// }
+// window.addEventListener(`keydown`, test);
 
 
 

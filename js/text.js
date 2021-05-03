@@ -26,7 +26,7 @@ class CubeContent{
 
         scrollIntoView(textToSend, {
             time: 1000,
-            align:{ top: 1 } 
+            align:{ top: 0 } 
         });
 
         requestTimeout(function(){
@@ -165,26 +165,17 @@ class CubeContent{
 
 var cubeContent = new CubeContent();
 
-//add to main later
-cubeContent.addTitle(frontFace, `water`, 1.8);
-
-window.addEventListener(`firstCollide`, function(){
-    requestTimeout(function(){
-        cubeContent.addChat(frontFace, `Water is an imaginary data structure.`);
-    }, 1000);
-});
-
-window.addEventListener(`keypress`, function(e){
-    if(e.key == 'b'){
-        cubeContent.showVideo(backFace, `./videos/freeze.mp4`)
-    }
-    else if(e.key == 'f'){
-        cubeContent.showVideo(frontFace, `./videos/freeze.mp4`)
-    }
-    else if(e.key == 's'){
-        cubeContent.addSlider(frontFace, -100, 100, 0);
-    }
-    else if(e.key == 'r'){
-        cubeContent.addResponse(frontFace, 'okokookokkokok');
-    }
-});
+// window.addEventListener(`keypress`, function(e){
+//     if(e.key == 'b'){
+//         cubeContent.showVideo(backFace, `./videos/freeze.mp4`)
+//     }
+//     else if(e.key == 'f'){
+//         cubeContent.showVideo(frontFace, `./videos/freeze.mp4`)
+//     }
+//     else if(e.key == 's'){
+//         cubeContent.addSlider(frontFace, -100, 100, 0);
+//     }
+//     else if(e.key == 'r'){
+//         cubeContent.addResponse(frontFace, 'okokookokkokok');
+//     }
+// });
