@@ -44,8 +44,8 @@ class ChatCube{
 
     //resize each face of the cube after window resize
     cubeOnResize(){
-        this.cube.style.setProperty(`width`, `${0.75 * window.innerWidth}px`);
-        this.cube.style.setProperty(`height`, `${0.421875 * window.innerWidth}px`);
+        this.cube.style.setProperty(`width`, `${0.85 * window.innerWidth}px`);
+        this.cube.style.setProperty(`height`, `${0.478125 * window.innerWidth}px`);
 
         let canChange = this.curstate == 2 || this.curstate == 4 ? 1 : 0;
         this.toggleFaceChange(canChange);
