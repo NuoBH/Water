@@ -6,30 +6,30 @@ cubeContent.addTitle(frontFace, `water`, 1.8);
 frontFace.children[0].style.setProperty("opacity", `1`);
 
 /************ uncomment code below after test is done ***********/
-// window.addEventListener(`firstCollide`, function(){
-//     requestTimeout(function(){
-//         cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
-//     }, 1000);
+window.addEventListener(`firstCollide`, function(){
+    requestTimeout(function(){
+        cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
+    }, 1000);
 
-//     requestTimeout(function(){
-//         let optionDOM = optionCreator.addOptionButtons(frontFace, 
-//                         ["Okay.", 
-//                         "How can water retain data?"
-//                         ]);
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(frontFace, 
+                        ["Okay.", 
+                        "How can water retain data?"
+                        ]);
             
-//         optionDOM.addEventListener(`optionEnded`, waterOption1)
-//     }, 2500);
-// });
+        optionDOM.addEventListener(`optionEnded`, waterOption1)
+    }, 2500);
+});
 /** **************************************************** */
 
 /**test part delete later */
-window.addEventListener(`firstCollide`, function(){
-    requestTimeout(function(){
-        cubeContent.addTitle(topFace, "Clean");
-        chatCube.rotate();
-        cleanStart();        
-    }, 1000);
-});
+// window.addEventListener(`firstCollide`, function(){
+//     requestTimeout(function(){
+//         cubeContent.addTitle(topFace, "Clean");
+//         chatCube.rotate();
+//         cleanStart();        
+//     }, 1000);
+// });
 
 
 /************************** */
@@ -240,7 +240,7 @@ function rotateChatCubeFromFront(){
 function cleanStart(){
     requestTimeout(function(){
         cubeContent.addChat(topFace, `Hi! Let me introduce you to the first step of our data transfer process.`);       
-    }, 2000);
+    }, 1000);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(topFace, [
@@ -264,7 +264,7 @@ function cleanOption1(){
         ]);
 
         optionDOM.addEventListener(`optionEnded`, cleanOption2);
-    }, 3000);
+    }, 4000);
 }
 
 function cleanOption2(){
@@ -274,11 +274,11 @@ function cleanOption2(){
 
     requestTimeout(function(){
         cubeContent.showVideo(topFace, `./videos/wash.mp4`)
-    }, 4000);
+    }, 2500);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(topFace, [next]);
 
         optionDOM.addEventListener(`optionEnded`, cleanOption2);
-    }, 7000);
+    }, 6500);
 }

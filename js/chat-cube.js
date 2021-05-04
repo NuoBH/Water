@@ -217,6 +217,8 @@ class ChatCube{
             this.y = 0;
             this.startRotateToTargetAngles();
             this.resetZIndex(frontFace, topFace);
+            this.tiltXRate = mobileAndTabletCheck() ? 7 : 6;
+            this.tiltYRate = mobileAndTabletCheck() ? 4 : 2;
         }
         //go to left
         else if(this.curstate == 1){
@@ -225,6 +227,8 @@ class ChatCube{
             this.startRotateToTargetAngles();
             this.toggleFaceChange(1);
             this.resetZIndex(topFace, leftFace);
+            this.tiltXRate = mobileAndTabletCheck() ? 7 : 6;
+            this.tiltYRate = mobileAndTabletCheck() ? 7 : 6;
         }
         //go to bottom
         else if(this.curstate == 2){
@@ -233,6 +237,8 @@ class ChatCube{
             this.startRotateToTargetAngles();
             this.toggleFaceChange(0);
             this.resetZIndex(leftFace, bottomFace);
+            this.tiltXRate = mobileAndTabletCheck() ? 7 : 6;
+            this.tiltYRate = mobileAndTabletCheck() ? 4 : 2;
         }
         // go to right
         else if(this.curstate == 3){
@@ -241,6 +247,8 @@ class ChatCube{
             this.startRotateToTargetAngles();
             this.toggleFaceChange(1);
             this.resetZIndex(bottomFace, rightFace);
+            this.tiltXRate = mobileAndTabletCheck() ? 7 : 6;
+            this.tiltYRate = mobileAndTabletCheck() ? 7 : 6;
         }
         //go to back
         else if(this.curstate == 4){
