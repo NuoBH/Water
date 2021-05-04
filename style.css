@@ -39,6 +39,8 @@
     font-style: italic;
 }
 
+/* videoContainer, image-cube, title: margin bottom; else: padding-bottom (slider must use padding) */
+
 html{
     isolation: isolate;
 }
@@ -62,6 +64,8 @@ body{
     --imageRotateY: 30deg; 
 
     margin: auto;
+    margin-top: 5%;
+    margin-bottom: 10%;
 
     width: var(--faceSize);
     height: var(--faceSize);
@@ -69,6 +73,7 @@ body{
 
     transform-style: preserve-3d;
     transform: perspective(10000px) rotateX(var(--imageRotateX)) rotateY(var(--imageRotateY));
+
     clear: both;
 }
 
@@ -77,12 +82,21 @@ body{
     position: absolute;
     width: var(--faceSize);
     height: var(--faceSize);
-    background-color: white;
+    background-color: black;
+    background: linear-gradient(270deg, #000000, #363636, #c9c9c9, #ffffff);
+    background-size: 900% 900%;
+
+    -webkit-animation: load 2s ease infinite;
+    -moz-animation: load 2s ease infinite;
+    animation: load 2s ease infinite;
 
     border: none;
     box-sizing: border-box;
     cursor: -webkit-grab;
     cursor: grab;
+
+    opacity: 0;
+    transition: opacity 0.35s ease;
 
     -webkit-backface-visibility: hidden;
 

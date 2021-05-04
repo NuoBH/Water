@@ -245,6 +245,17 @@ class Option{
                 if(prev.classList.value.includes('videoContainer')){
                     cubeContent.snapToVideo(prev, textDOM);
                 }
+                else if(prev.classList.value.includes('imag-cube')){
+                    let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
+
+                    optionDOM.style.setProperty("--optionRotateX", "90deg");
+                    optionDOM.style.setProperty("--optionOpacity", "0");
+
+                    scrollIntoView(prev, {
+                        time: 1000,
+                        align:{top: 0.5, topOffset: padding}
+                    })
+                }
                 else{
                     let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
 

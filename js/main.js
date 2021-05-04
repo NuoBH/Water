@@ -1,6 +1,7 @@
 let next = "--&gt";
 let optionEventName = "optionEnded";
 let continueEventName = "rotateFace";
+let sliders = [];
 
 /****** help funciton ********/
 //add event hander to option/continue buttons and remove the listener and the DOM element afterwards
@@ -43,31 +44,34 @@ cubeContent.addTitle(frontFace, `water`, 1.8);
 frontFace.children[0].style.setProperty("opacity", `1`);
 
 /************ uncomment code below after test is done ***********/
-// window.addEventListener(`firstCollide`, function(){
-//     requestTimeout(function(){
-//         cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
-//     }, 1000);
 
-//     requestTimeout(function(){
-//         let optionDOM = optionCreator.addOptionButtons(frontFace, 
-//                         ["Okay.", 
-//                         "How can water retain data?"
-//                         ]);
+window.addEventListener(`firstCollide`, function(){
+    requestTimeout(function(){
+        cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
+    }, 1000);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(frontFace, 
+                        ["Okay.", 
+                        "How can water retain data?"
+                        ]);
             
-//         addEventHandlerToButtons(optionDOM, optionEventName, waterOption1);
-//     }, 2500);
-// });
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption1);
+    }, 2500);
+});
+
 /** **************************************************** */
 
 /**test part delete later */
-window.addEventListener(`firstCollide`, function(){
-    requestTimeout(function(){
-        cubeContent.addTitle(leftFace, "Pre<br>pare");
-        chatCube.rotate();
-        chatCube.rotate();
-        prepareStart();        
-    }, 1000);
-});
+// window.addEventListener(`firstCollide`, function(){
+//     requestTimeout(function(){
+//         cubeContent.addTitle(leftFace, "Pre<br>pare");
+//         chatCube.rotate();
+//         chatCube.rotate();
+//         prepareStart(); 
+//         // prepareOption19();       
+//     }, 1000);
+// });
 
 
 /************************** */
@@ -425,8 +429,293 @@ function prepareOption5(){
     }, 500);
 
     requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [
+            `Okay...`,
+            `How do you adjust the water conditions then?`
+        ]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption6);
+    }, 3200);
+}
+
+function prepareOption6(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `We use 7 different types of water as materials for the final blend.`);       
+    }, 1500);
+
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `Alkaline water, carbonated water, mineral water...`);       
+    }, 3600);
+
+    requestTimeout(function(){
+        addImageCube(`waterTypes1`, leftFace, [
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./images/test.JPG`
+        ])
+    }, 5700);
+
+    requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
 
-        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption4);
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption7);
+    }, 7000);
+}
+
+function prepareOption7(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `Distilled water, filtered water, boiled water...`);       
+    }, 500);
+
+    requestTimeout(function(){
+        addImageCube(`waterTypes2`, leftFace, [
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./images/test.JPG`
+        ])
+    }, 2600);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption8);
+    }, 3950);
+}
+
+function prepareOption8(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `tap water, a mixture of alkaline distilled water and a mixture of mineral carbonated water.`);       
+    }, 500);
+
+    requestTimeout(function(){
+        addImageCube(`waterTypes2`, leftFace, [
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./images/test.JPG`
+        ])
+    }, 3500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption9);
+    }, 5100);
+}
+
+function prepareOption9(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `We carefully adjust the amount of each type of water to make the final blend.`);       
+    }, 500);
+
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `We also use a black food coloring to adjust the turbidity of the blend.`);
+    }, 3300);
+
+    requestTimeout(function(){
+        addImageCube(`waterTypes3`, leftFace, [
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./videos/prepare water fast.mp4`,
+            `./images/test.JPG`,
+            `./images/test.JPG`,
+            `./images/test.JPG`
+        ])
+    }, 6100);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption10);
+    }, 7450);
+}
+
+function prepareOption10(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `*All materials are metallic or wrapped with aluminum foil to block unwanted electromagnetic radiations (EMR).`);       
+    }, 500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [
+            `Hmmm...`,
+            `I see.`
+        ]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption11);
+    }, 3500);
+}
+
+function prepareOption11(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `At this point, I’d like to ask you what kind of data do you imagine to give us. Your data will influence the conditions of water. The data will be transferred via a thumb drive later.`);       
+    }, 1500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [
+            `Sure?`,
+            `Can you say more?`,
+            `I'm not sure what to give you`
+        ]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption12);
+    }, 5000);
+}
+
+function prepareOption12(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `It’s fine that you are not sure yet, I will ask specific questions corresponding to each water condition and you can take some time to think about it.
+`);       
+    }, 1500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption13);
+    }, 3500);
+}
+
+function prepareOption13(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `First, for the weight of the water: How large is your filesize? How much information does your data have? Think about the weight of the information. Please adjust the slider below to reflect your answer.`);       
+    }, 500);
+
+    //add slider
+    requestTimeout(function(){
+        sliders.push(cubeContent.addSlider(leftFace, 'weightSlider', 0, 100, 0));
+    }, 3500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption14);
+    }, 5500);
+}
+
+function prepareOption14(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `For the hardness of the water: Does your file require a specific software to open? If so is that software hard to find or download? Was it hard for you to create the data in the first place? How hard the content is for you to digest?`);       
+    }, 500);
+
+    //add slider
+    requestTimeout(function(){
+        sliders.push(cubeContent.addSlider(leftFace, 'hardnessSlider', 0, 100, 0));
+    }, 3700);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption15);
+    }, 5900);
+}
+
+function prepareOption15(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `For the pH value of water: Is your data neutral? If not, to what extent does your data contain inclined opinions? How much do you agree or disagree with the opinions in your data?`);       
+    }, 500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption16);
+    }, 3000);
+}
+
+function prepareOption16(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `If the data is neutral please place the slide handle at the center.`);       
+    }, 500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption17);
+    }, 2000);
+}
+
+function prepareOption17(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `If your data is not neutral, adjust the slider to the right according to how much you AGREE with the opinions in the data, and how inclined the opinions are. `);       
+    }, 500);
+
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `Adjust the slider to the left according to how much you DISAGREE with the opinions in the data, and how inclined the opinions are. `);       
+    }, 4500);
+
+    //add slider
+    requestTimeout(function(){
+        sliders.push(cubeContent.addSlider(leftFace, 'phValueSlider', -100, 100, 0));
+    }, 6500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption18);
+    }, 8500);
+}
+
+function prepareOption18(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `For the turbidity of the water: Is your data encrypted? How hard is it to decrypt the data? How private or personal is your data? How many people have you shared the data with? The more inaccessible or private the data, the more turbid the water is.`);       
+    }, 500);
+
+    //add slider
+    requestTimeout(function(){
+        sliders.push(cubeContent.addSlider(leftFace, 'turbiditySlider', 0, 100, 0));
+    }, 3800);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [
+            `Finished!`,
+            `Done.`,
+            `Finally...`
+        ]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption19);
+    }, 6000);
+}
+
+function prepareOption19(){
+    //get slider values and disable slide actions
+    for(let i = 0; i < sliders.length; i++){
+        sliderInputs[`${sliders[i].id}`] = sliders[i].value;
+        sliders[i].disabled = true;
+    }
+    
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `Thank you for your answers! We will prepare the water for your data transfer according to these answers.`);       
+    }, 1500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addContinueButtons(leftFace, ['Continue.']);
+
+        addEventHandlerToButtons(optionDOM, continueEventName, prepareEnd);
     }, 3200);
+}
+
+function prepareEnd(e){
+    if(chatCube.curstate == 2){
+        cubeContent.addTitle(bottomFace, "Mate<br>rials");
+        chatCube.rotate();
+        e.target.addEventListener(`rotateFace`, ()=>{
+            rotateChatCubeHandler(2);
+        });
+        hasClickedLastContinue = false;
+
+        materialStart();
+    }
+}
+
+
+/********************************* Material **********************************/
+
+function materialStart(){
+
 }

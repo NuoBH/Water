@@ -107,3 +107,4 @@ const optionEndedEvent = new CustomEvent(`optionEnded`);
 const rotateFaceEvent = new CustomEvent(`rotateFace`);
 var hasClickedLastOption = false;
 var hasClickedLastContinue = false;
+var sliderInputs = {};

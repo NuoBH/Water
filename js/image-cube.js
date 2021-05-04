@@ -53,7 +53,17 @@ function addImageCube(id, face, mediaLinks){
     }
 
     textDOM.appendChild(imageCubeDOM);
-    return new ImageCube(-15, 30, 0.2);
+
+    scrollIntoView(imageCubeDOM, {
+        time: 1000,
+        align:{top: 0.5}
+    })
+
+    requestTimeout(()=>{
+        $(imageCubeDOM).children().css(`opacity`, `1`);
+    }, 200);
+
+    return new ImageCube(id, -15, 30, 0.2);
 }
 
 class ImageCube{
@@ -78,29 +88,31 @@ class ImageCube{
 
         //set video hover show control effect
         this.videos = this.cube.querySelectorAll("#video");
-        for(var i = 0; i < this.videos.length; i ++){
-            this.videos[i].addEventListener("mouseenter", function(ev){
-                if(!this.isDragging){
-                    if(ev.cancelable){
-                        ev.preventDefault();
+        if(this.videos.length > 0){
+            for(var i = 0; i < this.videos.length; i ++){
+                this.videos[i].addEventListener("mouseenter", function(ev){
+                    if(!this.isDragging){
+                        if(ev.cancelable){
+                            ev.preventDefault();
+                        }
+                        ev.target.setAttribute("controls", "controls");
                     }
-                    ev.target.setAttribute("controls", "controls");
-                }
-            }.bind(this));
+                }.bind(this));
 
-            this.videos[i].addEventListener("mouseleave", function(ev){
-                if(!this.isDragging){
-                    if(ev.cancelable){
-                        ev.preventDefault();
+                this.videos[i].addEventListener("mouseleave", function(ev){
+                    if(!this.isDragging){
+                        if(ev.cancelable){
+                            ev.preventDefault();
+                        }
+                        ev.target.removeAttribute("controls");
                     }
-                    ev.target.removeAttribute("controls");
-                }
-            }.bind(this));
-        }
+                }.bind(this));
+            }
 
-        //show video controls at start if device is mobile
-        if(mobileAndTabletCheck()){
-            ImageCube.showAllVideoControls(this.videos);
+            //show video controls at start if device is mobile
+            if(mobileAndTabletCheck()){
+                ImageCube.showAllVideoControls(this.videos);
+            }
         }
 
         this.dragRotate();
@@ -228,7 +240,7 @@ class ImageCube{
     //drag that fires several events for rotating the cube
     dragRotate(){
         //all elements that can be dragged
-        const media = document.getElementsByClassName("todrag");
+        const media = this.cube.querySelectorAll(".todrag");
 
         //add event listeners to all draggable elements
         for(var i = 0; i < media.length; i ++){
@@ -239,6 +251,8 @@ class ImageCube{
                     // if(ev.cancelable){
                     //     ev.preventDefault();
                     // }
+
+                    console.log(ev.target);
                     this.isDragging = true;
                     this.lastMouseX = ev.pageX;
                     this.lastMouseY = ev.pageY;
