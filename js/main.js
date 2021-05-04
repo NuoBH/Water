@@ -62,9 +62,10 @@ frontFace.children[0].style.setProperty("opacity", `1`);
 /**test part delete later */
 window.addEventListener(`firstCollide`, function(){
     requestTimeout(function(){
-        cubeContent.addTitle(topFace, "Clean");
+        cubeContent.addTitle(leftFace, "Pre<br>pare");
         chatCube.rotate();
-        cleanStart();        
+        chatCube.rotate();
+        prepareStart();        
     }, 1000);
 });
 
@@ -349,5 +350,83 @@ function cleanEnd(e){
 
 /**************************** Prepare *************************/
 function prepareStart(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `After cleaning is done, we will prepare water for data transfer.`);       
+    }, 1500);
 
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [
+            `Sounds good!`,
+            `Does water need any specific preparation?`
+        ]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption1);
+    }, 3000);
+}
+
+function prepareOption1(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `We adjust water conditions for specific data that will be transferred to the water.`);       
+    }, 1500);
+
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `There are four conditions important for data transfer: weight, hardness, pH value and turbidity.`);       
+    }, 4000);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [
+            `I'm confused...`,
+            `What are these conditions about?`
+        ]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption2);
+    }, 7500);
+}
+
+function prepareOption2(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `The weight of water corresponds to the number of bytes the data has and the scope of information the data contains.`);       
+    }, 1500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption3);
+    }, 4500);
+}
+
+function prepareOption3(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `The hardness of water corresponds to how hard it is to open, see, read the data.`);       
+    }, 500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption4);
+    }, 3000);
+}
+
+function prepareOption4(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `The pH value of water is related to how neutral or inclined the data is.`);       
+    }, 500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption5);
+    }, 2700);
+}
+
+function prepareOption5(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `Finally, the turbidity of water is related to the level of encryption, security, privacy the data has.`);       
+    }, 500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption4);
+    }, 3200);
 }
