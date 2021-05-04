@@ -1,5 +1,39 @@
-
 //WATER INTRO
+//WATER INTRO start
+let next = "--&gt";
+
+cubeContent.addTitle(frontFace, `water`, 1.8);
+frontFace.children[0].style.setProperty("opacity", `1`);
+
+/************ uncomment code below after test is done ***********/
+// window.addEventListener(`firstCollide`, function(){
+//     requestTimeout(function(){
+//         cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
+//     }, 1000);
+
+//     requestTimeout(function(){
+//         let optionDOM = optionCreator.addOptionButtons(frontFace, 
+//                         ["Okay.", 
+//                         "How can water retain data?"
+//                         ]);
+            
+//         optionDOM.addEventListener(`optionEnded`, waterOption1)
+//     }, 2500);
+// });
+/** **************************************************** */
+
+/**test part delete later */
+window.addEventListener(`firstCollide`, function(){
+    requestTimeout(function(){
+        cubeContent.addTitle(topFace, "Clean");
+        chatCube.rotate();
+        cleanStart();        
+    }, 1000);
+});
+
+
+/************************** */
+
 function waterOption1(){
     requestTimeout(function(){
         cubeContent.addChat(frontFace, `<b>Water</b> is inspired by the history and practice of water memory, the purported ability for water to remember the substance previously dissolved in it.`);
@@ -178,17 +212,22 @@ function waterOption13(){
     }, 4500);
 }
 
+//end of Water(front) and rotate to Clean(top)
 function waterEnd(optionDOM){
     if(chatCube.curstate == 0){
         cubeContent.addTitle(topFace, "Clean");
         chatCube.rotate();
 
-        optionDOM.addEventListener(`rotateFace`, rotateChatCube);
+        optionDOM.addEventListener(`rotateFace`, rotateChatCubeFromFront);
         hasClickedLastContinue = false;
+
+        cleanStart();
     }
 }
 
-function rotateChatCube(){
+//even listener function for continue button of front face
+// use inside waterEnd --- after rotate
+function rotateChatCubeFromFront(){
     if(chatCube.curstate == 0){
         chatCube.rotate();
         hasClickedLastContinue = false;
@@ -197,23 +236,49 @@ function rotateChatCube(){
 
 
 
-//WATER INTRO start
-let next = "--&gt";
-
-cubeContent.addTitle(frontFace, `water`, 1.8);
-frontFace.children[0].style.setProperty("opacity", `1`);
-
-window.addEventListener(`firstCollide`, function(){
+/*************************************** Clean *************************************/
+function cleanStart(){
     requestTimeout(function(){
-        cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
+        cubeContent.addChat(topFace, `Hi! Let me introduce you to the first step of our data transfer process.`);       
+    }, 2000);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(topFace, [
+            `Hi!`,
+            `Sure.`
+        ]);
+
+        optionDOM.addEventListener(`optionEnded`, cleanOption1);
+    }, 3500);
+}
+
+function cleanOption1(){
+    requestTimeout(function(){
+        cubeContent.addChat(topFace, `Before we start transferring data to water, we clean our equipment, tools and materials.`);
     }, 1000);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(frontFace, 
-                        ["Okay.", 
-                        "How can water retain data?"
-                        ]);
-            
-        optionDOM.addEventListener(`optionEnded`, waterOption13)
-    }, 2500);
-});
+        let optionDOM = optionCreator.addOptionButtons(topFace, [
+            `What materials do you clean?`,
+            `How do you clean them?`
+        ]);
+
+        optionDOM.addEventListener(`optionEnded`, cleanOption2);
+    }, 3000);
+}
+
+function cleanOption2(){
+    requestTimeout(function(){
+        cubeContent.addChat(topFace, `We wash the water containers and the tube.`);
+    }, 1000);
+
+    requestTimeout(function(){
+        cubeContent.showVideo(topFace, `./videos/wash.mp4`)
+    }, 4000);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(topFace, [next]);
+
+        optionDOM.addEventListener(`optionEnded`, cleanOption2);
+    }, 7000);
+}

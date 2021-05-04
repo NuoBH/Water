@@ -258,12 +258,13 @@ class Option{
 
             requestTimeout(function(){
                 if(!isContinue){
-                    optionDOM.remove();
                     /*********** add chosen text here!!! ************/
+                    optionDOM.dispatchEvent(optionEndedEvent);
+                    optionDOM.remove();
+
                     if(!chosenText.includes(`--&gt`)){
                         cubeContent.addResponse(textDOM.parentElement, chosenText);
                     }
-                    optionDOM.dispatchEvent(optionEndedEvent);
                     hasClickedLastOption = false;
                 }
                 else{
