@@ -1,35 +1,72 @@
+let next = "--&gt";
+let optionEventName = "optionEnded";
+let continueEventName = "rotateFace";
+
+/****** help funciton ********/
+//add event hander to option/continue buttons and remove the listener and the DOM element afterwards
+function addEventHandlerToButtons(optionDOM, event, fn){
+
+    let ehandler = function(e){
+        let isRemoveDOM = true;
+        if(event == continueEventName){
+            fn(e);
+            isRemoveDOM = false;
+        }
+        else{
+            fn();
+        }
+        e.target.removeEventListener(event, ehandler);
+
+        if(isRemoveDOM){
+            e.target.remove();
+        }
+    };
+
+    optionDOM.addEventListener(event, ehandler); 
+}
+
+//even listener function for continue button of front face
+// use inside end function of each face
+function rotateChatCubeHandler(allow){
+    if(chatCube.curstate == allow){
+        chatCube.rotate();
+        hasClickedLastContinue = false;
+    }
+}
+/************************************ */
+
 //WATER INTRO
 //WATER INTRO start
-let next = "--&gt";
+
 
 cubeContent.addTitle(frontFace, `water`, 1.8);
 frontFace.children[0].style.setProperty("opacity", `1`);
 
 /************ uncomment code below after test is done ***********/
-window.addEventListener(`firstCollide`, function(){
-    requestTimeout(function(){
-        cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
-    }, 1000);
+// window.addEventListener(`firstCollide`, function(){
+//     requestTimeout(function(){
+//         cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
+//     }, 1000);
 
-    requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(frontFace, 
-                        ["Okay.", 
-                        "How can water retain data?"
-                        ]);
+//     requestTimeout(function(){
+//         let optionDOM = optionCreator.addOptionButtons(frontFace, 
+//                         ["Okay.", 
+//                         "How can water retain data?"
+//                         ]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption1)
-    }, 2500);
-});
+//         addEventHandlerToButtons(optionDOM, optionEventName, waterOption1);
+//     }, 2500);
+// });
 /** **************************************************** */
 
 /**test part delete later */
-// window.addEventListener(`firstCollide`, function(){
-//     requestTimeout(function(){
-//         cubeContent.addTitle(topFace, "Clean");
-//         chatCube.rotate();
-//         cleanStart();        
-//     }, 1000);
-// });
+window.addEventListener(`firstCollide`, function(){
+    requestTimeout(function(){
+        cubeContent.addTitle(topFace, "Clean");
+        chatCube.rotate();
+        cleanStart();        
+    }, 1000);
+});
 
 
 /************************** */
@@ -43,7 +80,7 @@ function waterOption1(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [next]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption2);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption2);
     }, 3000);
 }
 
@@ -56,7 +93,7 @@ function waterOption2(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [next]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption3);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption3);
     }, 2000);
 }
 
@@ -69,7 +106,7 @@ function waterOption3(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [next]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption4);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption4);
     }, 2000);
 }
 
@@ -82,7 +119,7 @@ function waterOption4(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [next]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption5);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption5);
     }, 2000);
 }
 
@@ -95,7 +132,7 @@ function waterOption5(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [next]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption6);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption6);
     }, 2000);
 }
 
@@ -108,7 +145,7 @@ function waterOption6(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [`What about <b>Water</b> as a data structure?`, `Okay.`]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption7);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption7);
     }, 2000);
 }
 
@@ -121,7 +158,7 @@ function waterOption7(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [next]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption8);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption8);
     }, 3000);
 }
 
@@ -134,7 +171,7 @@ function waterOption8(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [next]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption9);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption9);
     }, 2000);
 }
 
@@ -147,7 +184,7 @@ function waterOption9(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [next]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption10);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption10);
     }, 2000);
 }
 
@@ -160,7 +197,7 @@ function waterOption10(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [next]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption11);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption11);
     }, 2000);
 }
 
@@ -173,7 +210,7 @@ function waterOption11(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [next]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption12);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption12);
     }, 2000);
 }
 
@@ -186,7 +223,7 @@ function waterOption12(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [`. . . . . . .`]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption13);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption13);
     }, 2000);
 }
 
@@ -203,36 +240,25 @@ function waterOption13(){
         let optionDOM = optionCreator.addContinueButtons(frontFace, 
                         [`I would like to continue to learn more about this process.`]);
           
-        let temp = function(e){
-            waterEnd(e.target);
-            e.target.removeEventListener(`rotateFace`, temp);
-        }    
-
-        optionDOM.addEventListener(`rotateFace`, temp);
+    addEventHandlerToButtons(optionDOM, continueEventName, waterEnd);
     }, 4500);
 }
 
 //end of Water(front) and rotate to Clean(top)
-function waterEnd(optionDOM){
+function waterEnd(e){
     if(chatCube.curstate == 0){
         cubeContent.addTitle(topFace, "Clean");
         chatCube.rotate();
 
-        optionDOM.addEventListener(`rotateFace`, rotateChatCubeFromFront);
+        e.target.addEventListener(`rotateFace`, ()=>{
+            rotateChatCubeHandler(0);
+        });
         hasClickedLastContinue = false;
 
         cleanStart();
     }
 }
 
-//even listener function for continue button of front face
-// use inside waterEnd --- after rotate
-function rotateChatCubeFromFront(){
-    if(chatCube.curstate == 0){
-        chatCube.rotate();
-        hasClickedLastContinue = false;
-    }
-}
 
 
 
@@ -240,7 +266,7 @@ function rotateChatCubeFromFront(){
 function cleanStart(){
     requestTimeout(function(){
         cubeContent.addChat(topFace, `Hi! Let me introduce you to the first step of our data transfer process.`);       
-    }, 1000);
+    }, 1500);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(topFace, [
@@ -248,14 +274,14 @@ function cleanStart(){
             `Sure.`
         ]);
 
-        optionDOM.addEventListener(`optionEnded`, cleanOption1);
-    }, 3500);
+        addEventHandlerToButtons(optionDOM, optionEventName, cleanOption1);
+    }, 3200);
 }
 
 function cleanOption1(){
     requestTimeout(function(){
         cubeContent.addChat(topFace, `Before we start transferring data to water, we clean our equipment, tools and materials.`);
-    }, 1000);
+    }, 1500);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(topFace, [
@@ -263,22 +289,65 @@ function cleanOption1(){
             `How do you clean them?`
         ]);
 
-        optionDOM.addEventListener(`optionEnded`, cleanOption2);
-    }, 4000);
+        addEventHandlerToButtons(optionDOM, optionEventName, cleanOption2);
+    }, 3500);
 }
 
 function cleanOption2(){
     requestTimeout(function(){
         cubeContent.addChat(topFace, `We wash the water containers and the tube.`);
-    }, 1000);
+    }, 1500);
 
     requestTimeout(function(){
         cubeContent.showVideo(topFace, `./videos/wash.mp4`)
-    }, 2500);
+    }, 4200);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(topFace, [next]);
 
-        optionDOM.addEventListener(`optionEnded`, cleanOption2);
-    }, 6500);
+        addEventHandlerToButtons(optionDOM, optionEventName, cleanOption3);
+    }, 8000);
+}
+
+function cleanOption3(){
+    requestTimeout(function(){
+        cubeContent.addChat(topFace, `Then we disinfect the operating desk, faraday cages, computer, screen, wires, water preparation containers, and measuring tools with 70% isopropyl alcohol wipes.`);
+    }, 500);
+
+    requestTimeout(function(){
+        cubeContent.showVideo(topFace, `./videos/disinfect.mp4`)
+    }, 6000);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(topFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, cleanOption4);
+    }, 10000);
+}
+
+function cleanOption4(){
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addContinueButtons(topFace, ['Continue.']);
+
+        addEventHandlerToButtons(optionDOM, continueEventName, cleanEnd);
+    }, 500);
+}
+
+
+function cleanEnd(e){
+    if(chatCube.curstate == 1){
+        cubeContent.addTitle(leftFace, "Pre<br>pare");
+        chatCube.rotate();
+        e.target.addEventListener(`rotateFace`, ()=>{
+            rotateChatCubeHandler(1);
+        });
+        hasClickedLastContinue = false;
+
+        prepareStart();
+    }
+}
+
+/**************************** Prepare *************************/
+function prepareStart(){
+
 }

@@ -241,15 +241,21 @@ class Option{
 
             if(!isContinue){
                 let prev = optionDOM.previousElementSibling;
-                let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
+                
+                if(prev.classList.value.includes('videoContainer')){
+                    cubeContent.snapToVideo(prev, textDOM);
+                }
+                else{
+                    let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
 
-                optionDOM.style.setProperty("--optionRotateX", "90deg");
-                optionDOM.style.setProperty("--optionOpacity", "0");
+                    optionDOM.style.setProperty("--optionRotateX", "90deg");
+                    optionDOM.style.setProperty("--optionOpacity", "0");
 
-                scrollIntoView(prev, {
-                    time: 1000,
-                    align:{top: 1, topOffset: padding * 2}
-                })
+                    scrollIntoView(prev, {
+                        time: 1000,
+                        align:{top: 1, topOffset: padding * 2}
+                    })
+                }
             }
             else{
                 optionDOM.style.setProperty("--optionRotateX", "90deg");
@@ -258,13 +264,12 @@ class Option{
 
             requestTimeout(function(){
                 if(!isContinue){
-                    optionDOM.dispatchEvent(optionEndedEvent);
-                    optionDOM.remove();
                     /*********** add chosen text here!!! ************/
                     if(!chosenText.includes(`--&gt`)){
                         cubeContent.addResponse(textDOM.parentElement, chosenText);
                     }
 
+                    optionDOM.dispatchEvent(optionEndedEvent);
                     hasClickedLastOption = false;
                 }
                 else{

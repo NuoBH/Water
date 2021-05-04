@@ -128,7 +128,6 @@ class CubeContent{
         requestTimeout(function(){
             //
             video.addEventListener(`loadeddata`, function(e){
-                console.log(e)
                 let video = e.target;
                 let videoContainer = video.parentElement;
                 videoContainer.classList.add(`showVid`);
