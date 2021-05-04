@@ -126,46 +126,6 @@ body{
     background-color: maroon;
 }
 
-/* @media only screen and (max-width: 815px){
-    .image-cube-front {
-        transform: translateZ( calc(var(--faceSize)/2 + 0.3px));
-    }
-        .image-cube-back {
-        transform: rotateY(180deg) translateZ(calc(var(--faceSize)/2 + 0.3px));
-    }
-        .image-cube-right {
-        transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2 + 0.3px));
-    }
-        .image-cube-left {
-        transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2 + 0.3px));
-    }
-        .image-cube-top {
-        transform: rotateX(90deg) translateZ(calc(var(--faceSize)/2 + 0.3px));
-    }
-        .image-cube-bottom {
-        transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2 + 0.3px));
-    }
-}
-@media only screen and (max-width:500){
-    .image-cube-front {
-        transform: translateZ( calc(var(--faceSize)/2 + 0.1px));
-    }
-        .image-cube-back {
-        transform: rotateY(180deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
-    }
-        .image-cube-right {
-        transform: rotateY(90deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
-    }
-        .image-cube-left {
-        transform: rotateY(-90deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
-    }
-        .image-cube-top {
-        transform: rotateX(90deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
-    }
-        .image-cube-bottom {
-        transform: rotateX(-90deg) translateZ(calc(var(--faceSize)/2 + 0.1px));
-    }
-} */
 /* -------------------style for chat cube--------------------- */
 
 #chat-cube{
@@ -268,6 +228,9 @@ body{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
 .title{
@@ -275,6 +238,7 @@ body{
     overflow-wrap: break-word;
     transition: font-size 1s ease;
     margin-bottom: 12%;
+    opacity: 0;
 }
 
 .paragraph{
@@ -512,9 +476,10 @@ input[type=range]:focus::-ms-fill-upper {
 .option-container{
     --optionRotateX: 90deg;
     --optionOpacity: 0;
+    --optionScale: 1;
 
     display:block;
-    transform: rotateX(var(--optionRotateX));
+    transform: rotateX(var(--optionRotateX)) scale(var(--optionScale));
     opacity: var(--optionOpacity);
 
     line-height: 5.2rem;
@@ -544,7 +509,10 @@ input[type=range]:focus::-ms-fill-upper {
     overflow-wrap: break-word;
 
     transition: margin-left 0.5s ease, margin-right 0.5s ease;
+
+    cursor: pointer;
 }
+
 @media only screen and (max-width: 2560px){
     .option-container{
         line-height: 5rem;

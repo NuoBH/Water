@@ -166,17 +166,42 @@ function waterOption13(){
     }, 3000);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(frontFace, 
+        let optionDOM = optionCreator.addContinueButtons(frontFace, 
                         [`I would like to continue to learn more about this process.`]);
-            
-        optionDOM.addEventListener(`optionEnded`, waterOptionEnd);
+          
+        let temp = function(e){
+            waterEnd(e.target);
+            e.target.removeEventListener(`rotateFace`, temp);
+        }    
+
+        optionDOM.addEventListener(`rotateFace`, temp);
     }, 4500);
 }
+
+function waterEnd(optionDOM){
+    if(chatCube.curstate == 0){
+        cubeContent.addTitle(topFace, "Clean");
+        chatCube.rotate();
+
+        optionDOM.addEventListener(`rotateFace`, rotateChatCube);
+        hasClickedLastContinue = false;
+    }
+}
+
+function rotateChatCube(){
+    if(chatCube.curstate == 0){
+        chatCube.rotate();
+        hasClickedLastContinue = false;
+    }
+}
+
+
 
 //WATER INTRO start
 let next = "--&gt";
 
 cubeContent.addTitle(frontFace, `water`, 1.8);
+frontFace.children[0].style.setProperty("opacity", `1`);
 
 window.addEventListener(`firstCollide`, function(){
     requestTimeout(function(){
@@ -189,6 +214,6 @@ window.addEventListener(`firstCollide`, function(){
                         "How can water retain data?"
                         ]);
             
-        optionDOM.addEventListener(`optionEnded`, waterOption1)
+        optionDOM.addEventListener(`optionEnded`, waterOption13)
     }, 2500);
 });

@@ -1,6 +1,6 @@
 class ChatCube{
-    constructor(lerpVFaceChange, lerpVRotate){
-        this.cube = document.getElementById("chat-cube");
+    constructor(id, lerpVFaceChange, lerpVRotate){
+        this.cube = document.getElementById(id);
 
         this.curstate = 0;
         
@@ -25,8 +25,8 @@ class ChatCube{
         this.x = 0;
         this.y = 0;
         //properties used to tilt the cube
-        this.tiltXRate = mobileAndTabletCheck() ? 7 : 10;
-        this.tiltYRate = mobileAndTabletCheck() ? 7 : 10;
+        this.tiltXRate = mobileAndTabletCheck() ? 7 : 6;
+        this.tiltYRate = mobileAndTabletCheck() ? 7 : 6;
         //properties for lerp rotation
         this.lastRotateLerpAF = undefined;
         this.lerpSpeedRotate = lerpVRotate;
@@ -204,19 +204,22 @@ class ChatCube{
     resetZIndex(toRemove, toAdd){
         toRemove.style.setProperty(`z-index`, `initial`);
         toAdd.style.setProperty(`z-index`, `2`);
+
+        toRemove.children[0].style.setProperty(`opacity`, `0`);
+        toAdd.children[0].style.setProperty(`opacity`, `1`);
     }
 
     //alternate rotation among all 6 faces of the cube
     rotate(){
         //if is at front, go to top;
-        if(this.curstate === 0){
+        if(this.curstate == 0){
             this.x = -90;
             this.y = 0;
             this.startRotateToTargetAngles();
             this.resetZIndex(frontFace, topFace);
         }
         //go to left
-        else if(this.curstate === 1){
+        else if(this.curstate == 1){
             this.x = 0;
             this.y = 90;
             this.startRotateToTargetAngles();
@@ -224,7 +227,7 @@ class ChatCube{
             this.resetZIndex(topFace, leftFace);
         }
         //go to bottom
-        else if(this.curstate === 2){
+        else if(this.curstate == 2){
             this.x = 90;
             this.y = 0;
             this.startRotateToTargetAngles();
@@ -232,7 +235,7 @@ class ChatCube{
             this.resetZIndex(leftFace, bottomFace);
         }
         // go to right
-        else if(this.curstate === 3){
+        else if(this.curstate == 3){
             this.x = 0;
             this.y = -90;
             this.startRotateToTargetAngles();
@@ -240,7 +243,7 @@ class ChatCube{
             this.resetZIndex(bottomFace, rightFace);
         }
         //go to back
-        else if(this.curstate === 4){
+        else if(this.curstate == 4){
             this.x = 0;
             this.y = 180;
             this.startRotateToTargetAngles();
@@ -248,7 +251,7 @@ class ChatCube{
             this.resetZIndex(rightFace, backFace);
         }
         //go to front
-        else if(this.curstate === 5){
+        else if(this.curstate == 5){
             this.x = 0;
             this.y = 0;
             this.startRotateToTargetAngles();
@@ -291,7 +294,7 @@ class ChatCube{
     }
 }
 
-var chatCube = new ChatCube(0.1, 0.1);
+var chatCube = new ChatCube("chat-cube", 0.1, 0.1);
 // requestTimeout(function(){
 //     chatCube.rotate();
 //     requestTimeout(function(){

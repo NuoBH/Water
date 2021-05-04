@@ -13,6 +13,7 @@ class CubeContent{
 
         let fontSize = chatCube.targetFaceHeightFour / factor
         titleDOM.style.setProperty(`font-size`, `${fontSize}px`);
+        titleDOM.style.setProperty(`opacity`, `1`);
 
         window.addEventListener(`resize`, ()=>{this.resizeTitle(titleDOM, factor)});
     }
