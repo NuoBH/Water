@@ -324,9 +324,9 @@ class ImageCube{
         }
 
         window.addEventListener("mouseup", function(ev){
-            if(ev.cancelable){
-                ev.preventDefault();
-            }
+            // if(ev.cancelable){
+            //     ev.preventDefault();
+            // }
             this.isDragging = false;
         }.bind(this));
 
@@ -341,9 +341,9 @@ class ImageCube{
         window.addEventListener("mousemove", function(ev){
             if(this.isDragging){
                 ImageCube.hideAllVideoControls(this.videos);
-                if(ev.cancelable){
-                    ev.preventDefault();
-                }
+                // if(ev.cancelable){
+                //     ev.preventDefault();
+                // }
                 this.rotateCubeByMousePos(ev);
             }
         }.bind(this));
