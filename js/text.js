@@ -130,7 +130,7 @@ class CubeContent{
         video.setAttribute(`controls`, `controls`);
         
 
-        //videoContainer.append(video);
+        videoContainer.append(video);
         textDOM.append(videoContainer);
         this.scrollDown(videoContainer);
 
@@ -138,7 +138,7 @@ class CubeContent{
             //
             let vidShowFn = function(e){
                 let vid = e == undefined ? video : e.target;
-                //let videoContainer = vid.parentElement;
+                let videoContainer = vid.parentElement;
                 videoContainer.classList.add(`showVid`);
 
                 requestTimeout(function(){
@@ -152,12 +152,12 @@ class CubeContent{
                 }.bind(this), 750);
             }.bind(this);
 
-            if(mobileAndTabletCheck()){
-                vidShowFn(undefined);
-            }
-            else{
+            //if(mobileAndTabletCheck()){
+            //    vidShowFn(undefined);
+            //}
+            //else{
                 video.addEventListener(`loadeddata`, vidShowFn);
-            }
+            //}
 
             video.append(source);
 
