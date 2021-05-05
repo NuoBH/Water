@@ -536,9 +536,6 @@ input[type=text]{
 }
 
 .vid{
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     opacity: 0;
     -webkit-transition: all 0.25s ease-in-out;

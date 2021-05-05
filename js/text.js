@@ -131,11 +131,11 @@ class CubeContent{
         video.setAttribute(`playsinline`, `playsinline`);
         video.setAttribute(`webkit-playsinline`, `webkit-playsinline`);
 
-        videoContainer.append(video);
         textDOM.append(videoContainer);
         this.scrollDown(videoContainer);
 
         requestTimeout(function(){
+            videoContainer.append(video);
             //
             let vidShowFn = function(e){
                 console.log(e.target.readyState)
