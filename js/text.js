@@ -133,8 +133,7 @@ class CubeContent{
 
         videoContainer.append(video);
         textDOM.append(videoContainer);
-        // this.scrollDown(videoContainer);
-        videoContainer.classList.add(`send`);
+        this.scrollDown(videoContainer);
 
         requestTimeout(function(){
             //
@@ -146,21 +145,16 @@ class CubeContent{
 
                 requestTimeout(function(){
                     vid.classList.add(`show`);
-                    // this.snapToVideo(videoContainer, textDOM);
+                    this.snapToVideo(videoContainer, textDOM);
 
                     vid.addEventListener(`play`, function(){
-                        // this.snapToVideo(videoContainer, textDOM);
+                        this.snapToVideo(videoContainer, textDOM);
                     }.bind(this));
 
                 }.bind(this), 750);
             }.bind(this);
 
-            if(mobileAndTabletCheck()){
-                video.addEventListener(`loadmetadata`, vidShowFn);
-            }
-            else{
-                video.addEventListener(`canplay`, vidShowFn);
-            }
+            video.addEventListener(`canplay`, vidShowFn);
 
             video.append(source);
 

@@ -512,16 +512,13 @@ input[type=text]{
 
 /* =========== */
 .videoContainer{
-    /* position: absolute;
-    top: 0;
-    left: 0; */
     width: 20%;
     height: 33%;
     /* margin: 0; */
     margin-bottom: 10%;
     margin-left: 7.5%;
-    float: left;
-    clear: both;
+    /* float: left; */
+    /* clear: both; */
 
     border: 2px solid black ;
     background: -webkit-gradient(linear, right top, left top, from(#000000), color-stop(#363636ce), color-stop(#c9c9c959), to(#ffffff00));
