@@ -136,22 +136,22 @@ class CubeContent{
 
         requestTimeout(function(){
             //
-            video.addEventListener(`loadeddata`, function(e){
-                let video = e.target;
-                let videoContainer = video.parentElement;
-                videoContainer.classList.add(`showVid`);
+            // video.addEventListener(`loadeddata`, function(e){
+            //     let video = e.target;
+            //     let videoContainer = video.parentElement;
+            //     videoContainer.classList.add(`showVid`);
 
-                requestTimeout(function(){
-                    video.classList.add(`show`);
-                    this.snapToVideo(videoContainer, textDOM);
+            //     requestTimeout(function(){
+            //         video.classList.add(`show`);
+            //         this.snapToVideo(videoContainer, textDOM);
 
-                    video.addEventListener(`play`, function(){
-                        this.snapToVideo(videoContainer, textDOM);
-                    }.bind(this));
+            //         video.addEventListener(`play`, function(){
+            //             this.snapToVideo(videoContainer, textDOM);
+            //         }.bind(this));
 
-                }.bind(this), 750);
+            //     }.bind(this), 750);
 
-            }.bind(this));
+            // }.bind(this));
 
             video.append(source);
 

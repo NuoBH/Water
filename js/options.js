@@ -315,9 +315,9 @@ class Option{
         }.bind(this));
 
         button.addEventListener("touchstart", function(ev){
-            // if(ev.cancelable){
-            //     ev.preventDefault();
-            // }
+            if(ev.cancelable){
+                ev.preventDefault();
+            }
             this.hoverChange(button, 0);
         }.bind(this));
     }
@@ -329,9 +329,9 @@ class Option{
         }.bind(this));
 
         button.addEventListener("touchend", function(ev){
-            // if(ev.cancelable){
-            //     ev.preventDefault();
-            // }
+            if(ev.cancelable){
+                ev.preventDefault();
+            }
             this.hoverChange(button, 1);
         }.bind(this));
     }
