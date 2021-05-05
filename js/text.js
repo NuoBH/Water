@@ -148,7 +148,7 @@ class CubeContent{
                     // this.snapToVideo(videoContainer, textDOM);
 
                     vid.addEventListener(`play`, function(){
-                        this.snapToVideo(videoContainer, textDOM);
+                        // this.snapToVideo(videoContainer, textDOM);
                     }.bind(this));
 
                 }.bind(this), 750);
