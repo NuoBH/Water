@@ -238,12 +238,7 @@ function waterEnd(e){
         chatCube.rotate();
         changeGravity(0, 1);
 
-        e.target.addEventListener(`rotateFace`, (e)=>{
-            let title = e.target.parentElement.children[0];
-            scrollIntoView(title, {
-                time: 1000,
-                align:{ top: 0.5 }
-            });
+        e.target.addEventListener(`rotateFace`, ()=>{
             rotateChatCubeHandler(0, 0, 1);
         });
         hasClickedLastContinue = false;
@@ -330,13 +325,8 @@ function cleanEnd(e){
         chatCube.rotate();
         changeGravity(1, 0);
 
-        e.target.addEventListener(`rotateFace`, (e)=>{
-            let title = e.target.parentElement.children[0];
-            scrollIntoView(title, {
-                time: 1000,
-                align:{ top: 0.5 }
-            });
-            rotateChatCubeHandler(1, 1, 0);
+        e.target.addEventListener(`rotateFace`, ()=>{
+            rotateChatCubeHandler(1, 0, -1);
         });
         hasClickedLastContinue = false;
 
@@ -698,13 +688,8 @@ function prepareEnd(e){
         chatCube.rotate();
         changeGravity(0, -1);
 
-        e.target.addEventListener(`rotateFace`, (e)=>{
-            let title = e.target.parentElement.children[0];
-            scrollIntoView(title, {
-                time: 1000,
-                align:{ top: 0.5 }
-            });
-            rotateChatCubeHandler(2, 0, -1);
+        e.target.addEventListener(`rotateFace`, ()=>{
+            rotateChatCubeHandler(2, 1, 0);
         });
         hasClickedLastContinue = false;
 
@@ -749,12 +734,7 @@ function materialEnd(e){
         chatCube.rotate();
         changeGravity(-1, 0);
 
-        e.target.addEventListener(`rotateFace`, (e)=>{
-            let title = e.target.parentElement.children[0];
-            scrollIntoView(title, {
-                time: 1000,
-                align:{ top: 0.5 }
-            });
+        e.target.addEventListener(`rotateFace`, ()=>{
             rotateChatCubeHandler(3, -1, 0);
         });
         hasClickedLastContinue = false;
@@ -812,12 +792,7 @@ function setupEnd(e){
         chatCube.rotate();
         changeGravity(0.5, 0.5);
 
-        e.target.addEventListener(`rotateFace`, (e)=>{
-            let title = e.target.parentElement.children[0];
-            scrollIntoView(title, {
-                time: 1000,
-                align:{ top: 0.5 }
-            });
+        e.target.addEventListener(`rotateFace`, ()=>{
             rotateChatCubeHandler(4, 0.5, 0.5);
         });
         hasClickedLastContinue = false;
@@ -948,7 +923,7 @@ function sendOption5(){
     //generate email text
     let emailContent = `Water Conditions:&#13;&#10;`;
     for(const [key, val] of Object.entries(sliderInputs)){
-        emailContent += `- ${key.charAt(0).toUpperCase() + key.slice(1)}: ${val}&#13;&#10;`;
+        emailContent += `- ${key.charAt(0).toUpperCase() + key.slice(1)}: ${val}% &#13;&#10;`;
     }
     emailContent += `&#13;&#10;Delivery Info:&#13;&#10;`;
     for(const [key, val] of Object.entries(delivery)){
@@ -988,7 +963,7 @@ function sendOption6(){
         requestTimeout(function(){
             let emailContent = `Water Conditions:%0D%0A`;
             for(const [key, val] of Object.entries(sliderInputs)){
-                emailContent += `- ${key.charAt(0).toUpperCase() + key.slice(1)}: ${val}%0D%0A`;
+                emailContent += `- ${key.charAt(0).toUpperCase() + key.slice(1)}: ${val}% %0D%0A`;
             }
             emailContent += `%0D%0ADelivery Info:%0D%0A`;
             for(const [key, val] of Object.entries(delivery)){
@@ -1021,16 +996,31 @@ function sendOption7(){
 
 function sendEnd(e){
     if(chatCube.curstate == 5){
+        let faces = [frontFace, topFace, leftFace, bottomFace, rightFace, backFace];
+        faces.forEach((face) => {
+            let textDOM = face.firstElementChild;
+            let title = textDOM.firstElementChild;
+
+            scrollIntoView(title, {
+                time: 1000
+            });
+        })
+
         chatCube.rotate();
         changeGravity(-0.5, -0.5);
 
-        e.target.addEventListener(`rotateFace`, (e)=>{
-            let title = e.target.parentElement.children[0];
-            scrollIntoView(title, {
-                time: 1000,
-                align:{ top: 0.5 }
-            });
+        e.target.addEventListener(`rotateFace`, ()=>{
             rotateChatCubeHandler(5, -0.5, 0.5);
+
+            let faces = [frontFace, topFace, leftFace, bottomFace, rightFace, backFace];
+            faces.forEach((face) => {
+                let textDOM = face.firstElementChild;
+                let title = textDOM.firstElementChild;
+
+                scrollIntoView(title, {
+                    time: 1000
+                });
+            })
         });
         hasClickedLastContinue = false;
     }
