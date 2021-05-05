@@ -490,9 +490,9 @@ input[type=text]{
     background: linear-gradient(270deg, #000000, #363636ce, #c9c9c959, #ffffff00);
     background-size: 900% 900%;
 
-    /* -webkit-animation: load 2s ease infinite;
+    -webkit-animation: load 2s ease infinite;
     -moz-animation: load 2s ease infinite;
-    animation: load 2s ease infinite; */
+    animation: load 2s ease infinite;
 
     opacity: 0;
     transform: rotateX(90deg);

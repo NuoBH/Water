@@ -130,7 +130,7 @@ class CubeContent{
         video.setAttribute(`controls`, `controls`);
         
 
-        videoContainer.append(video);
+        //videoContainer.append(video);
         textDOM.append(videoContainer);
         this.scrollDown(videoContainer);
 
@@ -138,7 +138,7 @@ class CubeContent{
             //
             let vidShowFn = function(e){
                 let vid = e == undefined ? video : e.target;
-                let videoContainer = vid.parentElement;
+                //let videoContainer = vid.parentElement;
                 videoContainer.classList.add(`showVid`);
 
                 requestTimeout(function(){
