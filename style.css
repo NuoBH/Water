@@ -162,7 +162,7 @@ body{
 
     --chatCubeScale: 0;
 
-    position: fixed;
+    position: absolute;
     /* left: calc(50% - var(--faceWidthFour)/2);
     top: calc(50% - var(--faceHeightFour)/2); */
     max-height: 80vh;
