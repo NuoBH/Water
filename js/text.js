@@ -140,8 +140,10 @@ class CubeContent{
                 let video = e.target;
                 let videoContainer = video.parentElement;
                 videoContainer.classList.add(`showVid`);
+                console.log("bebe");
 
                 requestTimeout(function(){
+                    console.log("!!!");
                     video.classList.add(`show`);
                     this.snapToVideo(videoContainer, textDOM);
 
@@ -151,7 +153,7 @@ class CubeContent{
 
                 }.bind(this), 750);
 
-            }.bind(this);
+            };
 
             //video.addEventListener(`loadeddata`, vidShowFn);
             vidShowFn();
