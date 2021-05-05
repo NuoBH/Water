@@ -152,7 +152,7 @@ class CubeContent{
                     }.bind(this));
 
                 }.bind(this), 750);
-            };
+            }.bind(this);
 
             //video.addEventListener(`loadeddata`, vidShowFn);
             vidShowFn();
