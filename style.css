@@ -39,7 +39,8 @@
     font-style: italic;
 }
 
-/* videoContainer, image-cube, title: margin bottom; else: padding-bottom (slider must use padding) */
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* videoContainer, image-cube, textInput, text-area, title: margin bottom; else: padding-bottom (slider must use padding) */
 
 html{
     isolation: isolate;
@@ -422,6 +423,57 @@ input[type=range]:focus::-ms-fill-upper {
     transform: rotateX(0deg) rotateY(180deg);
 }
 
+
+input[type=text]{
+    width: 40%; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
+}
+
+.textInput{
+    float: left;
+    clear: both;
+    margin-left: 7.5%;
+    margin-bottom: 10%;
+
+    font-family: 'para', monospace;
+    font-size: 2.4rem;
+    font-style: oblique;
+
+    opacity: 0;
+    transform: rotateX(90deg);
+    transition: all 0.55s ease-in-out;
+}
+.textInput.send{
+    opacity: 1;
+    transform: rotateX(0deg);
+}
+
+.text-area{
+    float: left;
+    clear: both;
+    margin-left: 7.5%;
+    margin-bottom: 10%;
+
+    font-family: 'para', monospace;
+    font-size: 2.4rem;
+    font-style: oblique;
+
+    width: 40%;
+    border: 1px solid rgb(0, 0, 0);
+    resize: vertical;
+    background: transparent;
+
+    opacity: 0;
+    transform: rotateX(90deg);
+    transition: all 0.55s ease-in-out;
+}
+
+.text-area.send{
+    opacity: 1;
+    transform: rotateX(0deg);
+}
+
+/* =========== */
 .videoContainer{
     /* position: absolute;
     top: 0;
@@ -537,6 +589,9 @@ input[type=range]:focus::-ms-fill-upper {
     .paragraph{
         font-size: 2.5rem;
     }
+    .textInput, .text-area{
+        font-size: 2.2rem;
+    }
     .text{
         padding: 20px;
     }
@@ -568,6 +623,9 @@ input[type=range]:focus::-ms-fill-upper {
     }
     .paragraph{
         font-size: 2.0rem;
+    }
+    .textInput, .text-area{
+        font-size: 1.7rem;
     }
     .text{
         padding: 20px;
@@ -601,6 +659,9 @@ input[type=range]:focus::-ms-fill-upper {
     .paragraph{
         font-size: 1.7rem;
     }
+    .textInput, .text-area{
+        font-size: 1.4rem;
+    }
     .text{
         padding: 15px;
     }
@@ -633,6 +694,9 @@ input[type=range]:focus::-ms-fill-upper {
     .paragraph{
         font-size: 1.3rem;
     }
+    .textInput, .text-area{
+        font-size: 1.2rem;
+    }
     .text{
         padding: 12px;
     }
@@ -664,6 +728,9 @@ input[type=range]:focus::-ms-fill-upper {
     }
     .paragraph{
         font-size: 1rem;
+    }
+    .textInput, .text-area{
+        font-size: 0.8rem;
     }
     .text{
         padding: 8px;

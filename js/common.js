@@ -107,4 +107,10 @@ const optionEndedEvent = new CustomEvent(`optionEnded`);
 const rotateFaceEvent = new CustomEvent(`rotateFace`);
 var hasClickedLastOption = false;
 var hasClickedLastContinue = false;
+
+//copy clipboard
+var toCopy;
+
+//inputs
 var sliderInputs = {};
+var delivery = {};

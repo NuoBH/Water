@@ -256,6 +256,17 @@ class Option{
                         align:{top: 0.5, topOffset: padding}
                     })
                 }
+                else if(prev.classList.value.includes('textInput')){
+                    let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
+
+                    optionDOM.style.setProperty("--optionRotateX", "90deg");
+                    optionDOM.style.setProperty("--optionOpacity", "0");
+
+                    scrollIntoView(prev, {
+                        time: 1000,
+                        align:{top: 1}
+                    })
+                }
                 else{
                     let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
 
@@ -264,7 +275,7 @@ class Option{
 
                     scrollIntoView(prev, {
                         time: 1000,
-                        align:{top: 1, topOffset: padding * 2}
+                        align:{top: 1, topOffset: padding*2}
                     })
                 }
             }

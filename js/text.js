@@ -100,6 +100,7 @@ class CubeContent{
         });
 
         if(slider.previousElementSibling.classList.value.includes('videoContainer') ||
+           slider.previousElementSibling.classList.value.includes('textInput') ||
            slider.previousElementSibling.classList.value.includes('title')){
             slider.previousElementSibling.style.setProperty(`margin-bottom`, `5%`);
         }
@@ -107,6 +108,7 @@ class CubeContent{
             ;
         }
         else{slider.previousElementSibling.style.setProperty(`padding-bottom`, `5%`);}
+
         this.scrollDown(slider);
 
         return slider;
@@ -166,6 +168,38 @@ class CubeContent{
                     topOffset: padding*0.85
                    }
         });
+    }
+
+    addInput(face, id, initialText=''){
+        let textDOM = face.children[0];
+
+        let input = document.createElement(`input`);
+        input.setAttribute(`type`, `text`);
+        input.id = id;
+        input.classList.add(`textInput`);
+        input.value = initialText;
+
+        textDOM.append(input);
+
+        this.scrollDown(input);
+
+        return input;
+    }
+
+    addTextArea(face, text='', row='10'){
+        let textDOM = face.children[0];
+
+        let textArea = document.createElement(`textarea`);
+        textArea.classList.add(`text-area`);
+        textArea.innerHTML = text;
+        textArea.cols = 30;
+        textArea.rows = row;
+
+        textDOM.append(textArea);
+
+        this.scrollDown(textArea);
+
+        return textArea;
     }
 //class end    
 }
