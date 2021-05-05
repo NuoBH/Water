@@ -202,8 +202,8 @@ class ChatCube{
     }
 
     resetZIndex(toRemove, toAdd){
-        // toRemove.style.setProperty(`z-index`, `initial`);
-        // toAdd.style.setProperty(`z-index`, `1`);
+        toRemove.style.setProperty(`z-index`, `initial`);
+        toAdd.style.setProperty(`z-index`, `2`);
 
         toRemove.children[0].style.setProperty(`opacity`, `0`);
         toAdd.children[0].style.setProperty(`opacity`, `1`);
