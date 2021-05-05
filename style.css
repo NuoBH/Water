@@ -172,8 +172,6 @@ body{
     height: var(--faceHeightFour);
     border: none;
 
-    z-index: 1;
-
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
