@@ -118,10 +118,10 @@ class CubeContent{
         let textDOM = face.children[0];
 
         let videoContainer = document.createElement(`div`);
-        videoContainer.classList.add(`videoContainer`);
+        videoContainer.classList.add(`videoContainer`, `noselect`);
 
         let video = document.createElement(`video`);
-        video.classList.add(`vid`);
+        video.classList.add(`vid`, `noselect`);
 
         let source = document.createElement("source"); 
         source.type = "video/mp4";

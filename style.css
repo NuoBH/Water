@@ -536,8 +536,6 @@ input[type=text]{
             transform: rotateX(90deg);
     -webkit-transition: all 0.55s ease-in-out;
     transition: all 0.55s ease-in-out;
-
-    pointer-events: none;
 }
 
 .vid{
