@@ -1,7 +1,7 @@
 class Option{
     constructor(){
         this.optionDomAnimFrame = undefined;
-        this.whiteConnector = "<span class='white'>[</span>";
+        this.whiteConnector = "<span class='white'>a</span>";
     }
 
     //apend option buttons to the end of textDOM
