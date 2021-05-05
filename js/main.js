@@ -322,7 +322,7 @@ function cleanEnd(e){
     if(chatCube.curstate == 1){
         cubeContent.addTitle(leftFace, "pre<br>pare");
         chatCube.rotate();
-        changeGravity(1, 0);
+        changeGravity(0, -1);
 
         e.target.addEventListener(`rotateFace`, ()=>{
             rotateChatCubeHandler(1, 0, -1);
@@ -685,7 +685,7 @@ function prepareEnd(e){
     if(chatCube.curstate == 2){
         cubeContent.addTitle(bottomFace, "mate<br>rials");
         chatCube.rotate();
-        changeGravity(0, -1);
+        changeGravity(1, 0);
 
         e.target.addEventListener(`rotateFace`, ()=>{
             rotateChatCubeHandler(2, 1, 0);
