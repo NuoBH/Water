@@ -133,7 +133,8 @@ class CubeContent{
 
         videoContainer.append(video);
         textDOM.append(videoContainer);
-        this.scrollDown(videoContainer);
+        // this.scrollDown(videoContainer);
+        videoContainer.classList.add(`send`);
 
         requestTimeout(function(){
             //
