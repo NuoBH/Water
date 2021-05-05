@@ -62,7 +62,7 @@ window.addEventListener(`firstCollide`, function(){
                         "How can water retain data?"
                         ]);
             
-        addEventHandlerToButtons(optionDOM, optionEventName, waterOption1);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption13);
     }, 2500);
 });
 
