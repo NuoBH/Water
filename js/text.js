@@ -13,6 +13,7 @@ class CubeContent{
 
         let fontSize = chatCube.targetFaceHeightFour / factor
         titleDOM.style.setProperty(`font-size`, `${fontSize}px`);
+        titleDOM.style.setProperty(`opacity`, `1`);
 
         window.addEventListener(`resize`, ()=>{this.resizeTitle(titleDOM, factor)});
     }
@@ -58,7 +59,7 @@ class CubeContent{
         this.scrollDown(responseDOM);
     }
 
-    addSlider(face, min, max, initialVal){
+    addSlider(face, id, min, max, initialVal){
         let textDOM = face.children[0];
         
         let slider = document.createElement(`input`);
@@ -68,6 +69,7 @@ class CubeContent{
         slider.setAttribute(`value`, `${initialVal}`);
         
         slider.classList.add(`slider`);
+        slider.id = id;
         textDOM.append(slider);
 
         slider.addEventListener(`input`, function(e){
@@ -97,11 +99,17 @@ class CubeContent{
             e.target.style.setProperty(`--coloring`, color);
         });
 
-        if(slider.previousElementSibling.classList.value.includes('videoContainer')){
+        if(slider.previousElementSibling.classList.value.includes('videoContainer') ||
+           slider.previousElementSibling.classList.value.includes('title')){
             slider.previousElementSibling.style.setProperty(`margin-bottom`, `5%`);
+        }
+        else if(slider.previousElementSibling.classList.value.includes('image-cube')){
+            ;
         }
         else{slider.previousElementSibling.style.setProperty(`padding-bottom`, `5%`);}
         this.scrollDown(slider);
+
+        return slider;
     }
 
     showVideo(face, src){
@@ -127,7 +135,6 @@ class CubeContent{
         requestTimeout(function(){
             //
             video.addEventListener(`loadeddata`, function(e){
-                console.log(e)
                 let video = e.target;
                 let videoContainer = video.parentElement;
                 videoContainer.classList.add(`showVid`);

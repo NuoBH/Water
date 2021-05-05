@@ -54,9 +54,58 @@ class Option{
         return optionDOM;
     }
 
+    addContinueButtons(face, buttonTexts){
+        if(!Array.isArray(buttonTexts) || buttonTexts.length <= 0){
+            console.debug("add continue buttons, button texts not valid");
+            return undefined;
+        }
+
+        let textDOM = face.children[0];
+
+        //create option container and append to textDOM
+        let optionDOM = document.createElement("div");
+        optionDOM.classList.add("option-container");
+        textDOM.append(optionDOM);
+
+        //add option buttons to option container(optionDOM)
+        for(let i = 0; i < buttonTexts.length; i ++){
+            let button = document.createElement("div");
+            button.classList.add("option-button");
+            //add break after each option button so that when use cnterOptionButtons, it 
+            //will get the correct offsetWidth of each <span> element of the buttons
+            button.innerHTML = `[${this.whiteConnector}${buttonTexts[i]}${this.whiteConnector}]<br>`;
+            this.onMouseTouchEnterOptionButton(button);
+            this.onMouseTouchLeaveOptionButton(button);
+            this.onMouseUpContinueButton(button, optionDOM, textDOM);
+            optionDOM.appendChild(button);
+        }
+
+        //center all buttons in option container and update it when window is resized
+        this.centerOptionButtons(optionDOM);
+        window.addEventListener("resize", function(){
+            clearRequestTimeout(this.optionDomAnimFrame);
+            this.optionDomAnimFrame = requestTimeout(function(){
+                    this.centerOptionButtons(optionDOM);
+                }.bind(this), 250);
+        }.bind(this));
+
+        scrollIntoView(optionDOM, {
+            time: 1000,
+            align:{top: 1}
+        })
+
+        requestTimeout(function(){
+            optionDOM.style.setProperty("--optionRotateX", "0deg");
+            optionDOM.style.setProperty("--optionOpacity", "1");
+        }, 350);
+
+        return optionDOM;
+    }
+
     //center all option buttons in option container
     centerOptionButtons(optionDOM){
-        if(optionDOM === undefined){
+        if(optionDOM == undefined || optionDOM == null || 
+            optionDOM.parentElement == null || optionDOM.parentElement == undefined){
             return;
         }
 
@@ -147,7 +196,7 @@ class Option{
         }
     }
 
-/**help function */
+/***************** help function ************/
     hoverChange(button, state){
         if(button == undefined || button == null){
             console.debug(`button is not defined`);
@@ -171,10 +220,84 @@ class Option{
 
     }
 
+    //help function on click / tap option and continue buttons
+    clickOnButtons(button, optionDOM, textDOM, isContinue=false){
+        if((!isContinue && !hasClickedLastOption) || 
+            (isContinue && !hasClickedLastContinue)){
+            
+            if(!isContinue){
+                hasClickedLastOption = true;
+            }
+            else{
+                hasClickedLastContinue = true;
+            }
+
+            let chosenText = button.innerHTML;
+            if(chosenText.slice(-4) == '<br>'){
+                chosenText = chosenText.slice(0, -4);
+            }
+
+            lastResponse = chosenText;
+
+            if(!isContinue){
+                let prev = optionDOM.previousElementSibling;
+                
+                if(prev.classList.value.includes('videoContainer')){
+                    cubeContent.snapToVideo(prev, textDOM);
+                }
+                else if(prev.classList.value.includes('imag-cube')){
+                    let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
+
+                    optionDOM.style.setProperty("--optionRotateX", "90deg");
+                    optionDOM.style.setProperty("--optionOpacity", "0");
+
+                    scrollIntoView(prev, {
+                        time: 1000,
+                        align:{top: 0.5, topOffset: padding}
+                    })
+                }
+                else{
+                    let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
+
+                    optionDOM.style.setProperty("--optionRotateX", "90deg");
+                    optionDOM.style.setProperty("--optionOpacity", "0");
+
+                    scrollIntoView(prev, {
+                        time: 1000,
+                        align:{top: 1, topOffset: padding * 2}
+                    })
+                }
+            }
+            else{
+                optionDOM.style.setProperty("--optionRotateX", "90deg");
+                optionDOM.style.setProperty("--optionOpacity", "0");
+            }
+
+            requestTimeout(function(){
+                if(!isContinue){
+                    /*********** add chosen text here!!! ************/
+                    if(!chosenText.includes(`--&gt`)){
+                        cubeContent.addResponse(textDOM.parentElement, chosenText);
+                    }
+
+                    optionDOM.dispatchEvent(optionEndedEvent);
+                    hasClickedLastOption = false;
+                }
+                else{
+                    /********** rotate face here!!! ****************/
+                    optionDOM.dispatchEvent(rotateFaceEvent);
+                    optionDOM.style.setProperty("--optionRotateX", "0deg");
+                    optionDOM.style.setProperty("--optionOpacity", "1");
+                }       
+            }, 900);
+        }
+    }
+
 /************ */
 
 
-    //mouse and touch event for option buttons 
+    /************* mouse and touch event for option buttons ***********/
+    //handle hover mouse enter or touch start
     onMouseTouchEnterOptionButton(button){
         button.addEventListener("mouseenter", function(){
             this.hoverChange(button, 0);
@@ -188,7 +311,7 @@ class Option{
         }.bind(this));
     }
 
-
+    //handle hover mouse leave or touch end
     onMouseTouchLeaveOptionButton(button){
         button.addEventListener("mouseleave", function(){
             this.hoverChange(button, 1);
@@ -202,69 +325,30 @@ class Option{
         }.bind(this));
     }
 
+    //handle click or tap on option buttons
     onMouseUpOptionButton(button, optionDOM, textDOM){
+        //mouse up
         button.addEventListener("mouseup", function(){
-            let chosenText = button.innerHTML;
-            if(chosenText.slice(-4) == '<br>'){
-                chosenText = chosenText.slice(0, -4);
-            }
+            this.clickOnButtons(button, optionDOM, textDOM);
+        }.bind(this));
 
-            lastResponse = chosenText;
-
-            let prev = optionDOM.previousElementSibling;
-            let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
-
-            optionDOM.style.setProperty("--optionRotateX", "90deg");
-            optionDOM.style.setProperty("--optionOpacity", "0");
-
-            scrollIntoView(prev, {
-                time: 1000,
-                align:{top: 1, topOffset: padding * 2}
-            })
-
-            requestTimeout(function(){
-                optionDOM.remove();
-                /*********** add chosen text here!!! ************/
-                console.log(chosenText)
-                if(!chosenText.includes(`--&gt`)){
-                    cubeContent.addResponse(textDOM.parentElement, chosenText);
-                }
-                optionDOM.dispatchEvent(optionEnded);
-                
-            }, 900);
-        });
-
-        //
+        //touch end 
         button.addEventListener("touchend", function(){
-            let chosenText = button.innerHTML;
-            if(chosenText.slice(-4) == '<br>'){
-                chosenText = chosenText.slice(0, -4);
-            }
+            this.clickOnButtons(button, optionDOM, textDOM);
+        }.bind(this));
+    }
 
-            lastResponse = chosenText;
+    //handle click or tap on continue buttons (click and rotate face)
+    onMouseUpContinueButton(button, optionDOM, textDOM){
+        //mouse up
+        button.addEventListener("mouseup", function(){
+            this.clickOnButtons(button, optionDOM, textDOM, true);
+        }.bind(this));
 
-            let prev = optionDOM.previousElementSibling;
-            let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
-
-            optionDOM.style.setProperty("--optionRotateX", "90deg");
-            optionDOM.style.setProperty("--optionOpacity", "0");
-
-            scrollIntoView(prev, {
-                time: 1000,
-                align:{top: 1, topOffset: padding * 2}
-            })
-
-            requestTimeout(function(){
-                optionDOM.remove();
-                /*********** add chosen text here!!! ************/
-                console.log(chosenText)
-                if(!chosenText.includes(`--&gt`)){
-                    cubeContent.addResponse(textDOM.parentElement, chosenText);
-                }
-                optionDOM.dispatchEvent(optionEnded);
-                
-            }, 900);
-        });
+        //touch end 
+        button.addEventListener("touchend", function(){
+            this.clickOnButtons(button, optionDOM, textDOM, true);
+        }.bind(this));
     }
 //class ends
 }
@@ -280,7 +364,7 @@ let optionCreator = new Option();
 //             "dsaFDa", 
 //             "dasdas"]);
 
-//         optionDOM.addEventListener(`optionEnded`, function(e){
+//         optionDOM.addEventListener(`optionEndedEvent`, function(e){
 //             cubeContent.addChat(frontFace, lastResponse)
 //         })
 //     }
