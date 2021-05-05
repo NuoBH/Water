@@ -128,7 +128,8 @@ class CubeContent{
         source.src = src;
 
         video.setAttribute(`controls`, `controls`);
-        
+        video.setAttribute(`playsinline`, `playsinline`);
+        video.setAttribute(`webkit-playsinline`, `webkit-playsinline`);
 
         videoContainer.append(video);
         textDOM.append(videoContainer);
@@ -137,6 +138,7 @@ class CubeContent{
         requestTimeout(function(){
             //
             let vidShowFn = function(e){
+                console.log(e.target.readyState)
                 let vid = e == undefined ? video : e.target;
                 let videoContainer = vid.parentElement;
                 videoContainer.classList.add(`showVid`);
