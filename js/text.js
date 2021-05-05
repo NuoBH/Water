@@ -136,26 +136,28 @@ class CubeContent{
 
         requestTimeout(function(){
             //
-            let vidShowFn = function(){
-                // let video = e.target;
-                let videoContainer = video.parentElement;
+            let vidShowFn = function(e){
+                let vid = e == undefined ? video : e.target;
+                let videoContainer = vid.parentElement;
                 videoContainer.classList.add(`showVid`);
-                console.log("bebe");
 
                 requestTimeout(function(){
-                    console.log("!!!");
-                    video.classList.add(`show`);
+                    vid.classList.add(`show`);
                     this.snapToVideo(videoContainer, textDOM);
 
-                    video.addEventListener(`play`, function(){
+                    vid.addEventListener(`play`, function(){
                         this.snapToVideo(videoContainer, textDOM);
                     }.bind(this));
 
                 }.bind(this), 750);
             }.bind(this);
 
-            //video.addEventListener(`loadeddata`, vidShowFn);
-            vidShowFn();
+            if(mobileAndTabletCheck()){
+                vidShowFn(undefined);
+            }
+            else{
+                video.addEventListener(`loadeddata`, vidShowFn);
+            }
 
             video.append(source);
 
