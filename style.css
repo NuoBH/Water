@@ -162,8 +162,6 @@ body{
 
     --chatCubeScale: 0;
 
-    overflow: auto;
-
     position: fixed;
     /* left: calc(50% - var(--faceWidthFour)/2);
     top: calc(50% - var(--faceHeightFour)/2); */
