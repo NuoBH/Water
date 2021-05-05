@@ -154,12 +154,12 @@ class CubeContent{
                 }.bind(this), 750);
             }.bind(this);
 
-            //if(mobileAndTabletCheck()){
-            //    vidShowFn(undefined);
-            //}
-            //else{
-                video.addEventListener(`loadeddata`, vidShowFn);
-            //}
+            if(mobileAndTabletCheck()){
+                video.addEventListener(`loadmetadata`, vidShowFn);
+            }
+            else{
+                video.addEventListener(`canplay`, vidShowFn);
+            }
 
             video.append(source);
 
