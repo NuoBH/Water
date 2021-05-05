@@ -14,7 +14,6 @@ function changeGravity(x, y){
 function addEventHandlerToButtons(optionDOM, event, fn){
     let ehandler = function(e){
         let isRemoveDOM = true;
-        console.log(e.type);
         if(e.type == continueEventName){
             fn(e);
             isRemoveDOM = false;
@@ -624,11 +623,11 @@ function prepareOption16(){
 
 function prepareOption17(){
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `If your data is not neutral, adjust the slider to the right according to how much you AGREE with the opinions in the data, and how inclined the opinions are. `);       
+        cubeContent.addChat(leftFace, `If your data is not neutral, adjust the slider to the left according to how much you AGREE with the opinions in the data, and how inclined the opinions are. `);       
     }, 500);
 
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `Adjust the slider to the left according to how much you DISAGREE with the opinions in the data, and how inclined the opinions are. `);       
+        cubeContent.addChat(leftFace, `Adjust the slider to the right according to how much you DISAGREE with the opinions in the data, and how inclined the opinions are. `);       
     }, 3500);
 
     //add slider
