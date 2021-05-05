@@ -145,7 +145,7 @@ class CubeContent{
 
                 requestTimeout(function(){
                     vid.classList.add(`show`);
-                    this.snapToVideo(videoContainer, textDOM);
+                    // this.snapToVideo(videoContainer, textDOM);
 
                     vid.addEventListener(`play`, function(){
                         this.snapToVideo(videoContainer, textDOM);
