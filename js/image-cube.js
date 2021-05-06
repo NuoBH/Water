@@ -63,7 +63,7 @@ function addImageCube(id, face, mediaLinks){
         $(imageCubeDOM).children().css(`opacity`, `1`);
     }, 200);
 
-    return new ImageCube(id, -15, 30, 0.2);
+    return new ImageCube(id, -15, 30, 0.1);
 }
 
 class ImageCube{
@@ -263,6 +263,8 @@ class ImageCube{
                 }.bind(this));
 
                 node.addEventListener("touchstart", function(ev){
+                    canAddScroll = false;
+
                     if(ev.cancelable){
                         ev.preventDefault();
                     }
@@ -288,6 +290,7 @@ class ImageCube{
                     if(ev.cancelable){
                         ev.preventDefault();
                     }
+                    canAddScroll = true;
                     this.isDragging = false;
 
                     if(!this.hasTouchMoved){
@@ -334,6 +337,7 @@ class ImageCube{
             if(ev.cancelable){
                 ev.preventDefault();
             }
+            canAddScroll = true;
             this.isDragging = false;
             this.hasTouchMoved = false;
         }.bind(this));

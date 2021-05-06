@@ -237,6 +237,7 @@ class ChatCube{
         if(e.cancelable){
             e.preventDefault();
         }
+
         this.lastTouchY = e.changedTouches[0].clientY;
     }
 
@@ -299,11 +300,11 @@ class ChatCube{
 
         if(mobileAndTabletCheck()){
             window.addEventListener(`touchstart`, function(e){
-                if(this.curstate == allow) this.mobileScrollStart(e);
+                if(this.curstate == allow && canAddScroll) this.mobileScrollStart(e);
             }.bind(this));
 
             window.addEventListener(`touchmove`, function(e){
-                if(this.curstate == allow) this.mobileScroll(e, face);  
+                if(this.curstate == allow && canAddScroll) this.mobileScroll(e, face);  
             }.bind(this));
         }
     }

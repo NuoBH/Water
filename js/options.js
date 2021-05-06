@@ -344,8 +344,8 @@ class Option{
         }.bind(this));
 
         //touch end 
-        button.addEventListener("touchend", function(e){
-            e.preventDefault();
+        button.addEventListener("touchend", function(ev){
+            ev.preventDefault();
             this.clickOnButtons(button, optionDOM, textDOM);
         }.bind(this));
     }
@@ -358,8 +358,8 @@ class Option{
         }.bind(this));
 
         //touch end 
-        button.addEventListener("touchend", function(e){
-            e.preventDefault();
+        button.addEventListener("touchend", function(ev){
+            ev.preventDefault();
             this.clickOnButtons(button, optionDOM, textDOM, true);
         }.bind(this));
     }

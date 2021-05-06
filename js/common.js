@@ -115,3 +115,6 @@ var toCopy;
 //inputs
 var sliderInputs = {};
 var delivery = {};
+
+//can add custom scroll to mobile when touch initiated
+var canAddScroll = true;
