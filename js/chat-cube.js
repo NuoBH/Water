@@ -295,19 +295,19 @@ class ChatCube{
                 return;
         }
 
-
+        let textDOM = face.firstElementChild;
         if(isSafari){
-            window.addEventListener(`wheel`, function(e){
+            textDOM.addEventListener(`wheel`, function(e){
                 if(this.curstate == allow) this.safariScroll(e, face);
             }.bind(this));
         }
 
         if(mobileAndTabletCheck()){
-            window.addEventListener(`touchstart`, function(e){
+            textDOM.addEventListener(`touchstart`, function(e){
                 if(this.curstate == allow && canAddScroll) this.mobileScrollStart(e);
             }.bind(this));
 
-            window.addEventListener(`touchmove`, function(e){
+            textDOM.addEventListener(`touchmove`, function(e){
                 if(this.curstate == allow && canAddScroll) this.mobileScroll(e, face);  
             }.bind(this));
         }
