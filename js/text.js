@@ -99,6 +99,14 @@ class CubeContent{
             e.target.style.setProperty(`--coloring`, color);
         });
 
+        slider.addEventListener('touchstart', function(){
+            canAddScroll = false;
+        })
+
+        slider.addEventListener('touchend', function(){
+            canAddScroll = true;
+        })
+
         if(slider.previousElementSibling.classList.value.includes('videoContainer') ||
            slider.previousElementSibling.classList.value.includes('textInput') ||
            slider.previousElementSibling.classList.value.includes('title')){
