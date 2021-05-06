@@ -51,35 +51,35 @@ frontFace.children[0].style.setProperty("opacity", `1`);
 
 /************ uncomment code below after test is done ***********/
 
-// window.addEventListener(`firstCollide`, function(){
-//     requestTimeout(function(){
-//         cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
-//     }, 1000);
+window.addEventListener(`firstCollide`, function(){
+    requestTimeout(function(){
+        cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
+    }, 1000);
 
-//     requestTimeout(function(){
-//         let optionDOM = optionCreator.addOptionButtons(frontFace, 
-//                         ["Okay.", 
-//                         "How can water retain data?"
-//                         ]);
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(frontFace, 
+                        ["Okay.", 
+                        "How can water retain data?"
+                        ]);
             
-//         addEventHandlerToButtons(optionDOM, optionEventName, waterOption1);
-//     }, 2500);
-// });
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption1);
+    }, 2500);
+});
 
 /** **************************************************** */
 
 /**test part delete later */
-window.addEventListener(`firstCollide`, function(){
-    requestTimeout(function(){
-        cubeContent.addTitle(leftFace, "Send<br>Water");
-        chatCube.rotate();
-        chatCube.rotate();
-        chatCube.rotate();
-        chatCube.rotate();
-        chatCube.rotate();
-        sendOption3();
-    }, 1000);
-});
+// window.addEventListener(`firstCollide`, function(){
+//     requestTimeout(function(){
+//         cubeContent.addTitle(leftFace, "Send<br>Water");
+//         chatCube.rotate();
+//         chatCube.rotate();
+//         chatCube.rotate();
+//         chatCube.rotate();
+//         chatCube.rotate();
+//         sendOption3();
+//     }, 1000);
+// });
 
 
 /************************** */
