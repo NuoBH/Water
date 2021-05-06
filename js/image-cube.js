@@ -251,8 +251,6 @@ class ImageCube{
                     // if(ev.cancelable){
                     //     ev.preventDefault();
                     // }
-
-                    console.log(ev.target);
                     this.isDragging = true;
                     this.lastMouseX = ev.pageX;
                     this.lastMouseY = ev.pageY;
@@ -263,7 +261,11 @@ class ImageCube{
                 }.bind(this));
 
                 node.addEventListener("touchstart", function(ev){
+                    //mobile disable custom scroll on window
                     canAddScroll = false;
+                    //adjust chat cube tilt to much smaller angles
+                    chatCube.tiltXRate = 0.5;
+                    chatCube.tiltYRate = 0.4;
 
                     if(ev.cancelable){
                         ev.preventDefault();
@@ -290,7 +292,12 @@ class ImageCube{
                     if(ev.cancelable){
                         ev.preventDefault();
                     }
+                    //enable mobile custom scroll
                     canAddScroll = true;
+                    //adjust back chat cube tilt
+                    chatCube.tiltXRate = 4;
+                    chatCube.tiltYRate = 4;
+
                     this.isDragging = false;
 
                     if(!this.hasTouchMoved){
