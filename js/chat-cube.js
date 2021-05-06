@@ -234,7 +234,9 @@ class ChatCube{
     }
 
     mobileScrollStart(e){
-        e.preventDefault();
+        if(e.cancelable){
+            e.preventDefault();
+        }
         this.lastTouchY = e.changedTouches[0].clientY;
     }
 
@@ -247,7 +249,7 @@ class ChatCube{
         this.lastTouchY = curTouchY;
         console.log(wheelDelta);
 
-        face.firstElementChild.scrollTop += wheelDelta * 2;
+        face.firstElementChild.scrollTop += wheelDelta * -0.6;
     }
     /***************************************************** */
 
