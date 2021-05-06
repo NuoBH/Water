@@ -257,8 +257,6 @@ class Option{
                     })
                 }
                 else if(prev.classList.value.includes('textInput')){
-                    let padding = parseFloat(getComputedStyle(textDOM).getPropertyValue(`padding-bottom`));
-
                     optionDOM.style.setProperty("--optionRotateX", "90deg");
                     optionDOM.style.setProperty("--optionOpacity", "0");
 
@@ -346,10 +344,10 @@ class Option{
         }.bind(this));
 
         //touch end 
-        button.addEventListener("touchend", function(ev){
-            ev.preventDefault();
-            this.clickOnButtons(button, optionDOM, textDOM);
-        }.bind(this));
+        // button.addEventListener("touchend", function(ev){
+        //     ev.preventDefault();
+        //     this.clickOnButtons(button, optionDOM, textDOM);
+        // }.bind(this));
     }
 
     //handle click or tap on continue buttons (click and rotate face)
