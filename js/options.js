@@ -224,7 +224,7 @@ class Option{
     clickOnButtons(button, optionDOM, textDOM, isContinue=false){
         if((!isContinue && !hasClickedLastOption) || 
             (isContinue && !hasClickedLastContinue)){
-            
+            console.log("start of button");
             if(!isContinue){
                 hasClickedLastOption = true;
             }
@@ -293,12 +293,14 @@ class Option{
 
                     optionDOM.dispatchEvent(optionEndedEvent);
                     hasClickedLastOption = false;
+                    console.log("end of option button");
                 }
                 else{
                     /********** rotate face here!!! ****************/
                     optionDOM.dispatchEvent(rotateFaceEvent);
                     optionDOM.style.setProperty("--optionRotateX", "0deg");
                     optionDOM.style.setProperty("--optionOpacity", "1");
+                    console.log("end of continue button");
                 }       
             }, 900);
         }
