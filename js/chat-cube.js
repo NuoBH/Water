@@ -159,7 +159,6 @@ class ChatCube{
 
         window.addEventListener("touchmove", function(ev){
             this.setTiltAngles(ev);
-            
             cancelAnimationFrame(this.rotateAnimFrame);
             this.rotateAnimFrame = requestAnimFrame(this.rotateLerp.bind(this));
         }.bind(this));
@@ -240,13 +239,15 @@ class ChatCube{
     }
 
     mobileScroll(e, face){
-        e.preventDefault();
+        if(e.cancelable){
+            e.preventDefault();
+        }
         let curTouchY = e.changedTouches[0].clientY;
         let wheelDelta = curTouchY - this.lastTouchY;
         this.lastTouchY = curTouchY;
         console.log(wheelDelta);
 
-        face.firstElementChild.scrollTop += wheelDelta * 5;
+        face.firstElementChild.scrollTop += wheelDelta * 2;
     }
     /***************************************************** */
 
@@ -285,21 +286,22 @@ class ChatCube{
                 break;
             case 'back':
                 return;
-            default:
-                console.debug("error: face is not valid!");
         }
+
 
         if(isSafari){
             window.addEventListener(`wheel`, function(e){
                 if(this.curstate == allow) this.safariScroll(e, face);
             }.bind(this));
+        }
 
+        if(mobileAndTabletCheck()){
             window.addEventListener(`touchstart`, function(e){
                 if(this.curstate == allow) this.mobileScrollStart(e);
             }.bind(this));
 
             window.addEventListener(`touchmove`, function(e){
-                if(this.curstate == allow) this.mobileScroll(e);  
+                if(this.curstate == allow) this.mobileScroll(e, face);  
             }.bind(this));
         }
     }
