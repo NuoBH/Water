@@ -319,7 +319,7 @@ class ChatCube{
             this.startRotateToTargetAngles();
             this.resetZIndex(this.front, this.top);
             this.tiltXRate = mobileAndTabletCheck() ? 7 : 6;
-            this.tiltYRate = mobileAndTabletCheck() ? 3 : 2;
+            this.tiltYRate = mobileAndTabletCheck() ? 1.5 : 2;
 
             this.adaptScrollSafariMobile(this.top);
         }
@@ -343,7 +343,7 @@ class ChatCube{
             this.toggleFaceChange(0);
             this.resetZIndex(this.left, this.bottom);
             this.tiltXRate = mobileAndTabletCheck() ? 7 : 6;
-            this.tiltYRate = mobileAndTabletCheck() ? 3 : 2;
+            this.tiltYRate = mobileAndTabletCheck() ? 1.5 : 2;
 
             this.adaptScrollSafariMobile(this.bottom);
         }
