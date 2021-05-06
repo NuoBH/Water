@@ -344,10 +344,10 @@ class Option{
         }.bind(this));
 
         //touch end 
-        // button.addEventListener("touchend", function(ev){
-        //     ev.preventDefault();
-        //     this.clickOnButtons(button, optionDOM, textDOM);
-        // }.bind(this));
+        button.addEventListener("touchend", function(ev){
+            ev.preventDefault();
+            this.clickOnButtons(button, optionDOM, textDOM);
+        }.bind(this));
     }
 
     //handle click or tap on continue buttons (click and rotate face)
