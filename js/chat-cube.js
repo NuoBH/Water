@@ -249,7 +249,7 @@ class ChatCube{
         this.lastTouchY = curTouchY;
         console.log(wheelDelta);
 
-        face.firstElementChild.scrollTop += wheelDelta * -0.425;
+        face.firstElementChild.scrollTop += wheelDelta * -0.65;
     }
     /***************************************************** */
 
