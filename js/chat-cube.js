@@ -216,6 +216,10 @@ class ChatCube{
         toAdd.children[0].style.setProperty(`opacity`, `1`);
     }
 
+    SafariScroll(wheelDelta, face){
+        face.firstElementChild.scrollTop += wheelDelta;
+    }
+
     //alternate rotation among all 6 faces of the cube
     rotate(){
         //if is at front, go to top;
@@ -226,6 +230,13 @@ class ChatCube{
             this.resetZIndex(this.front, this.top);
             this.tiltXRate = mobileAndTabletCheck() ? 7 : 6;
             this.tiltYRate = mobileAndTabletCheck() ? 4 : 2;
+
+            if(isSafari){
+                window.addEventListener(`wheel`, function(e){
+                    let wheelDelta = e.deltaY;
+                    this.SafariScroll(wheelDelta, this.top);
+                }.bind(this));
+            }
         }
         //go to left
         else if(this.curstate == 1){

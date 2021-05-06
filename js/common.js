@@ -93,6 +93,7 @@ var vis = (function(){
     }
   })();
 /***************************************************************** */
+var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 var chatCubeDOM = document.getElementById("chat-cube");
 var frontFace = document.getElementById(`front`);
