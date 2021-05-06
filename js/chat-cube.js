@@ -38,6 +38,16 @@ class ChatCube{
         this.lerpSpeedRotate = lerpVRotate;
         this.rotateAnimFrame = undefined;
 
+        //for mobile scroll
+        this.lastTouchY = 0;
+        this.hasAddScroll = {
+            top : false,
+            left: false,
+            bottom : false,
+            right : false
+        };
+
+
         this.checkBlur();
         this.startTilt();
 
@@ -216,12 +226,84 @@ class ChatCube{
         toAdd.children[0].style.setProperty(`opacity`, `1`);
     }
 
-    SafariScroll(e, face){
+    /** help function for scroll for safari and mobile */
+    safariScroll(e, face){
         e.preventDefault();
         let wheelDelta = e.deltaY;
-        console.log(wheelDelta);
+
         face.firstElementChild.scrollTop += wheelDelta;
     }
+
+    mobileScrollStart(e){
+        e.preventDefault();
+        this.lastTouchY = e.changedTouches[0].clientY;
+    }
+
+    mobileScroll(e, face){
+        e.preventDefault();
+        let curTouchY = e.changedTouches[0].clientY;
+        let wheelDelta = curTouchY - this.lastTouchY;
+        console.log(wheelDelta);
+
+        face.firstElementChild.scrollTop += wheelDelta * 5;
+    }
+    /***************************************************** */
+
+    adaptScrollSafariMobile(face){
+        let allow;
+        switch (face.id){
+            case 'front':
+                return;
+            case 'top':
+                if(this.hasAddScroll.top){
+                    return;
+                }
+                this.hasAddScroll.top = true;
+                allow = 1;
+                break;
+            case 'left':
+                if(this.hasAddScroll.left){
+                    return;
+                }
+                this.hasAddScroll.left = true;
+                allow = 2;
+                break;
+            case 'bottom':
+                if(this.hasAddScroll.bottom){
+                    return;
+                }
+                this.hasAddScroll.bottom = true;
+                allow = 3;
+                break;
+            case 'right':
+                if(this.hasAddScroll.right){
+                    return;
+                }
+                this.hasAddScroll.right = true;
+                allow = 4;
+                break;
+            case 'back':
+                return;
+            default:
+                console.debug("error: face is not valid!");
+        }
+
+        if(isSafari){
+            window.addEventListener(`wheel`, function(e){
+                if(this.curstate == allow) this.safariScroll(e, face);
+            }.bind(this));
+
+            window.addEventListener(`touchstart`, function(e){
+                if(this.curstate == allow) this.mobileScrollStart(e);
+            }.bind(this));
+
+            window.addEventListener(`touchmove`, function(e){
+                if(this.curstate == allow) this.mobileScroll(e);  
+            }.bind(this));
+        }
+    }
+
+
 
     //alternate rotation among all 6 faces of the cube
     rotate(){
@@ -232,13 +314,9 @@ class ChatCube{
             this.startRotateToTargetAngles();
             this.resetZIndex(this.front, this.top);
             this.tiltXRate = mobileAndTabletCheck() ? 7 : 6;
-            this.tiltYRate = mobileAndTabletCheck() ? 4 : 2;
+            this.tiltYRate = mobileAndTabletCheck() ? 3 : 2;
 
-            if(isSafari){
-                window.addEventListener(`wheel`, function(e){
-                    if(this.curstate == 0) this.SafariScroll(e, this.top);
-                }.bind(this));
-            }
+            this.adaptScrollSafariMobile(this.top);
         }
         //go to left
         else if(this.curstate == 1){
@@ -249,6 +327,8 @@ class ChatCube{
             this.resetZIndex(this.top, this.left);
             this.tiltXRate = mobileAndTabletCheck() ? 7 : 6;
             this.tiltYRate = mobileAndTabletCheck() ? 7 : 6;
+
+            this.adaptScrollSafariMobile(this.left);
         }
         //go to bottom
         else if(this.curstate == 2){
@@ -258,7 +338,9 @@ class ChatCube{
             this.toggleFaceChange(0);
             this.resetZIndex(this.left, this.bottom);
             this.tiltXRate = mobileAndTabletCheck() ? 7 : 6;
-            this.tiltYRate = mobileAndTabletCheck() ? 4 : 2;
+            this.tiltYRate = mobileAndTabletCheck() ? 3 : 2;
+
+            this.adaptScrollSafariMobile(this.bottom);
         }
         // go to right
         else if(this.curstate == 3){
@@ -269,6 +351,8 @@ class ChatCube{
             this.resetZIndex(this.bottom, this.right);
             this.tiltXRate = mobileAndTabletCheck() ? 7 : 6;
             this.tiltYRate = mobileAndTabletCheck() ? 7 : 6;
+
+            this.adaptScrollSafariMobile(this.right);
         }
         //go to back
         else if(this.curstate == 4){
