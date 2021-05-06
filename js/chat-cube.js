@@ -226,7 +226,8 @@ class ChatCube{
 
         let videos = toRemove.firstElementChild.querySelectorAll("video");
         videos.forEach(function(curVideo){
-            curVideo.stop();
+            curVideo.pause();
+            curVideo.currentTime = 0;
         })
     }
 
