@@ -217,12 +217,17 @@ class ChatCube{
         }
     }
 
-    resetZIndex(toRemove, toAdd){
+    hideAndShow(toRemove, toAdd){
         toRemove.style.setProperty(`z-index`, `initial`);
         toAdd.style.setProperty(`z-index`, `2`);
 
         toRemove.children[0].style.setProperty(`opacity`, `0`);
         toAdd.children[0].style.setProperty(`opacity`, `1`);
+
+        let videos = toRemove.firstElementChild.querySelectorAll("video");
+        videos.forEach(function(curVideo){
+            curVideo.stop();
+        })
     }
 
     /** help function for scroll for safari and mobile */
@@ -248,7 +253,6 @@ class ChatCube{
         let curTouchY = e.changedTouches[0].clientY;
         let wheelDelta = curTouchY - this.lastTouchY;
         this.lastTouchY = curTouchY;
-        console.log(wheelDelta);
 
         face.firstElementChild.scrollTop += wheelDelta * -1.4;
     }
@@ -318,7 +322,7 @@ class ChatCube{
             this.x = -90;
             this.y = 0;
             this.startRotateToTargetAngles();
-            this.resetZIndex(this.front, this.top);
+            this.hideAndShow(this.front, this.top);
             this.tiltXRate = mobileAndTabletCheck() ? 4 : 6;
             this.tiltYRate = mobileAndTabletCheck() ? 1.5 : 2;
 
@@ -330,7 +334,7 @@ class ChatCube{
             this.y = 90;
             this.startRotateToTargetAngles();
             this.toggleFaceChange(1);
-            this.resetZIndex(this.top, this.left);
+            this.hideAndShow(this.top, this.left);
             this.tiltXRate = mobileAndTabletCheck() ? 4 : 6;
             this.tiltYRate = mobileAndTabletCheck() ? 4 : 6;
 
@@ -342,7 +346,7 @@ class ChatCube{
             this.y = 0;
             this.startRotateToTargetAngles();
             this.toggleFaceChange(0);
-            this.resetZIndex(this.left, this.bottom);
+            this.hideAndShow(this.left, this.bottom);
             this.tiltXRate = mobileAndTabletCheck() ? 4 : 6;
             this.tiltYRate = mobileAndTabletCheck() ? 1.5 : 2;
 
@@ -354,7 +358,7 @@ class ChatCube{
             this.y = -90;
             this.startRotateToTargetAngles();
             this.toggleFaceChange(1);
-            this.resetZIndex(this.bottom, this.right);
+            this.hideAndShow(this.bottom, this.right);
             this.tiltXRate = mobileAndTabletCheck() ? 4 : 6;
             this.tiltYRate = mobileAndTabletCheck() ? 4 : 6;
 
@@ -366,14 +370,14 @@ class ChatCube{
             this.y = 180;
             this.startRotateToTargetAngles();
             this.toggleFaceChange(0);
-            this.resetZIndex(this.right, this.back);
+            this.hideAndShow(this.right, this.back);
         }
         //go to front
         else if(this.curstate == 5){
             this.x = 0;
             this.y = 0;
             this.startRotateToTargetAngles();
-            this.resetZIndex(this.back, this.front);
+            this.hideAndShow(this.back, this.front);
         }
         this.curstate = (this.curstate + 1) % 6;
     }
