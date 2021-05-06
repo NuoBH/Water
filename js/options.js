@@ -318,6 +318,7 @@ class Option{
             if(ev.cancelable){
                 ev.preventDefault();
             }
+            canAddScroll = false;
             this.hoverChange(button, 0);
         }.bind(this));
     }
@@ -325,13 +326,6 @@ class Option{
     //handle hover mouse leave or touch end
     onMouseTouchLeaveOptionButton(button){
         button.addEventListener("mouseleave", function(){
-            this.hoverChange(button, 1);
-        }.bind(this));
-
-        button.addEventListener("touchend", function(ev){
-            if(ev.cancelable){
-                ev.preventDefault();
-            }
             this.hoverChange(button, 1);
         }.bind(this));
     }
@@ -345,7 +339,13 @@ class Option{
 
         //touch end 
         button.addEventListener("touchend", function(ev){
-            ev.preventDefault();
+            //hover end
+            if(ev.cancelable){
+                ev.preventDefault();
+            }
+            this.hoverChange(button, 1);
+            canAddScroll = true;
+            //click button
             this.clickOnButtons(button, optionDOM, textDOM);
         }.bind(this));
     }
@@ -359,7 +359,13 @@ class Option{
 
         //touch end 
         button.addEventListener("touchend", function(ev){
-            ev.preventDefault();
+            //hover end
+            if(ev.cancelable){
+                ev.preventDefault();
+            }
+            this.hoverChange(button, 1);
+            canAddScroll = true;
+            //click button
             this.clickOnButtons(button, optionDOM, textDOM, true);
         }.bind(this));
     }
