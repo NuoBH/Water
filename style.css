@@ -41,7 +41,7 @@
 
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* videoContainer, image-cube, textInput, text-area, title: margin bottom; else: padding-bottom (slider must use padding) */
-
+html{ scroll-behavior: smooth; }
 body{
     overflow: hidden;
 }
@@ -255,6 +255,8 @@ body{
     position: relative;
     overflow: auto;
     overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+
     height: 100%;
     width: 100%;
 
