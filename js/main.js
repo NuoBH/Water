@@ -71,10 +71,13 @@ frontFace.children[0].style.setProperty("opacity", `1`);
 /**test part delete later */
 window.addEventListener(`firstCollide`, function(){
     requestTimeout(function(){
-        cubeContent.addTitle(leftFace, "Pre<br>pare");
+        cubeContent.addTitle(leftFace, "Send<br>Water");
         chatCube.rotate();
         chatCube.rotate();
-        prepareOption5();
+        chatCube.rotate();
+        chatCube.rotate();
+        chatCube.rotate();
+        sendOption3();
     }, 1000);
 });
 
