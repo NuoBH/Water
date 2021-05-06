@@ -219,6 +219,7 @@ class ChatCube{
     SafariScroll(e, face){
         e.preventDefault();
         let wheelDelta = e.deltaY;
+        console.log(wheelDelta);
         face.firstElementChild.scrollTop += wheelDelta;
     }
 
