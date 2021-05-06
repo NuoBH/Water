@@ -178,7 +178,6 @@ body{
     text-rendering: optimizeLegibility;
 
     -webkit-transform-style: preserve-3d;
-
             transform-style: preserve-3d;
     -webkit-transform: perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
             transform: perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
