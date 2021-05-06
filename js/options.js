@@ -210,7 +210,9 @@ class Option{
 
         // 0 is mouse enter; 1 is mouse leave
         if(state == 0){
-            button.style.setProperty("font-weight", "bold");
+            if(!mobileAndTabletCheck() && !isSafari){
+                button.style.setProperty("font-weight", "bold");
+            }
             button.style.setProperty("--buttonTextDecoration", "underline");
         }
         else{
