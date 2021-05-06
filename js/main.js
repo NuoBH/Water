@@ -51,32 +51,32 @@ frontFace.children[0].style.setProperty("opacity", `1`);
 
 /************ uncomment code below after test is done ***********/
 
-// window.addEventListener(`firstCollide`, function(){
-//     requestTimeout(function(){
-//         cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
-//     }, 1000);
+window.addEventListener(`firstCollide`, function(){
+    requestTimeout(function(){
+        cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
+    }, 1000);
 
-//     requestTimeout(function(){
-//         let optionDOM = optionCreator.addOptionButtons(frontFace, 
-//                         ["Okay.", 
-//                         "How can water retain data?"
-//                         ]);
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(frontFace, 
+                        ["Okay.", 
+                        "How can water retain data?"
+                        ]);
             
-//         addEventHandlerToButtons(optionDOM, optionEventName, waterOption1);
-//     }, 2500);
-// });
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption1);
+    }, 2500);
+});
 
 /** **************************************************** */
 
 /**test part delete later */
-window.addEventListener(`firstCollide`, function(){
-    requestTimeout(function(){
-        cubeContent.addTitle(leftFace, "Pre<br>pare");
-        chatCube.rotate();
-        chatCube.rotate();
-        prepareOption5();
-    }, 1000);
-});
+// window.addEventListener(`firstCollide`, function(){
+//     requestTimeout(function(){
+//         cubeContent.addTitle(leftFace, "Pre<br>pare");
+//         chatCube.rotate();
+//         chatCube.rotate();
+//         prepareOption5();
+//     }, 1000);
+// });
 
 
 /************************** */
@@ -427,12 +427,12 @@ function prepareOption6(){
 
     requestTimeout(function(){
         addImageCube(`waterTypes1`, leftFace, [
-            `./images/test.JPG`,
-            `./images/test.JPG`,
-            `./images/test.JPG`,
-            `./images/test.JPG`,
-            `./images/test.JPG`,
-            `./images/test.JPG`
+            `./images/alkaline water.jpg`,
+            `./images/alkaline label.jpg`,
+            `./images/carbonated water.jpg`,
+            `./images/carbonated label.jpg`,
+            `./images/mineral water.jpg`,
+            `./images/mineral label.jpg`
         ])
     }, 5700);
 
@@ -450,12 +450,12 @@ function prepareOption7(){
 
     requestTimeout(function(){
         addImageCube(`waterTypes2`, leftFace, [
-            `./images/test.JPG`,
-            `./images/test.JPG`,
-            `./images/test.JPG`,
-            `./images/test.JPG`,
-            `./images/test.JPG`,
-            `./images/test.JPG`
+            `./images/distilled water.jpg`,
+            `./images/distilled label.jpg`,
+            `./images/filtered water.jpg`,
+            `./images/filtered label.jpg`,
+            `./images/boiled water.jpg`,
+            `./images/boiled label.jpg`
         ])
     }, 2600);
 
@@ -473,12 +473,12 @@ function prepareOption8(){
 
     requestTimeout(function(){
         addImageCube(`waterTypes3`, leftFace, [
-            `./images/test.JPG`,
-            `./images/test.JPG`,
-            `./images/test.JPG`,
-            `./images/test.JPG`,
-            `./images/test.JPG`,
-            `./images/test.JPG`
+            `./images/tap water.jpg`,
+            `./images/tap water label.jpg`,
+            `./images/alkaline distilled water.jpg`,
+            `./images/alkaline distilled label.jpg`,
+            `./images/mineral carbonated water.jpg`,
+            `./images/mineral carbonated label.jpg`
         ])
     }, 3500);
 
@@ -500,12 +500,12 @@ function prepareOption9(){
 
     requestTimeout(function(){
         addImageCube(`waterTypes4`, leftFace, [
-            `./images/test.JPG`,
-            `./images/test.JPG`,
             `./videos/prepare water fast.mp4`,
-            `./images/test.JPG`,
-            `./images/test.JPG`,
-            `./images/test.JPG`
+            `./images/measuring spoons.jpg`,
+            `./images/food coloring.jpg`,
+            `./images/measuring cup.jpg`,
+            `./images/send container.jpg`,
+            `./images/bg.jpg`
         ])
     }, 6100);
 
@@ -702,7 +702,7 @@ function materialStart(){
     }, 2500);
 
     requestTimeout(function(){
-        cubeContent.showVideo(bottomFace, `./videos/disinfect.mp4`);
+        cubeContent.showVideo(bottomFace, `./videos/introduce.mp4`);
     }, 5500);
 
     requestTimeout(function(){
@@ -748,7 +748,7 @@ function setupStart(){
     }, 1500);
 
     requestTimeout(function(){
-        cubeContent.showVideo(rightFace, `./videos/disinfect.mp4`);
+        cubeContent.showVideo(rightFace, `./videos/test faraday cages.mp4`);
     }, 4000);
 
     requestTimeout(function(){
@@ -764,7 +764,7 @@ function setupOption1(){
     }, 500);
 
     requestTimeout(function(){
-        cubeContent.showVideo(rightFace, `./videos/disinfect.mp4`);
+        cubeContent.showVideo(rightFace, `./videos/set up.mp4`);
     }, 2000);
 
     requestTimeout(function(){
@@ -810,7 +810,7 @@ function sendStart(){
     }, 3500);
 
     requestTimeout(function(){
-        cubeContent.showVideo(backFace, `./videos/disinfect.mp4`);
+        cubeContent.showVideo(backFace, `./videos/send water.mp4`);
     }, 4500);
 
     requestTimeout(function(){
@@ -826,7 +826,7 @@ function sendOption1(){
     }, 1500);
 
     requestTimeout(function(){
-        cubeContent.showVideo(backFace, `./videos/disinfect.mp4`);
+        cubeContent.showVideo(backFace, `./videos/freeze.mp4`);
     }, 3200);
 
     requestTimeout(function(){
@@ -873,7 +873,7 @@ function sendOption3(){
     else{
         delivery.hasUSB = true;
         requestTimeout(function(){
-            cubeContent.addChat(backFace, `What’s the best time and date for the thumb drive pick up (May 5 to May 9, 10 am. to 8 pm.) ?`);
+            cubeContent.addChat(backFace, `What’s the best time and date for the thumb drive pick up (May 6 to May 9, 10 am. to 8 pm.) ?`);
         }, 1500);
 
         requestTimeout(function(){
