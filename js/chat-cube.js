@@ -236,7 +236,7 @@ class ChatCube{
 
             if(isSafari){
                 window.addEventListener(`wheel`, function(e){
-                    this.SafariScroll(e, this.top);
+                    if(this.curstate == 0) this.SafariScroll(e, this.top);
                 }.bind(this));
             }
         }
