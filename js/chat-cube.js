@@ -216,7 +216,9 @@ class ChatCube{
         toAdd.children[0].style.setProperty(`opacity`, `1`);
     }
 
-    SafariScroll(wheelDelta, face){
+    SafariScroll(e, face){
+        e.preventDefault();
+        let wheelDelta = e.deltaY;
         face.firstElementChild.scrollTop += wheelDelta;
     }
 
@@ -233,8 +235,7 @@ class ChatCube{
 
             if(isSafari){
                 window.addEventListener(`wheel`, function(e){
-                    let wheelDelta = e.deltaY;
-                    this.SafariScroll(wheelDelta, this.top);
+                    this.SafariScroll(e, this.top);
                 }.bind(this));
             }
         }
