@@ -855,7 +855,7 @@ function sendOption3(){
         }, 1500);
 
         requestTimeout(function(){
-            cubeContent.addChat(backFace, `What’s the best time and date for the thumb drive pick up (May 5 to May 9, 10 am. to 8 pm.) ?`);
+            cubeContent.addChat(backFace, `What’s the best time and date for the thumb drive pick up (within next few days, 10 am. to 8 pm.) ?`);
         }, 4000);
 
         requestTimeout(function(){
