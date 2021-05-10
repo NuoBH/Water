@@ -623,23 +623,19 @@ function prepareOption16(){
 
 function prepareOption17(){
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `If your data is not neutral, adjust the slider to the left according to how much you AGREE with the opinions in the data, and how inclined the opinions are. `);       
+        cubeContent.addChat(leftFace, `If your data is not neutral, adjust the slider to the <b>LEFT<b> according to how much you are <b>IN FAVOR<b> of the data, or to the <b>RIGHT<b> according to how much you are <b>AGAINST<b> the data.`);       
     }, 500);
-
-    requestTimeout(function(){
-        cubeContent.addChat(leftFace, `Adjust the slider to the right according to how much you DISAGREE with the opinions in the data, and how inclined the opinions are. `);       
-    }, 3500);
 
     //add slider
     requestTimeout(function(){
         sliders.push(cubeContent.addSlider(leftFace, 'phValueSlider', -100, 100, 0));
-    }, 5500);
+    }, 4000);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
 
         addEventHandlerToButtons(optionDOM, optionEventName, prepareOption18);
-    }, 7500);
+    }, 6000);
 }
 
 function prepareOption18(){
@@ -743,7 +739,7 @@ function materialEnd(e){
 }
 
 
-/********************************* St up **********************************/
+/********************************* Set up **********************************/
 
 function setupStart(){
     requestTimeout(function(){
