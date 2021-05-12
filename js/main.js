@@ -58,12 +58,11 @@ window.addEventListener(`firstCollide`, function(){
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
-                        ["Okay.", 
-                        "How can water retain data?"
-                        ]);
+                        [next]);
             
-        addEventHandlerToButtons(optionDOM, optionEventName, waterOption1);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption0);
     }, 2500);
+    
 });
 
 /** **************************************************** */
@@ -84,9 +83,37 @@ window.addEventListener(`firstCollide`, function(){
 
 /************************** */
 
+function waterOption0(){
+    requestTimeout(function(){
+        cubeContent.addChat(frontFace, `Data in water <b>cannot</b> be analyzed, learned, or tracked by algorithms.`);
+    }, 500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(frontFace, 
+                        [next]);
+            
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption0_1);
+    }, 2000);
+}
+
+function waterOption0_1(){
+    requestTimeout(function(){
+        cubeContent.addChat(frontFace, `Data in water doesn’t last forever either. It is transformable but not duplicable. Storing it needs constant maintenance, while its deletion is irreversible.`);
+    }, 500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(frontFace, 
+                        ["Okay.", 
+                        "How can water retain data?"
+                        ]);
+            
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption1);
+    }, 2500);
+}
+
 function waterOption1(){
     requestTimeout(function(){
-        cubeContent.addChat(frontFace, `<b>Water</b> ( <em>by Zhengyang and Zhengzhou Huang</em> ) is inspired by the history and practice of water memory, the purported ability for water to remember the substance previously dissolved in it.`);
+        cubeContent.addChat(frontFace, `<b>Water</b> is inspired by the history and practice of water memory, the purported ability for water to remember the substance previously dissolved in it.`);
     }, 1500);
 
     requestTimeout(function(){
@@ -146,19 +173,15 @@ function waterOption4(){
 
 function waterOption5(){
     requestTimeout(function(){
-        cubeContent.addChat(frontFace, `Coming from these histories and myths, <b>Water</b> is an alternative data structure to computer architectures of stable memory stacks.`);
-    }, 1500);
-
-    requestTimeout(function(){
         cubeContent.addChat(frontFace, `<b>Water</b> is both the interfacing material and the memorizing mechanism.`);
-    }, 3500);
+    }, 1500);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [next]);
             
         addEventHandlerToButtons(optionDOM, optionEventName, waterOption6);
-    }, 5500);
+    }, 3500);
 }
 
 function waterOption6(){
@@ -220,11 +243,15 @@ function waterOption10(){
 
     requestTimeout(function(){
         cubeContent.addChat(frontFace, `We will freeze the water that memorized your data and deliver the ice block to you.`);
-    }, 3500);
+    }, 4000);
+
+    requestTimeout(function(){
+        cubeContent.addChat(frontFace, `Or you can learn to transfer your own data to water here and do it on your own.`);
+    }, 6500);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addContinueButtons(frontFace, 
-                        [`I would like to continue to learn more about this process.`]);
+                        [`I'd like to continue to learn more about this process.`]);
           
         addEventHandlerToButtons(optionDOM, continueEventName, waterEnd);
     }, 5500);
@@ -623,7 +650,7 @@ function prepareOption16(){
 
 function prepareOption17(){
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `If your data is not neutral, adjust the slider to the <b>LEFT<b> according to how much you are <b>IN FAVOR<b> of the data, or to the <b>RIGHT<b> according to how much you are <b>AGAINST<b> the data.`);       
+        cubeContent.addChat(leftFace, `If your data is not neutral, adjust the slider to the <b>LEFT</b> according to how much you are <b>IN FAVOR</b> of the data, or to the <b>RIGHT</b> according to how much you are <b>AGAINST</b> the data.`);       
     }, 500);
 
     //add slider
