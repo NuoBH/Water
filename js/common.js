@@ -175,29 +175,29 @@ function shrinkChatCube(cube, isStart=true){
 
 function switchClick(){
   if(canSwitchCube){
-    
+
     canSwitchCube = false;
     if(isChatCube){
       showArchiveCube();
       //rotate button
-      $({rotate: 0}).animate({rotate: 180},{
-        duration: 900,
-        easing: `easeOutBack`,
-        step: function(now){
-          switchButton.style.setProperty(`--switchRotate`, `${now}deg`);
-        }
-      });
+      // $({rotate: 0}).animate({rotate: 180},{
+      //   duration: 900,
+      //   easing: `easeOutBack`,
+      //   step: function(now){
+      //     switchButton.style.setProperty(`--switchRotate`, `${now}deg`);
+      //   }
+      // });
     }
     else{
       showInstructionCube();
       //rotate button
-      $({rotate: 180}).animate({rotate: 0},{
-        duration: 900,
-        easing: `easeOutBack`,
-        step: function(now){
-          switchButton.style.setProperty(`--switchRotate`, `${now}deg`);
-        }
-      });
+      // $({rotate: 180}).animate({rotate: 0},{
+      //   duration: 900,
+      //   easing: `easeOutBack`,
+      //   step: function(now){
+      //     switchButton.style.setProperty(`--switchRotate`, `${now}deg`);
+      //   }
+      // });
     }
 
   }
