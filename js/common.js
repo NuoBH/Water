@@ -179,7 +179,7 @@ function switchClick(){
     canSwitchCube = false;
     if(isChatCube){
       showArchiveCube();
-      rotate button
+      // rotate button
       $({rotate: 0}).animate({rotate: 180},{
         duration: 900,
         easing: `easeOutBack`,
@@ -190,7 +190,7 @@ function switchClick(){
     }
     else{
       showInstructionCube();
-      rotate button
+      // rotate button
       $({rotate: 180}).animate({rotate: 0},{
         duration: 900,
         easing: `easeOutBack`,
