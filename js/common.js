@@ -175,6 +175,7 @@ function shrinkChatCube(cube, isStart=true){
 
 function switchClick(){
   if(canSwitchCube){
+    
     canSwitchCube = false;
     if(isChatCube){
       showArchiveCube();
@@ -198,6 +199,7 @@ function switchClick(){
         }
       });
     }
+
   }
 }
 
