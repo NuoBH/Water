@@ -405,7 +405,7 @@ class ImageCube{
     setVideoCube(){
         this.videos.forEach(function(curVid){
             if(this.videoCubeAutoPlay){
-                //curVid.muted = false;
+                curVid.muted = false;
                 curVid.volume = 1 / this.videos.length;
             }
             else{
