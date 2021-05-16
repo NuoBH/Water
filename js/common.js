@@ -221,13 +221,19 @@ function expandSwitchButton(){
       //add mouse up and touch end event
       switchButton.addEventListener("mouseup", switchClick);
       switchButton.addEventListener("touchend", switchClick);
-      window.addEventListener("touchend", ()=>{
+      window.addEventListener("touchend", function(){
         switchHover(false);
       })
 
-      switchButton.addEventListener("touchstart", ()=>{switchHover(true);});
-      switchButton.addEventListener("mouseenter", ()=>{switchHover(true);});
-      switchButton.addEventListener("mouseleave", ()=>{switchHover(false);});
+      switchButton.addEventListener("touchstart", function(){
+        switchHover(true);
+      });
+      switchButton.addEventListener("mouseenter", function(){
+        switchHover(true);
+      });
+      switchButton.addEventListener("mouseleave", function(){
+        switchHover(false);
+      });
 
 
     }
