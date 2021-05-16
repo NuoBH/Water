@@ -914,16 +914,31 @@ input[type=text]{
     }
 }
 
-/* switch button */
+/*************** switch button ****************/
 .switch-button{
+    --switchScale:0;
+    --switchRotate:0deg;
+
     position: absolute;
     left: 0;
     top: 0;
-    width: 3vw;
-    height: 3vw;
-    min-width: 10px;
-    min-height: 10px;
-    border: 0.5px black solid;
+    width: 4vmax;
+    height: 4vmax;
+    margin:1%;
+    max-width: 65px;
+    max-height: 65px;
+    min-width: 27.5px;
+    min-height: 27.5px;
+    border: 0.1rem black solid;
+
+    background-image: url("./images/arrow.png");
+    background-size:cover;
+
+    transform: rotateZ(var(--switchRotate)) scale(var(--switchScale));
+}
+.switch-button-hover{
+    border: 0.1rem white solid;
+    filter: invert();
 }
 
 /* ************************************************************************ */

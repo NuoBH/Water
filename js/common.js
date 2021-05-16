@@ -124,17 +124,6 @@ var hasClickedLastContinue = false;
 var canSwitchCube = false;
 var isChatCube = true;
 var switchButton = document.getElementById("switch");
-switchButton.addEventListener("click", function(){
-  if(canSwitchCube){
-    canSwitchCube = false;
-    if(isChatCube){
-      showArchiveCube();
-    }
-    else{
-      showInstructionCube();
-    }
-  }
-})
 
 //copy clipboard
 var toCopy;
@@ -180,6 +169,67 @@ function shrinkChatCube(cube, isStart=true){
     easing: `easeOutBack`,
     step: function(now){
       cube.style.setProperty(`--chatCubeScale`, `${now}`);
+    }
+  });
+}
+
+function switchClick(){
+  if(canSwitchCube){
+    canSwitchCube = false;
+    if(isChatCube){
+      showArchiveCube();
+      //rotate button
+      $({rotate: 0}).animate({rotate: 180},{
+        duration: 900,
+        easing: `easeOutBack`,
+        step: function(now){
+          switchButton.style.setProperty(`--switchRotate`, `${now}deg`);
+        }
+      });
+    }
+    else{
+      showInstructionCube();
+      //rotate button
+      $({rotate: 180}).animate({rotate: 0},{
+        duration: 900,
+        easing: `easeOutBack`,
+        step: function(now){
+          switchButton.style.setProperty(`--switchRotate`, `${now}deg`);
+        }
+      });
+    }
+  }
+}
+
+function switchHover(begin){
+  if(begin){
+    switchButton.classList.add("switch-button-hover");
+  }
+  else{
+    switchButton.classList.remove("switch-button-hover");
+  }
+}
+
+function expandSwitchButton(){
+  $({scale: 0}).animate({scale: 1},{
+    duration: 550,
+    easing: `easeOutBack`,
+    step: function(now){
+      switchButton.style.setProperty(`--switchScale`, `${now}`);
+    },
+    complete: function(){
+      //add mouse up and touch end event
+      switchButton.addEventListener("mouseup", switchClick);
+      switchButton.addEventListener("touchend", switchClick);
+      window.addEventListener("touchend", ()=>{
+        switchHover(false);
+      })
+
+      switchButton.addEventListener("touchstart", ()=>{switchHover(true);});
+      switchButton.addEventListener("mouseenter", ()=>{switchHover(true);});
+      switchButton.addEventListener("mouseleave", ()=>{switchHover(false);});
+
+
     }
   });
 }
