@@ -120,6 +120,22 @@ const rotateFaceEvent = new CustomEvent(`rotateFace`);
 var hasClickedLastOption = false;
 var hasClickedLastContinue = false;
 
+//switch button
+var canSwitchCube = false;
+var isChatCube = true;
+var switchButton = document.getElementById("switch");
+switchButton.addEventListener("click", function(){
+  if(canSwitchCube){
+    canSwitchCube = false;
+    if(isChatCube){
+      showArchiveCube();
+    }
+    else{
+      showInstructionCube();
+    }
+  }
+})
+
 //copy clipboard
 var toCopy;
 
@@ -129,3 +145,80 @@ var delivery = {};
 
 //can add custom scroll to mobile when touch initiated
 var canAddScroll = true;
+
+//resize chat cube functions
+function expandChatCube(cube, isStart=true){
+  let start = 0;
+  let target = 1;
+  let dur = 550;
+  if(!isStart){
+    strat = 0.5;
+    target = 1;
+    dur = 900;
+  }
+  $({scale: start}).animate({scale: target},{
+    duration: dur,
+    easing: `easeOutBack`,
+    step: function(now){
+      cube.style.setProperty(`--chatCubeScale`, `${now}`);
+    }
+  });
+}
+
+function shrinkChatCube(cube, isStart=true){
+  let start = 1;
+  let target = 0;
+  let dur = 550;
+  if(!isStart){
+    strat = 1;
+    target = 0.5;
+    dur = 900;
+  }
+
+  $({scale: start}).animate({scale: target},{
+    duration: dur,
+    easing: `easeOutBack`,
+    step: function(now){
+      cube.style.setProperty(`--chatCubeScale`, `${now}`);
+    }
+  });
+}
+
+//relocate chat cube functions
+function showArchiveCube(){
+  expandChatCube(archiveCubeDOM, false);
+  shrinkChatCube(chatCubeDOM, false);
+
+  $({translate:110}).animate({translate:0}, {
+    duration: 1000,
+    easing: `easeOutBack`,
+    step: function(now){
+      let instrTranslate = now - 110;
+      chatCubeDOM.style.setProperty(`--instructionTranslate`, `${instrTranslate}vw`);
+      archiveCubeDOM.style.setProperty(`--archiveTranslate`, `${now}vw`);
+    },
+    complete: function(){
+      canSwitchCube = true;
+      isChatCube = false;
+    }
+  });
+}
+
+function showInstructionCube(){
+  expandChatCube(chatCubeDOM, false);
+  shrinkChatCube(archiveCubeDOM, false);
+
+  $({translate:0}).animate({translate:110}, {
+    duration: 1000,
+    easing: `easeOutBack`,
+    step: function(now){
+      let instrTranslate = now - 110;
+      chatCubeDOM.style.setProperty(`--instructionTranslate`, `${instrTranslate}vw`);
+      archiveCubeDOM.style.setProperty(`--archiveTranslate`, `${now}vw`);
+    },
+    complete: function(){
+      canSwitchCube = true;
+      isChatCube = true;
+    }
+  });
+}

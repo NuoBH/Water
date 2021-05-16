@@ -42,17 +42,19 @@ function rotateChatCubeHandler(allow, x='0', y='0'){
 }
 /************************************ */
 
+//set front face text opacity of instruction and opacity cube
+frontFace.children[0].style.setProperty("opacity", `1`);
+archiveFrontFace.children[0].style.setProperty("opacity", "1");
+
 //WATER INTRO
 //WATER INTRO start
 
-
 cubeContent.addTitle(frontFace, `Water`, 1.8);
-frontFace.children[0].style.setProperty("opacity", `1`);
+
 
 /************ uncomment code below after test is done ***********/
 
 window.addEventListener(`firstCollide`, function(){
-    chatCubeDOM.
     requestTimeout(function(){
         cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
     }, 1000);
@@ -255,7 +257,7 @@ function waterOption10(){
                         [`I'd like to continue to learn more about this process.`]);
           
         addEventHandlerToButtons(optionDOM, continueEventName, waterEnd);
-    }, 5500);
+    }, 8000);
 }
 
 //end of Water(front) and rotate to Clean(top)

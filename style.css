@@ -244,16 +244,35 @@ body{
 
 /* -------------------style for chat cube--------------------- */
 
+.instruction-cube{
+    --chatRotateX: 0deg;
+    --chatRotateY: 0deg;
+    --chatCubeScale: 0;
+    --instructionTranslate: 0;
+
+    -webkit-transform: translateX(var(--instructionTranslate)) perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
+    transform: translateX(var(--instructionTranslate)) perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
+}
+
+.archive-cube{
+    --chatRotateX: 0deg;
+    --chatRotateY: 0deg;
+    --chatCubeScale: 0;
+    --archiveTranslate: 110vw;
+
+    -webkit-transform: translateX(var(--archiveTranslate)) perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
+    transform: translateX(var(--archiveTranslate)) perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
+}
+
 .chat-cube{
     --faceWidthFour: 85vw;
     --faceHeightFour: 47.8125vw;
     --faceWidthTwo: 47.8125vw;
     --faceHeightTwo: 47.8125vw;
 
-    --chatRotateX: 0deg;
+    /* --chatRotateX: 0deg;
     --chatRotateY: 0deg;
-
-    --chatCubeScale: 0;
+    --chatCubeScale: 0; */
 
     position: absolute;
     /* left: calc(50% - var(--faceWidthFour)/2);
@@ -272,8 +291,8 @@ body{
 
     -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
-    -webkit-transform: perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
-            transform: perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
+    /* -webkit-transform: perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
+            transform: perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale)); */
 }
 
 .chat-cube-face{
@@ -893,6 +912,18 @@ input[type=text]{
         height: 10px;
         width: 10px;
     }
+}
+
+/* switch button */
+.switch-button{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3vw;
+    height: 3vw;
+    min-width: 10px;
+    min-height: 10px;
+    border: 0.5px black solid;
 }
 
 /* ************************************************************************ */

@@ -197,13 +197,8 @@ function firstCollision(e){
       if(collisionCount == 1){
         window.dispatchEvent(firstCollideEvent);
         //chat-cube appear
-        $({scale: 0}).animate({scale: 1},{
-          duration: 550,
-          easing: `easeOutBack`,
-          step: function(now){
-            chatCubeDOM.style.setProperty(`--chatCubeScale`, `${now}`);
-          }
-        });
+        expandChatCube(chatCubeDOM);
+        canSwitchCube = true;
         //zero gravity
         requestTimeout(function(){
           engine.gravity.x = 0;

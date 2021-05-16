@@ -1,12 +1,12 @@
 class ChatCube{
     constructor(id, lerpVFaceChange, lerpVRotate){
         this.cube = document.getElementById(id);
-        this.front = this.cube.querySelector(`#front`);
-        this.top = this.cube.querySelector(`#top`);
-        this.left = this.cube.querySelector(`#left`);
-        this.bottom = this.cube.querySelector(`#bottom`);
-        this.right = this.cube.querySelector(`#right`);
-        this.back = this.cube.querySelector(`#back`);
+        this.front = this.cube.querySelector("div.chat-cube-front");
+        this.top = this.cube.querySelector("div.chat-cube-top");
+        this.left = this.cube.querySelector("div.chat-cube-left");
+        this.bottom = this.cube.querySelector("div.chat-cube-bottom");
+        this.right = this.cube.querySelector("div.chat-cube-right");
+        this.back = this.cube.querySelector("div.chat-cube-back");
 
         this.curstate = 0;
         
@@ -418,4 +418,4 @@ class ChatCube{
 }
 
 var chatCube = new ChatCube("instruction-cube", 0.1, 0.1);
-var chatCube = new ChatCube("archive-cube", 0.1, 0.1);
+var archiveCube = new ChatCube("archive-cube", 0.1, 0.1);
