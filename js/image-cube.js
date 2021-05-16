@@ -487,12 +487,3 @@ class ImageCube{
         }
     }
 }
-
-// addImageCube(frontFace, [
-//     "./media/test.JPG",
-//     "./media/prepare water fast.mp4",
-//     "./media/test.JPG",
-//     "./media/test.JPG",
-//     "./media/test.JPG",
-//     "./media/test.JPG",
-// ])

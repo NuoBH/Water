@@ -418,21 +418,3 @@ class ChatCube{
 }
 
 var chatCube = new ChatCube("chat-cube", 0.1, 0.1);
-// requestTimeout(function(){
-//     chatCube.rotate();
-//     requestTimeout(function(){
-//         chatCube.rotate();
-//         requestTimeout(function(){
-//             chatCube.rotate();
-//             requestTimeout(function(){
-//                 chatCube.rotate();
-//                 requestTimeout(function(){
-//                     chatCube.rotate();
-//                     requestTimeout(function(){
-//                         chatCube.rotate();
-//                     }, 5000);
-//                 }, 5000);
-//             }, 5000);
-//         }, 5000);
-//     }, 5000);
-// }, 5000);

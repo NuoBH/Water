@@ -389,23 +389,6 @@ class Option{
 
 let optionCreator = new Option();
 
-// function test(e){
-//     if(e.key=='o'){
-//         let optionDOM = optionCreator.addOptionButtons(frontFace, 
-//             ["nuobebe is xiang xiang hapizhugigingi", 
-//             "nFDebe", 
-//             "asdfFDSas", 
-//             "dsaFDa", 
-//             "dasdas"]);
-
-//         optionDOM.addEventListener(`optionEndedEvent`, function(e){
-//             cubeContent.addChat(frontFace, lastResponse)
-//         })
-//     }
-    
-//     // window.removeEventListener(`keydown`, test);
-// }
-// window.addEventListener(`keydown`, test);
 
 
 

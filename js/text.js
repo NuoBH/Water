@@ -215,18 +215,3 @@ class CubeContent{
 }
 
 var cubeContent = new CubeContent();
-
-// window.addEventListener(`keypress`, function(e){
-//     if(e.key == 'b'){
-//         cubeContent.showVideo(backFace, `./videos/freeze.mp4`)
-//     }
-//     else if(e.key == 'f'){
-//         cubeContent.showVideo(frontFace, `./videos/freeze.mp4`)
-//     }
-//     else if(e.key == 's'){
-//         cubeContent.addSlider(frontFace, -100, 100, 0);
-//     }
-//     else if(e.key == 'r'){
-//         cubeContent.addResponse(frontFace, 'okokookokkokok');
-//     }
-// });
