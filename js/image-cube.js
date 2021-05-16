@@ -1,4 +1,4 @@
-function addImageCube(id, face, mediaLinks){
+function addImageCube(id, face, mediaLinks, isVideoCube=false, videoCubeAutoPlay=false){
     if(!Array.isArray(mediaLinks) || mediaLinks.length != 6){
         console.debug("add image cube, media links not valid");
         return;
@@ -7,17 +7,27 @@ function addImageCube(id, face, mediaLinks){
     let textDOM = face.children[0];
     let imageCubeDOM = document.createElement("div");
     imageCubeDOM.id = id;
-    imageCubeDOM.classList.add("image-cube", "noselect");
+    let classNamePre = isVideoCube ? "video" : "image";
 
-    let faceClasses = ["image-cube-front", "image-cube-left", "image-cube-right", 
-                       "image-cube-top", "image-cube-bottom", "image-cube-back"];
-    let allFaceClass = "image-cube-face";
-    let mediaClass = "image-cube-media";
+    imageCubeDOM.classList.add("media-cube", `${classNamePre}-cube`, "noselect");
+
+    let faceClasses = [`${classNamePre}-cube-front`, `${classNamePre}-cube-left`, `${classNamePre}-cube-right`, 
+                       `${classNamePre}-cube-top`, `${classNamePre}-cube-bottom`, `${classNamePre}-cube-back`];
+    let allFaceClass = `${classNamePre}-cube-face`;
+    let mediaClass = `${classNamePre}-cube-media`;
     let dragClass = "todrag";
 
     for(let i = 0; i < faceClasses.length; i ++){
         let faceDOM = document.createElement("div");
         faceDOM.classList.add(`${allFaceClass}`, `${faceClasses[i]}`);
+        if(isVideoCube){
+            if(i == 0 || i == 3 || i == 4 || i == 5){
+                faceDOM.classList.add('video-cube-face-regular');
+            }
+            else{
+                faceDOM.classList.add('video-cube-face-small');
+            }
+        }
 
         let filepath = mediaLinks[i];
         let fileExtension = filepath.split('.').pop().toLowerCase();
@@ -37,10 +47,14 @@ function addImageCube(id, face, mediaLinks){
             let mediaDOM = document.createElement("video");
             mediaDOM.id = "video";
             mediaDOM.classList.add(`${mediaClass}`, `${dragClass}`);
-            mediaDOM.setAttribute("muted", "muted");
-            mediaDOM.setAttribute("autoplay", "autoplay");
-            mediaDOM.setAttribute("loop", "loop");
+
+            if(!isVideoCube || (isVideoCube && videoCubeAutoPlay)){
+                mediaDOM.setAttribute("autoplay", "autoplay");
+                mediaDOM.setAttribute("loop", "loop");
+                mediaDOM.setAttribute("muted", "muted");
+            }
             mediaDOM.setAttribute("playsinline", "playsinline");
+            mediaDOM.setAttribute(`webkit-playsinline`, `webkit-playsinline`);
 
             let sourceDOM = document.createElement("source");
             sourceDOM.src = filepath;
@@ -63,11 +77,11 @@ function addImageCube(id, face, mediaLinks){
         $(imageCubeDOM).children().css(`opacity`, `1`);
     }, 200);
 
-    return new ImageCube(id, -15, 30, 0.1);
+    return new ImageCube(id, -15, 30, 0.1, isVideoCube, videoCubeAutoPlay);
 }
 
 class ImageCube{
-    constructor(id, startRotateX, startRotateY, lerpV){
+    constructor(id, startRotateX, startRotateY, lerpV, isVideoCube, videoCubeAutoPlay){
         this.cube = document.getElementById(id);
 
         //properties used to rotate cube
@@ -85,6 +99,10 @@ class ImageCube{
 
         //used to test if touch moves on mobile after touch start
         this.hasTouchMoved = false;
+
+        //if this cube contains only video
+        this.isVideoCube = isVideoCube;
+        this.videoCubeAutoPlay = videoCubeAutoPlay;
 
         //set video hover show control effect
         this.videos = this.cube.querySelectorAll("#video");
@@ -113,6 +131,10 @@ class ImageCube{
             if(mobileAndTabletCheck()){
                 ImageCube.showAllVideoControls(this.videos);
             }
+        }
+
+        if(this.isVideoCube){
+            this.setVideoCube();
         }
 
         this.dragRotate();
@@ -318,6 +340,13 @@ class ImageCube{
                         // }
                         this.rotateCubeByMousePos(ev);
                     }
+                    else{
+                        if(this.isVideoCube){
+                            if(ev.currentTarget.id == "video"){
+                                ev.currentTarget.setAttribute("controls", "controls");
+                            }   
+                        }
+                    }
                 }.bind(this));
 
                 node.addEventListener("touchmove", function(ev){
@@ -365,6 +394,20 @@ class ImageCube{
                 ImageCube.hideAllVideoControls(this.videos);
                 this.rotateCubeByMousePos(ev);
             }
+        }.bind(this));
+    }
+
+    setVideoCube(){
+        this.videos.forEach(function(curVid){
+            if(this.videoCubeAutoPlay){
+                curVid.muted = true;
+            }
+            curVid.addEventListener("play", function(){
+                scrollIntoView(this.cube, {
+                    time: 1000,
+                    align:{top: 0.5}
+                })
+            }.bind(this));
         }.bind(this));
     }
 

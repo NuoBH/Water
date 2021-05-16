@@ -6,7 +6,7 @@ class Option{
 
     //apend option buttons to the end of textDOM
     //buttonTesxt is an array container texts for each button
-    addOptionButtons(face, buttonTexts){
+    addOptionButtons(face, buttonTexts, addWhiteSpace=true){
         if(!Array.isArray(buttonTexts) || buttonTexts.length <= 0){
             console.debug("add option buttons, button texts not valid");
             return undefined;
@@ -25,7 +25,12 @@ class Option{
             button.classList.add("option-button");
             //add break after each option button so that when use cnterOptionButtons, it 
             //will get the correct offsetWidth of each <span> element of the buttons
-            button.innerHTML = `[${this.whiteConnector}${buttonTexts[i]}${this.whiteConnector}]<br>`;
+            if(addWhiteSpace){
+                button.innerHTML = `[${this.whiteConnector}${buttonTexts[i]}${this.whiteConnector}]<br>`;
+            }
+            else{
+                button.innerHTML = `[ ${buttonTexts[i]} ]<br>`;      
+            }
             this.onMouseTouchEnterOptionButton(button);
             this.onMouseTouchLeaveOptionButton(button);
             this.onMouseUpOptionButton(button, optionDOM, textDOM);

@@ -54,11 +54,19 @@ frontFace.children[0].style.setProperty("opacity", `1`);
 window.addEventListener(`firstCollide`, function(){
     requestTimeout(function(){
         cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
+        addImageCube("videocube1", frontFace, [
+            `./videos/disinfect.mp4`,
+            `./images/bg.jpg`,
+            `./images/bg.jpg`,
+            `./videos/disinfect.mp4`,
+            `./videos/disinfect.mp4`,
+            `./videos/disinfect.mp4`
+        ], true, true)
     }, 1000);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
-                        [next]);
+                        [next], false);
             
         addEventHandlerToButtons(optionDOM, optionEventName, waterOption0);
     }, 2500);
