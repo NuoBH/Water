@@ -45,10 +45,9 @@ function addImageCube(id, face, mediaLinks, isVideoCube=false, videoCubeAutoPlay
         }
         else if(fileExtension == "mp4" || fileExtension == "mov" || fileExtension == "mkv"){
             let mediaDOM = document.createElement("video");
-            mediaDOM.id = "video";
             mediaDOM.classList.add(`${mediaClass}`, `${dragClass}`);
 
-            if(!isVideoCube || (isVideoCube && videoCubeAutoPlay)){
+            if(!isVideoCube || (isVideoCube && videoCubeAutoPlay) || filepath.toLowerCase().includes("animation")){
                 mediaDOM.setAttribute("autoplay", "autoplay");
                 mediaDOM.setAttribute("loop", "loop");
                 mediaDOM.setAttribute("muted", "muted");
@@ -77,7 +76,12 @@ function addImageCube(id, face, mediaLinks, isVideoCube=false, videoCubeAutoPlay
         $(imageCubeDOM).children().css(`opacity`, `1`);
     }, 200);
 
-    return new ImageCube(id, -15, 30, 0.1, isVideoCube, videoCubeAutoPlay);
+    let lerpSpeed = 0.1;
+    if(isVideoCube){
+        lerpSpeed = 0.35;
+    }
+
+    return new ImageCube(id, -15, 30, lerpSpeed, isVideoCube, videoCubeAutoPlay);
 }
 
 class ImageCube{
@@ -105,7 +109,7 @@ class ImageCube{
         this.videoCubeAutoPlay = videoCubeAutoPlay;
 
         //set video hover show control effect
-        this.videos = this.cube.querySelectorAll("#video");
+        this.videos = this.cube.querySelectorAll("video");
         if(this.videos.length > 0){
             for(var i = 0; i < this.videos.length; i ++){
                 this.videos[i].addEventListener("mouseenter", function(ev){
@@ -323,7 +327,7 @@ class ImageCube{
                     this.isDragging = false;
 
                     if(!this.hasTouchMoved){
-                        if(ev.currentTarget.id == "video"){
+                        if(ev.currentTarget.tagName.toLowerCase() == "video"){
                             ImageCube.checkSingleVideoControl(ev.currentTarget, 1);
                         }
                     }
@@ -342,7 +346,8 @@ class ImageCube{
                     }
                     else{
                         if(this.isVideoCube){
-                            if(ev.currentTarget.id == "video"){
+                            if(ev.currentTarget.tagName.toLowerCase() == "video" && 
+                            !ev.currentTarget.getElementsByTagName("source")[0].src.toLowerCase().includes("animation")){
                                 ev.currentTarget.setAttribute("controls", "controls");
                             }   
                         }
@@ -400,14 +405,56 @@ class ImageCube{
     setVideoCube(){
         this.videos.forEach(function(curVid){
             if(this.videoCubeAutoPlay){
-                curVid.muted = true;
+                //curVid.muted = false;
+                curVid.volume = 1 / this.videos.length;
             }
-            curVid.addEventListener("play", function(){
-                scrollIntoView(this.cube, {
-                    time: 1000,
-                    align:{top: 0.5}
-                })
-            }.bind(this));
+            else{
+                curVid.play();
+            }
+
+            if(!curVid.getElementsByTagName("source")[0].src.toLowerCase().includes("animation")){
+                //play event for videos
+                curVid.addEventListener("play", function(e){
+                    //scroll to view video cube
+                    scrollIntoView(this.cube, {
+                        time: 1000,
+                        align:{top: 0.5}
+                    });
+
+                    //play all other videos in this video cube when play one video
+                    this.videos.forEach(function(iterPlay){
+                        if(iterPlay.paused){
+                            iterPlay.play();
+                        }
+                    });
+
+                    //pause other video cubes if there are any
+                    let otherVideoCubes = this.cube.parentElement.querySelectorAll('[id^="videocube"]');
+
+                    for(let i = 0; i < otherVideoCubes.length; i++){
+                        if(otherVideoCubes[i].id != this.cube.id){
+                            let videos = otherVideoCubes[i].querySelectorAll("video");
+                            for(let j = 0 ; j < videos.length; j ++){
+                                if(!videos[j].getElementsByTagName("source")[0].src.toLowerCase().includes("animation")){
+                                    videos[j].pause();
+                                }
+                            }
+                        }
+                    }
+                }.bind(this));
+
+                //pause event for videos
+                curVid.addEventListener("pause", function(e){
+                    //pause all other videos in this video cube
+                    this.videos.forEach(function(iterPause){
+                        if(!iterPause.paused){
+                            if(!iterPause.getElementsByTagName("source")[0].src.toLowerCase().includes("animation")){
+                                iterPause.pause();
+                            }
+                        }
+                    });
+                }.bind(this));
+            }
         }.bind(this));
     }
 

@@ -6,7 +6,7 @@ class Option{
 
     //apend option buttons to the end of textDOM
     //buttonTesxt is an array container texts for each button
-    addOptionButtons(face, buttonTexts, addWhiteSpace=true){
+    addOptionButtons(face, buttonTexts, addWhiteSpace=true, scrollUpToVideo=false){
         if(!Array.isArray(buttonTexts) || buttonTexts.length <= 0){
             console.debug("add option buttons, button texts not valid");
             return undefined;
@@ -49,11 +49,19 @@ class Option{
         scrollIntoView(optionDOM, {
             time: 1000,
             align:{top: 1}
-        })
+        });
 
         requestTimeout(function(){
             optionDOM.style.setProperty("--optionRotateX", "0deg");
             optionDOM.style.setProperty("--optionOpacity", "1");
+            if(scrollUpToVideo){
+                requestTimeout(function(){
+                    scrollIntoView(optionDOM.previousElementSibling, {
+                        time: 1000,
+                        align:{top: 0.5}
+                    });
+                }, 900);
+            }
         }, 350);
 
         return optionDOM;
@@ -231,7 +239,7 @@ class Option{
     clickOnButtons(button, optionDOM, textDOM, isContinue=false){
         if((!isContinue && !hasClickedLastOption) || 
             (isContinue && !hasClickedLastContinue)){
-            console.log("start of button");
+            // console.log("start of button");
             if(!isContinue){
                 hasClickedLastOption = true;
             }
@@ -298,14 +306,14 @@ class Option{
 
                     optionDOM.dispatchEvent(optionEndedEvent);
                     hasClickedLastOption = false;
-                    console.log("end of option button");
+                    // console.log("end of option button");
                 }
                 else{
                     /********** rotate face here!!! ****************/
                     optionDOM.dispatchEvent(rotateFaceEvent);
                     optionDOM.style.setProperty("--optionRotateX", "0deg");
                     optionDOM.style.setProperty("--optionOpacity", "1");
-                    console.log("end of continue button");
+                    // console.log("end of continue button");
                 }       
             }, 900);
         }

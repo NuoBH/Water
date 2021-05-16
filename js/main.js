@@ -46,47 +46,39 @@ function rotateChatCubeHandler(allow, x='0', y='0'){
 //WATER INTRO start
 
 
-cubeContent.addTitle(frontFace, `water`, 1.8);
+cubeContent.addTitle(frontFace, `Water`, 1.8);
 frontFace.children[0].style.setProperty("opacity", `1`);
 
 /************ uncomment code below after test is done ***********/
 
-window.addEventListener(`firstCollide`, function(){
-    requestTimeout(function(){
-        cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
-        addImageCube("videocube1", frontFace, [
-            `./videos/disinfect.mp4`,
-            `./images/bg.jpg`,
-            `./images/bg.jpg`,
-            `./videos/disinfect.mp4`,
-            `./videos/disinfect.mp4`,
-            `./videos/disinfect.mp4`
-        ], true, true)
-    }, 1000);
+// window.addEventListener(`firstCollide`, function(){
+//     requestTimeout(function(){
+//         cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
+//     }, 1000);
 
-    requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(frontFace, 
-                        [next], false);
+//     requestTimeout(function(){
+//         let optionDOM = optionCreator.addOptionButtons(frontFace, 
+//                         [next]);
             
-        addEventHandlerToButtons(optionDOM, optionEventName, waterOption0);
-    }, 2500);
+//         addEventHandlerToButtons(optionDOM, optionEventName, waterOption0);
+//     }, 2500);
     
-});
+// });
 
 /** **************************************************** */
 
 /**test part delete later */
-// window.addEventListener(`firstCollide`, function(){
-//     requestTimeout(function(){
-//         cubeContent.addTitle(leftFace, "Send<br>Water");
-//         chatCube.rotate();
-//         chatCube.rotate();
-//         chatCube.rotate();
-//         chatCube.rotate();
-//         chatCube.rotate();
-//         sendOption3();
-//     }, 1000);
-// });
+window.addEventListener(`firstCollide`, function(){
+    requestTimeout(function(){
+        cubeContent.addTitle(rightFace, "Set<br>up");
+        chatCube.rotate();
+        chatCube.rotate();
+        chatCube.rotate();
+        chatCube.rotate();
+        // chatCube.rotate();
+     setupStart();
+    }, 1000);
+});
 
 
 /************************** */
@@ -268,7 +260,7 @@ function waterOption10(){
 //end of Water(front) and rotate to Clean(top)
 function waterEnd(e){
     if(chatCube.curstate == 0){
-        cubeContent.addTitle(topFace, "clean");
+        cubeContent.addTitle(topFace, "Clean");
         chatCube.rotate();
         changeGravity(0, 1);
 
@@ -318,11 +310,19 @@ function cleanOption2(){
     }, 1500);
 
     requestTimeout(function(){
-        cubeContent.showVideo(topFace, `./videos/wash.mp4`)
+        // cubeContent.showVideo(topFace, `./videos/wash.mp4`);
+        addImageCube("videocubeWash", topFace, [
+            `./videos/wash sep1.mp4`,
+            `./images/washimgS1.jpg`,
+            `./images/washimgS2.jpg`,
+            `./videos/wash sep2.mp4`,
+            `./videos/wash sep4.mp4`,
+            `./videos/wash sep3.mp4`
+        ], true, true);
     }, 3500);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(topFace, [next]);
+        let optionDOM = optionCreator.addOptionButtons(topFace, [next], false, true);
 
         addEventHandlerToButtons(optionDOM, optionEventName, cleanOption3);
     }, 5000);
@@ -334,11 +334,19 @@ function cleanOption3(){
     }, 500);
 
     requestTimeout(function(){
-        cubeContent.showVideo(topFace, `./videos/disinfect.mp4`)
+        // cubeContent.showVideo(topFace, `./videos/disinfect.mp4`);
+        addImageCube("videocubeDisinfect", topFace, [
+            `./videos/disinfect sep1.mp4`,
+            `./images/disinfectimgS1.jpg`,
+            `./images/disinfectimgS2.jpg`,
+            `./videos/disinfect sep2.mp4`,
+            `./videos/disinfect sep4.mp4`,
+            `./videos/disinfect sep3.mp4`
+        ], true, true);
     }, 5000);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(topFace, [`I see.`, `That's good!`]);
+        let optionDOM = optionCreator.addOptionButtons(topFace, [`I see.`, `That's good!`], false, true);
 
         addEventHandlerToButtons(optionDOM, optionEventName, cleanOption4);
     }, 6500);
@@ -355,7 +363,7 @@ function cleanOption4(){
 
 function cleanEnd(e){
     if(chatCube.curstate == 1){
-        cubeContent.addTitle(leftFace, "pre<br>pare");
+        cubeContent.addTitle(leftFace, "Pre<br>pare");
         chatCube.rotate();
         changeGravity(0, -1);
 
@@ -714,7 +722,7 @@ function prepareOption19(){
 
 function prepareEnd(e){
     if(chatCube.curstate == 2){
-        cubeContent.addTitle(bottomFace, "mate<br>rials");
+        cubeContent.addTitle(bottomFace, "Mate-<br>rials");
         chatCube.rotate();
         changeGravity(1, 0);
 
@@ -736,11 +744,19 @@ function materialStart(){
     }, 2500);
 
     requestTimeout(function(){
-        cubeContent.showVideo(bottomFace, `./videos/introduce.mp4`);
+        // cubeContent.showVideo(bottomFace, `./videos/introduce.mp4`);
+        addImageCube("videocubeIntro", bottomFace, [
+            `./videos/introduce.mp4`,
+            `./images/introimgS1.jpg`,
+            `./images/introimgS2.jpg`,
+            `./images/introimgL2.jpg`,
+            `./images/introimgL3.jpg`,
+            `./images/introimgL1.jpg`
+        ], true);
     }, 5500);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(bottomFace, [next]);
+        let optionDOM = optionCreator.addOptionButtons(bottomFace, [next], false, true);
 
         addEventHandlerToButtons(optionDOM, optionEventName, materialOption1);
     }, 7000);
@@ -760,7 +776,7 @@ function materialOption1(){
 
 function materialEnd(e){
     if(chatCube.curstate == 3){
-        cubeContent.addTitle(rightFace, "set<br>up", 1.5);
+        cubeContent.addTitle(rightFace, "Set<br>up", 1.5);
         chatCube.rotate();
         changeGravity(-1, 0);
 
@@ -782,11 +798,19 @@ function setupStart(){
     }, 1500);
 
     requestTimeout(function(){
-        cubeContent.showVideo(rightFace, `./videos/test faraday cages.mp4`);
+        // cubeContent.showVideo(rightFace, `./videos/test faraday cages.mp4`);
+        addImageCube("videocubeTest", rightFace, [
+            `./videos/test faraday cages.mp4`,
+            `./images/testimgS1.jpg`,
+            `./images/testimgS2.jpg`,
+            `./images/testimgL2.jpg`,
+            `./images/testimgL3.jpg`,
+            `./images/testimgL1.jpg`
+        ], true);
     }, 4000);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(rightFace, [next]);
+        let optionDOM = optionCreator.addOptionButtons(rightFace, [next], false, true);
 
         addEventHandlerToButtons(optionDOM, optionEventName, setupOption1);
     }, 5500);
@@ -798,11 +822,19 @@ function setupOption1(){
     }, 500);
 
     requestTimeout(function(){
-        cubeContent.showVideo(rightFace, `./videos/set up.mp4`);
+        // cubeContent.showVideo(rightFace, `./videos/set up.mp4`);
+        addImageCube("videocubeSetup", rightFace, [
+            `./videos/set up.mp4`,
+            `./images/setupimgS1.jpg`,
+            `./images/setupimgS2.jpg`,
+            `./images/setupimgL1.jpg`,
+            `./images/setupimgL3.jpg`,
+            `./images/setupimgL2.jpg`
+        ], true);
     }, 2000);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(rightFace, [`So many steps!`, `What's next?`]);
+        let optionDOM = optionCreator.addOptionButtons(rightFace, [`So many steps!`, `What's next?`], false, true);
 
         addEventHandlerToButtons(optionDOM, optionEventName, setupOption2);
     }, 3500);
@@ -818,7 +850,7 @@ function setupOption2(){
 
 function setupEnd(e){
     if(chatCube.curstate == 4){
-        cubeContent.addTitle(backFace, "send<br>water", 1.8);
+        cubeContent.addTitle(backFace, "Send<br>water", 1.8);
         chatCube.rotate();
         changeGravity(0.5, 0.5);
 
@@ -844,11 +876,19 @@ function sendStart(){
     }, 3500);
 
     requestTimeout(function(){
-        cubeContent.showVideo(backFace, `./videos/send water.mp4`);
+        // cubeContent.showVideo(backFace, `./videos/send water.mp4`);
+        addImageCube("videocubeSendwater", backFace, [
+            `./videos/send water.mp4`,
+            `./images/sendwaterimgS1.jpg`,
+            `./videos/emf animation.mp4`,
+            `./images/sendwaterimgL1.jpg`,
+            `./images/sendwaterimgL2.jpg`,
+            `./images/sendwaterimgL3.jpg`
+        ], true);
     }, 4500);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(backFace, [`Is that the end?`]);
+        let optionDOM = optionCreator.addOptionButtons(backFace, [`Is that the end?`],  false, true);
 
         addEventHandlerToButtons(optionDOM, optionEventName, sendOption1);
     }, 6000);
@@ -860,11 +900,19 @@ function sendOption1(){
     }, 1500);
 
     requestTimeout(function(){
-        cubeContent.showVideo(backFace, `./videos/freeze.mp4`);
+        // cubeContent.showVideo(backFace, `./videos/freeze.mp4`);
+        addImageCube("videocubeFreeze", backFace, [
+            `./videos/freeze.mp4`,
+            `./images/freezeimgS1.jpg`,
+            `./images/freezeimgS2.jpg`,
+            `./images/freezeimgL1.jpg`,
+            `./images/freezeimgL3.jpg`,
+            `./images/freezeimgL2.jpg`
+        ], true);
     }, 3200);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(backFace, [next]);
+        let optionDOM = optionCreator.addOptionButtons(backFace, [next], false, true);
 
         addEventHandlerToButtons(optionDOM, optionEventName, sendOption2);
     }, 4700);
