@@ -199,7 +199,6 @@ function firstCollision(e){
         //chat-cube appear
         expandChatCube(chatCubeDOM);
         requestTimeout(expandSwitchButton, 200);
-        canSwitchCube = true;
         //zero gravity
         requestTimeout(function(){
           engine.gravity.x = 0;

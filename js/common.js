@@ -179,25 +179,25 @@ function switchClick(){
     canSwitchCube = false;
     if(isChatCube){
       showArchiveCube();
-      //rotate button
-      // $({rotate: 0}).animate({rotate: 180},{
-      //   duration: 900,
-      //   easing: `easeOutBack`,
-      //   step: function(now){
-      //     switchButton.style.setProperty(`--switchRotate`, `${now}deg`);
-      //   }
-      // });
+      rotate button
+      $({rotate: 0}).animate({rotate: 180},{
+        duration: 900,
+        easing: `easeOutBack`,
+        step: function(now){
+          switchButton.style.setProperty(`--switchRotate`, `${now}deg`);
+        }
+      });
     }
     else{
       showInstructionCube();
-      //rotate button
-      // $({rotate: 180}).animate({rotate: 0},{
-      //   duration: 900,
-      //   easing: `easeOutBack`,
-      //   step: function(now){
-      //     switchButton.style.setProperty(`--switchRotate`, `${now}deg`);
-      //   }
-      // });
+      rotate button
+      $({rotate: 180}).animate({rotate: 0},{
+        duration: 900,
+        easing: `easeOutBack`,
+        step: function(now){
+          switchButton.style.setProperty(`--switchRotate`, `${now}deg`);
+        }
+      });
     }
 
   }
@@ -225,7 +225,7 @@ function expandSwitchButton(){
       switchButton.addEventListener("touchend", switchClick);
       window.addEventListener("touchend", function(){
         switchHover(false);
-      })
+      });
 
       switchButton.addEventListener("touchstart", function(){
         switchHover(true);
@@ -236,8 +236,7 @@ function expandSwitchButton(){
       switchButton.addEventListener("mouseleave", function(){
         switchHover(false);
       });
-
-
+      canSwitchCube = true;
     }
   });
 }
