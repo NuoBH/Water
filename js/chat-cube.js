@@ -417,4 +417,5 @@ class ChatCube{
     }
 }
 
-var chatCube = new ChatCube("chat-cube", 0.1, 0.1);
+var chatCube = new ChatCube("instruction-cube", 0.1, 0.1);
+var chatCube = new ChatCube("archive-cube", 0.1, 0.1);

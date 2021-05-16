@@ -51,34 +51,35 @@ frontFace.children[0].style.setProperty("opacity", `1`);
 
 /************ uncomment code below after test is done ***********/
 
-// window.addEventListener(`firstCollide`, function(){
-//     requestTimeout(function(){
-//         cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
-//     }, 1000);
+window.addEventListener(`firstCollide`, function(){
+    chatCubeDOM.
+    requestTimeout(function(){
+        cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
+    }, 1000);
 
-//     requestTimeout(function(){
-//         let optionDOM = optionCreator.addOptionButtons(frontFace, 
-//                         [next]);
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(frontFace, 
+                        [next]);
             
-//         addEventHandlerToButtons(optionDOM, optionEventName, waterOption0);
-//     }, 2500);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption0);
+    }, 2500);
     
-// });
+});
 
 /** **************************************************** */
 
 /**test part delete later */
-window.addEventListener(`firstCollide`, function(){
-    requestTimeout(function(){
-        cubeContent.addTitle(rightFace, "Set<br>up");
-        chatCube.rotate();
-        chatCube.rotate();
-        chatCube.rotate();
-        chatCube.rotate();
-        // chatCube.rotate();
-     setupStart();
-    }, 1000);
-});
+// window.addEventListener(`firstCollide`, function(){
+//     requestTimeout(function(){
+//         cubeContent.addTitle(rightFace, "Set<br>up");
+//         chatCube.rotate();
+//         chatCube.rotate();
+//         chatCube.rotate();
+//         chatCube.rotate();
+//         // chatCube.rotate();
+//      setupStart();
+//     }, 1000);
+// });
 
 
 /************************** */

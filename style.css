@@ -244,7 +244,7 @@ body{
 
 /* -------------------style for chat cube--------------------- */
 
-#chat-cube{
+.chat-cube{
     --faceWidthFour: 85vw;
     --faceHeightFour: 47.8125vw;
     --faceWidthTwo: 47.8125vw;
@@ -347,7 +347,8 @@ body{
 
     position: relative;
     overflow: auto;
-    overscroll-behavior: none;
+    -ms-scroll-chaining: none;
+        overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
 
     height: 100%;

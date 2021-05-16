@@ -95,13 +95,24 @@ var vis = (function(){
 /***************************************************************** */
 var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
-var chatCubeDOM = document.getElementById("chat-cube");
+//instruction chat cube
+var chatCubeDOM = document.getElementById("instruction-cube");
 var frontFace = document.getElementById(`front`);
 var leftFace = document.getElementById(`left`);
 var rightFace = document.getElementById(`right`);
 var topFace = document.getElementById(`top`);
 var bottomFace = document.getElementById(`bottom`);
 var backFace = document.getElementById(`back`);
+
+//archive chat cube
+var archiveCubeDOM = document.getElementById("archive-cube");
+var archiveFrontFace = document.getElementById(`afront`);
+var archiveLeftFace = document.getElementById(`aleft`);
+var archiveRightFace = document.getElementById(`aright`);
+var archiveTopFace = document.getElementById(`atop`);
+var archiveBottomFace = document.getElementById(`abottom`);
+var archiveBackFace = document.getElementById(`aback`);
+
 const firstCollideEvent = new CustomEvent(`firstCollide`);
 var lastResponse = '';
 const optionEndedEvent = new CustomEvent(`optionEnded`);
