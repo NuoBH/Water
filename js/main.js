@@ -58,7 +58,6 @@ window.addEventListener(`firstCollide`, function(){
     requestTimeout(function(){
         cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
     }, 1000);
-
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(frontFace, 
                         [next]);
