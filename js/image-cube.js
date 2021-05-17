@@ -1,4 +1,4 @@
-function addImageCube(id, face, mediaLinks, isVideoCube=false, videoCubeAutoPlay=false){
+function addImageCube(id, face, mediaLinks, isVideoCube=false, videoCubeAutoPlay=false, addBorder=false){
     if(!Array.isArray(mediaLinks) || mediaLinks.length != 6){
         console.debug("add image cube, media links not valid");
         return;
@@ -26,6 +26,11 @@ function addImageCube(id, face, mediaLinks, isVideoCube=false, videoCubeAutoPlay
             }
             else{
                 faceDOM.classList.add('video-cube-face-small');
+            }
+        }
+        else{
+            if(addBorder){
+                faceDOM.classList.add("add-border");
             }
         }
 

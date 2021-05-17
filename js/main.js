@@ -363,7 +363,7 @@ function cleanOption4(){
 
 function cleanEnd(e){
     if(chatCube.curstate == 1){
-        cubeContent.addTitle(leftFace, "Pre<br>pare");
+        cubeContent.addTitle(leftFace, "Pre-<br>pare");
         chatCube.rotate();
         changeGravity(0, -1);
 
@@ -591,7 +591,7 @@ function prepareOptionFormulae(){
             `./images/phValue.jpg`,
             `./images/hardness function.jpg`,
             `./images/turbidity.jpg`
-        ]);
+        ], false, false, true);
     }, 4300);
 
     requestTimeout(function(){

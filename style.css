@@ -108,6 +108,10 @@ body{
 
             backface-visibility: hidden;
 }
+.add-border{
+    border: 0.1rem black solid;
+}
+
 .image-cube-media{
     display: block;
     position: absolute;
