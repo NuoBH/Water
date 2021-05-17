@@ -61,7 +61,7 @@ body{
 }
 /* -------------------style for image cube--------------------- */
 .image-cube{
-    --faceSize: 30vw;
+    --faceSize: 32vw;
 
     margin: auto;
     margin-top: 5%;

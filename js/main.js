@@ -551,7 +551,7 @@ function prepareOption9(){
             `./images/food coloring.jpg`,
             `./images/measuring cup.jpg`,
             `./images/send container.jpg`,
-            `./images/freezeimgS1.jpg`
+            `./images/freezeimgS2.jpg`
         ])
     }, 6100);
 
@@ -591,7 +591,7 @@ function prepareOptionFormulae(){
             `./images/phValue.jpg`,
             `./images/hardness function.jpg`,
             `./images/turbidity.jpg`
-        ])
+        ]);
     }, 4300);
 
     requestTimeout(function(){
