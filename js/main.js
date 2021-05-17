@@ -54,33 +54,31 @@ cubeContent.addTitle(frontFace, `Water`, 1.8);
 
 /************ uncomment code below after test is done ***********/
 
-window.addEventListener(`firstCollide`, function(){
-    requestTimeout(function(){
-        cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
-    }, 1000);
-    requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(frontFace, 
-                        [next]);
+// window.addEventListener(`firstCollide`, function(){
+//     requestTimeout(function(){
+//         cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
+//     }, 1000);
+//     requestTimeout(function(){
+//         let optionDOM = optionCreator.addOptionButtons(frontFace, 
+//                         [next]);
             
-        addEventHandlerToButtons(optionDOM, optionEventName, waterOption0);
-    }, 2500);
+//         addEventHandlerToButtons(optionDOM, optionEventName, waterOption0);
+//     }, 2500);
     
-});
+// });
 
 /** **************************************************** */
 
 /**test part delete later */
-// window.addEventListener(`firstCollide`, function(){
-//     requestTimeout(function(){
-//         cubeContent.addTitle(rightFace, "Set<br>up");
-//         chatCube.rotate();
-//         chatCube.rotate();
-//         chatCube.rotate();
-//         chatCube.rotate();
-//         // chatCube.rotate();
-//      setupStart();
-//     }, 1000);
-// });
+window.addEventListener(`firstCollide`, function(){
+    requestTimeout(function(){
+        cubeContent.addTitle(leftFace, "Pre-<br>pare");
+        chatCube.rotate();
+        chatCube.rotate();
+        // chatCube.rotate();
+     prepareOption9();
+    }, 1000);
+});
 
 
 /************************** */
@@ -553,7 +551,7 @@ function prepareOption9(){
             `./images/food coloring.jpg`,
             `./images/measuring cup.jpg`,
             `./images/send container.jpg`,
-            `./images/bg.jpg`
+            `./images/freezeimgS1.jpg`
         ])
     }, 6100);
 
@@ -564,6 +562,7 @@ function prepareOption9(){
     }, 7450);
 }
 
+
 function prepareOption10(){
     requestTimeout(function(){
         cubeContent.addChat(leftFace, `*All materials are metallic or wrapped with aluminum foil to block unwanted electromagnetic radiations (EMR).`);       
@@ -572,11 +571,34 @@ function prepareOption10(){
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(leftFace, [
             `Hmmm...`,
-            `I see.`
+            `Okay.`
         ]);
 
-        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption11);
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOptionFormulae);
     }, 3500);
+}
+
+function prepareOptionFormulae(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `Additionally we use a set of rules and formulae to decide the types and proportions of water in your blend.`)
+    }, 1500);
+
+    requestTimeout(function(){
+        addImageCube(`waterFormulae`, leftFace, [
+            `./images/rule&formulae title.jpg`,
+            `./images/weight.jpg`,
+            `./images/hardness.jpg`,
+            `./images/phValue.jpg`,
+            `./images/hardness function.jpg`,
+            `./images/turbidity.jpg`
+        ])
+    }, 4300);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [`I see...`]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOption11);
+    }, 6000);
 }
 
 function prepareOption11(){
