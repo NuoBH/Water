@@ -483,7 +483,7 @@ function prepareOption6(){
     }, 5700);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next], false, true);
 
         addEventHandlerToButtons(optionDOM, optionEventName, prepareOption7);
     }, 7000);
@@ -506,7 +506,7 @@ function prepareOption7(){
     }, 2600);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next], false, true);
 
         addEventHandlerToButtons(optionDOM, optionEventName, prepareOption8);
     }, 3950);
@@ -529,7 +529,7 @@ function prepareOption8(){
     }, 3500);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next], false, true);
 
         addEventHandlerToButtons(optionDOM, optionEventName, prepareOption9);
     }, 5100);
@@ -556,7 +556,7 @@ function prepareOption9(){
     }, 6100);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next], false, true);
 
         addEventHandlerToButtons(optionDOM, optionEventName, prepareOption10);
     }, 7450);
@@ -595,7 +595,7 @@ function prepareOptionFormulae(){
     }, 4300);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(leftFace, [`I see...`]);
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [`I see...`], false, true);
 
         addEventHandlerToButtons(optionDOM, optionEventName, prepareOption11);
     }, 6000);
