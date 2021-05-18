@@ -149,6 +149,23 @@ class ImageCube{
         this.dragRotate();
 
         this.checkBlur();
+
+        this.resizeCube();
+
+        window.addEventListener("resize", this.resizeCube.bind(this));
+    }
+
+    resizeCube(){
+        if(this.isVideoCube){
+            let resizeH = chatCubeDOM.offsetHeight * 0.735;
+            let resizeW = resizeH * 16 / 9;
+            this.cube.style.setProperty("--faceWidth", `${resizeW}px`);
+            this.cube.style.setProperty("--faceHeight", `${resizeH}px`);
+        }
+        else{
+            let resizeS = chatCubeDOM.offsetHeight * 0.65;
+            this.cube.style.setProperty("--faceSize", `${resizeS}px`);
+        }
     }
     
     /** ---------------------------helper functions-------------------------- */
@@ -414,7 +431,15 @@ class ImageCube{
                 curVid.volume = 1 / this.videos.length;
             }
             else{
-                curVid.play();
+                let promise = curVid.play();
+                if (promise !== undefined) {
+                    promise.then(_ => {
+                      // Autoplay started!
+                    }).catch(error => {
+                      // Autoplay was prevented.
+                      // Show a "Play" button so that user can start playback.
+                    });
+                  }
             }
 
             if(!curVid.getElementsByTagName("source")[0].src.toLowerCase().includes("animation")){

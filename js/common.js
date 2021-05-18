@@ -94,6 +94,10 @@ var vis = (function(){
   })();
 /***************************************************************** */
 var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+var weightSliderArchiveValues = [51, 86, 42];
+var hardnessSliderArchiveValues = [95, 87, 79];
+var phvalueSliderArchiveValues = [-78, 0, 24];
+var turbiditySliderArchiveValues = [87, 49, 86];
 
 //instruction chat cube
 var chatCubeDOM = document.getElementById("instruction-cube");
@@ -105,13 +109,13 @@ var bottomFace = document.getElementById(`bottom`);
 var backFace = document.getElementById(`back`);
 
 //archive chat cube
-var archiveCubeDOM = document.getElementById("archive-cube");
-var archiveFrontFace = document.getElementById(`afront`);
-var archiveLeftFace = document.getElementById(`aleft`);
-var archiveRightFace = document.getElementById(`aright`);
-var archiveTopFace = document.getElementById(`atop`);
-var archiveBottomFace = document.getElementById(`abottom`);
-var archiveBackFace = document.getElementById(`aback`);
+var archiveCube;
+var archiveCubeDOM;
+var archiveFrontFace;
+var archiveRightFace;
+var archiveTopFace;
+var archiveBottomFace;
+var archiveBackFace;
 
 const firstCollideEvent = new CustomEvent(`firstCollide`);
 var lastResponse = '';
@@ -123,7 +127,6 @@ var hasClickedLastContinue = false;
 //switch button
 var canSwitchCube = false;
 var isChatCube = true;
-var switchButton = document.getElementById("switch");
 
 //copy clipboard
 var toCopy;
@@ -173,109 +176,45 @@ function shrinkChatCube(cube, isStart=true){
   });
 }
 
-function switchClick(){
-  if(canSwitchCube){
-
-    canSwitchCube = false;
-    if(isChatCube){
-      showArchiveCube();
-      // rotate button
-      $({rotate: 0}).animate({rotate: 180},{
-        duration: 900,
-        easing: `easeOutBack`,
-        step: function(now){
-          switchButton.style.setProperty(`--switchRotate`, `${now}deg`);
-        }
-      });
-    }
-    else{
-      showInstructionCube();
-      // rotate button
-      $({rotate: 180}).animate({rotate: 0},{
-        duration: 900,
-        easing: `easeOutBack`,
-        step: function(now){
-          switchButton.style.setProperty(`--switchRotate`, `${now}deg`);
-        }
-      });
-    }
-
-  }
-}
-
-function switchHover(begin){
-  if(begin){
-    switchButton.classList.add("switch-button-hover");
-  }
-  else{
-    switchButton.classList.remove("switch-button-hover");
-  }
-}
-
-function expandSwitchButton(){
-  $({scale: 0}).animate({scale: 1},{
-    duration: 550,
-    easing: `easeOutBack`,
-    step: function(now){
-      switchButton.style.setProperty(`--switchScale`, `${now}`);
-    },
-    complete: function(){
-      //add mouse up and touch end event
-      switchButton.addEventListener("mouseup", switchClick);
-      switchButton.addEventListener("touchend", switchClick);
-      window.addEventListener("touchend", function(){
-        switchHover(false);
-      });
-
-      switchButton.addEventListener("touchstart", function(){
-        switchHover(true);
-      });
-      switchButton.addEventListener("mouseenter", function(){
-        switchHover(true);
-      });
-      switchButton.addEventListener("mouseleave", function(){
-        switchHover(false);
-      });
-      canSwitchCube = true;
-    }
-  });
-}
-
 //relocate chat cube functions
 function showArchiveCube(){
+  archiveCubeDOM.style.setProperty("display", "block");
   expandChatCube(archiveCubeDOM, false);
   shrinkChatCube(chatCubeDOM, false);
 
-  $({translate:110}).animate({translate:0}, {
+  $({translate:150}).animate({translate:0}, {
     duration: 1000,
     easing: `easeOutBack`,
     step: function(now){
-      let instrTranslate = now - 110;
+      let instrTranslate = now - 150;
       chatCubeDOM.style.setProperty(`--instructionTranslate`, `${instrTranslate}vw`);
       archiveCubeDOM.style.setProperty(`--archiveTranslate`, `${now}vw`);
     },
     complete: function(){
       canSwitchCube = true;
       isChatCube = false;
+      chatCubeDOM.style.setProperty("display", "none");
     }
   });
 }
 
 function showInstructionCube(){
+  chatCubeDOM.style.setProperty("display", "block");
   expandChatCube(chatCubeDOM, false);
   shrinkChatCube(archiveCubeDOM, false);
 
-  $({translate:0}).animate({translate:110}, {
+  $({translate:0}).animate({translate:150}, {
     duration: 1000,
     easing: `easeOutBack`,
     step: function(now){
-      let instrTranslate = now - 110;
+      let instrTranslate = now - 150;
       chatCubeDOM.style.setProperty(`--instructionTranslate`, `${instrTranslate}vw`);
       archiveCubeDOM.style.setProperty(`--archiveTranslate`, `${now}vw`);
     },
     complete: function(){
       canSwitchCube = true;
       isChatCube = true;
+      archiveCubeDOM.style.setProperty("display", "none");
     }
   });
 }

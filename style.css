@@ -77,6 +77,7 @@ body{
     -webkit-transform: perspective(10000px) rotateX(var(--imageRotateX)) rotateY(var(--imageRotateY));
             transform: perspective(10000px) rotateX(var(--imageRotateX)) rotateY(var(--imageRotateY));
 
+    display: block;
     clear: both;
 
 }
@@ -169,8 +170,8 @@ body{
     -webkit-transform: perspective(10000px) rotateX(var(--imageRotateX)) rotateY(var(--imageRotateY));
             transform: perspective(10000px) rotateX(var(--imageRotateX)) rotateY(var(--imageRotateY));
 
+    display: block;
     clear: both;
-
 }
 
 .video-cube-face{
@@ -254,6 +255,7 @@ body{
     --chatCubeScale: 0;
     --instructionTranslate: 0;
 
+    display: block;
     -webkit-transform: translateX(var(--instructionTranslate)) perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
     transform: translateX(var(--instructionTranslate)) perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
 }
@@ -262,8 +264,9 @@ body{
     --chatRotateX: 0deg;
     --chatRotateY: 0deg;
     --chatCubeScale: 0;
-    --archiveTranslate: 110vw;
+    --archiveTranslate: 150vw;
 
+    display: block;
     -webkit-transform: translateX(var(--archiveTranslate)) perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
     transform: translateX(var(--archiveTranslate)) perspective(10000px) rotateX(var(--chatRotateX)) rotateY(var(--chatRotateY)) scaleX(var(--chatCubeScale)) scaleY(var(--chatCubeScale));
 }

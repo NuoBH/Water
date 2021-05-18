@@ -44,7 +44,6 @@ function rotateChatCubeHandler(allow, x='0', y='0'){
 
 //set front face text opacity of instruction and opacity cube
 frontFace.children[0].style.setProperty("opacity", `1`);
-archiveFrontFace.children[0].style.setProperty("opacity", "1");
 
 //WATER INTRO
 //WATER INTRO start
@@ -72,11 +71,14 @@ cubeContent.addTitle(frontFace, `Water`, 1.8);
 /**test part delete later */
 window.addEventListener(`firstCollide`, function(){
     requestTimeout(function(){
-        cubeContent.addTitle(leftFace, "Pre-<br>pare");
+        cubeContent.addTitle(leftFace, "Send<br>Water");
         chatCube.rotate();
         chatCube.rotate();
         // chatCube.rotate();
-     prepareOption9();
+        // chatCube.rotate();
+        // chatCube.rotate();
+
+     prepareOption4();
     }, 1000);
 });
 
@@ -238,23 +240,35 @@ function waterOption9(){
 
 function waterOption10(){
     requestTimeout(function(){
-        cubeContent.addChat(frontFace, `Send us your data and we will transfer your files to <b>Water</b> via electromagnetic radiation.`);
+        cubeContent.addChat(frontFace, `We helped a few participants transfer their data to <b>Water</b>.`);
     }, 1500);
 
     requestTimeout(function(){
-        cubeContent.addChat(frontFace, `We will freeze the water that memorized your data and deliver the ice block to you.`);
-    }, 4000);
+        cubeContent.addChat(frontFace, `They sent their data to us via thumb drives and we transferred their data to water through electrmagnetic radiation.`);
+    }, 3500)
 
     requestTimeout(function(){
-        cubeContent.addChat(frontFace, `Or you can learn to transfer your own data to water here and do it on your own.`);
+        cubeContent.addChat(frontFace, `We froze the water that memorized the participants' data and delivered the ice blocks to them.`);
     }, 6500);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(frontFace, [next]);
+            
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption11);
+    }, 8000);
+}
+
+function waterOption11(){
+    requestTimeout(function(){
+        cubeContent.addChat(frontFace, `Learn more about the data transfer process here and even do it on your own.`);
+    }, 500);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addContinueButtons(frontFace, 
                         [`I'd like to continue to learn more about this process.`]);
           
         addEventHandlerToButtons(optionDOM, continueEventName, waterEnd);
-    }, 8000);
+    }, 2500);
 }
 
 //end of Water(front) and rotate to Clean(top)
@@ -379,7 +393,7 @@ function cleanEnd(e){
 /**************************** Prepare *************************/
 function prepareStart(){
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `After cleaning is done, we will prepare water for data transfer.`);       
+        cubeContent.addChat(leftFace, `After cleaning is done, we prepare water for data transfer.`);       
     }, 1500);
 
     requestTimeout(function(){
@@ -574,44 +588,17 @@ function prepareOption10(){
             `Okay.`
         ]);
 
-        addEventHandlerToButtons(optionDOM, optionEventName, prepareOptionFormulae);
-    }, 3500);
-}
-
-function prepareOptionFormulae(){
-    requestTimeout(function(){
-        cubeContent.addChat(leftFace, `Additionally we use a set of rules and formulae to decide the types and proportions of water in your blend.`)
-    }, 1500);
-
-    requestTimeout(function(){
-        addImageCube(`waterFormulae`, leftFace, [
-            `./images/rule&formulae title.jpg`,
-            `./images/weight.jpg`,
-            `./images/hardness.jpg`,
-            `./images/phValue.jpg`,
-            `./images/hardness function.jpg`,
-            `./images/turbidity.jpg`
-        ], false, false, true);
-    }, 4300);
-
-    requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(leftFace, [`I see...`], false, true);
-
         addEventHandlerToButtons(optionDOM, optionEventName, prepareOption11);
-    }, 6000);
+    }, 3500);
 }
 
 function prepareOption11(){
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `At this point, I’d like to ask you what kind of data do you imagine to give us. Your data will influence the conditions of water. The data will be transferred via a thumb drive later.`);       
+        cubeContent.addChat(leftFace, `We asked participants what kind of data they wanted to give us. Different kinds of data will influence the conditions of water.`);       
     }, 1500);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(leftFace, [
-            `Sure?`,
-            `Can you say more?`,
-            `I'm not sure what to give you`
-        ]);
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
 
         addEventHandlerToButtons(optionDOM, optionEventName, prepareOption12);
     }, 4000);
@@ -619,12 +606,11 @@ function prepareOption11(){
 
 function prepareOption12(){
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `It’s fine that you are not sure yet, I will ask specific questions corresponding to each water condition and you can take some time to think about it.
-`);       
+        cubeContent.addChat(leftFace, `Participants answered four questions related to their data, and we prepared their water based on these answers.`);       
     }, 1500);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [`I'd like to view records of the questions and answers`]);
 
         addEventHandlerToButtons(optionDOM, optionEventName, prepareOption13);
     }, 3500);
@@ -632,36 +618,44 @@ function prepareOption12(){
 
 function prepareOption13(){
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `First, for the weight of the water: How large is your filesize? How much information does your data have? Think about the weight of the information. Please adjust the slider below to reflect your answer.`);       
-    }, 500);
+        cubeContent.addChat(leftFace, "Retrieving records...")
+    }, 1500)
+
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `First, for the weight of the water: How large is your file size? How much information does your data have? Adjust the slider to the <b>LEFT</b> according to how large your file size and/or the weight of your data is?`);       
+    }, 2500);
 
     //add slider
     requestTimeout(function(){
         sliders.push(cubeContent.addSlider(leftFace, 'weightSlider', 0, 100, 0));
-    }, 3000);
+    }, 6000);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
 
         addEventHandlerToButtons(optionDOM, optionEventName, prepareOption14);
-    }, 5000);
+    }, 8000);
 }
 
 function prepareOption14(){
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `For the hardness of the water: Does your file require a specific software to open? If so is that software hard to find or download? Was it hard for you to create the data in the first place? How hard the content is for you to digest?`);       
-    }, 500);
+        cubeContent.addChat(leftFace, `For the hardness of the water: Does your file require a specific software to open? If so, how hard is it to find and download that software? How hard was it for you to create the data in the first place? How hard the content is for you to digest?`);       
+    }, 1500);
+
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `Adjust the slider to the <b>LEFT</b> according to how positive your answers are for the above questions.`);
+    }, 3500)
 
     //add slider
     requestTimeout(function(){
         sliders.push(cubeContent.addSlider(leftFace, 'hardnessSlider', 0, 100, 0));
-    }, 3200);
+    }, 5500);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
 
         addEventHandlerToButtons(optionDOM, optionEventName, prepareOption15);
-    }, 5200);
+    }, 7500);
 }
 
 function prepareOption15(){
@@ -707,13 +701,17 @@ function prepareOption17(){
 
 function prepareOption18(){
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `For the turbidity of the water: Is your data encrypted? How hard is it to decrypt the data? How private or personal is your data? How many people have you shared the data with? The more inaccessible or private the data, the more turbid the water is.`);       
+        cubeContent.addChat(leftFace, `For the turbidity of the water: Is your data encrypted? How hard is it to decrypt the data? How private or personal is your data? How many people have you shared the data with?`);       
     }, 500);
+
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `Adjust the slider to the <b>LEFT</b> according to how inaccessible or private your data is.`);
+    }, 3000)
 
     //add slider
     requestTimeout(function(){
         sliders.push(cubeContent.addSlider(leftFace, 'turbiditySlider', 0, 100, 0));
-    }, 3500);
+    }, 5000);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(leftFace, [
@@ -723,7 +721,7 @@ function prepareOption18(){
         ]);
 
         addEventHandlerToButtons(optionDOM, optionEventName, prepareOption19);
-    }, 5700);
+    }, 7000);
 }
 
 function prepareOption19(){
@@ -734,14 +732,37 @@ function prepareOption19(){
     }
     
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `Thank you for your answers! We will prepare the water for your data transfer according to these answers.`);       
+        cubeContent.addChat(leftFace, `Retrieving records ended.`);       
     }, 1500);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addContinueButtons(leftFace, ['Continue.']);
+        let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
+
+        addEventHandlerToButtons(optionDOM, optionEventName, prepareOptionFormulae);
+    }, 3000);
+}
+
+function prepareOptionFormulae(){
+    requestTimeout(function(){
+        cubeContent.addChat(leftFace, `According to these answers, we used a set of rules and formulae to decide the types and proportions of water in the final blend for data transfer.`)
+    }, 1500);
+
+    requestTimeout(function(){
+        addImageCube(`waterFormulae`, leftFace, [
+            `./images/rule&formulae title.jpg`,
+            `./images/weight.jpg`,
+            `./images/hardness.jpg`,
+            `./images/phValue.jpg`,
+            `./images/hardness function.jpg`,
+            `./images/turbidity.jpg`
+        ], false, false, true);
+    }, 4300);
+
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addContinueButtons(leftFace, ['Continue.'], false, true);
 
         addEventHandlerToButtons(optionDOM, continueEventName, prepareEnd);
-    }, 3200);
+    }, 6000);
 }
 
 function prepareEnd(e){
@@ -920,7 +941,7 @@ function sendStart(){
 
 function sendOption1(){
     requestTimeout(function(){
-        cubeContent.addChat(backFace, `We will freeze the water right after the transfer.`);
+        cubeContent.addChat(backFace, `We freeze the water right after the transfer.`);
     }, 1500);
 
     requestTimeout(function(){
@@ -938,163 +959,197 @@ function sendOption1(){
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(backFace, [next], false, true);
 
-        addEventHandlerToButtons(optionDOM, optionEventName, sendOption2);
+        addEventHandlerToButtons(optionDOM, optionEventName, sendOption2Doc);
     }, 4700);
 }
 
-function sendOption2(){
+function sendOption2Doc(){
     requestTimeout(function(){
-        cubeContent.addChat(backFace, `To conduct this whole process for you, we can start by figuring out a time and place to pick up your data.`);
+        cubeContent.addChat(backFace, "We picked up participants' data in thumb drives at locations they specified.");
     }, 500);
 
     requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(backFace, [`I can prepare my data in a thumb drive.`, `I don’t have a thumb drive.`]);
-
-        addEventHandlerToButtons(optionDOM, optionEventName, sendOption3);
-    }, 2500);
-}
-
-function sendOption3(){
-    if (lastResponse.includes(`I don’t have a thumb drive.`)){
-        delivery.hasUSB = false;
-        requestTimeout(function(){
-            cubeContent.addChat(backFace, `We can deliver a thumb drive to you when we come to pick up your data.`);
-        }, 1500);
-
-        requestTimeout(function(){
-            cubeContent.addChat(backFace, `What’s the best time and date for the thumb drive pick up (within next few days, 10 am. to 8 pm.) ?`);
-        }, 4000);
-
-        requestTimeout(function(){
-            let input = cubeContent.addInput(backFace, `time`);
-            deliveryInputs.push(input);
-        }, 6000);
-
-        requestTimeout(function(){
-            let optionDOM = optionCreator.addOptionButtons(backFace, [next]);
-
-            addEventHandlerToButtons(optionDOM, optionEventName, sendOption4);
-        }, 7000);
-    }
-    else{
-        delivery.hasUSB = true;
-        requestTimeout(function(){
-            cubeContent.addChat(backFace, `What’s the best time and date for the thumb drive pick up (May 6 to May 9, 10 am. to 8 pm.) ?`);
-        }, 1500);
-
-        requestTimeout(function(){
-            let input = cubeContent.addInput(backFace, `time`);
-            deliveryInputs.push(input);
-        }, 3000);
-
-        requestTimeout(function(){
-            let optionDOM = optionCreator.addOptionButtons(backFace, [next]);
-
-            addEventHandlerToButtons(optionDOM, optionEventName, sendOption4);
-        }, 4000);
-    }
-}
-
-function sendOption4(){
-    requestTimeout(function(){
-        cubeContent.addChat(backFace, `What’s your address?`);
-    }, 500);
-
-    requestTimeout(function(){
-        let input = cubeContent.addInput(backFace, `address`);
-        deliveryInputs.push(input);
-    }, 2000);
-
-    requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(backFace, [`I'll be home.`,`See you then.`]);
-
-        addEventHandlerToButtons(optionDOM, optionEventName, sendOption5);
-    }, 4500);
-}
-
-function sendOption5(){
-    deliveryInputs.forEach((input) => {
-        input.disabled = true;
-        delivery[`${input.id}`] = input.value;
-    });
-
-    requestTimeout(function(){
-        cubeContent.addChat(backFace, `From all your inputs here, we generated a text for you to send us via email: <a href="mailto:zhua05nuo@outlook.com">zhua05nuo@outlook.com</a>`);
-    }, 1500);
-
-    //generate email text
-    let emailContent = `Water Conditions:&#13;&#10;`;
-    for(const [key, val] of Object.entries(sliderInputs)){
-        emailContent += `- ${key.charAt(0).toUpperCase() + key.slice(1)}: ${val}% &#13;&#10;`;
-    }
-    emailContent += `&#13;&#10;Delivery Info:&#13;&#10;`;
-    for(const [key, val] of Object.entries(delivery)){
-        if(key == 'hasUSB'){
-            emailContent += val ? `- I have an USB drive.&#13;&#10;` : `- I need a USB drive delivered to me.&#13;&#10;`
-        }
-        else {
-            emailContent += `- ${key.charAt(0).toUpperCase() + key.slice(1)}: ${val}&#13;&#10;`;
-        }
-    }
-
-    emailContent = emailContent.slice(0, -10);
-
-    requestTimeout(function(){
-        toCopy = cubeContent.addTextArea(backFace, emailContent);
-    }, 5000);
-
-    requestTimeout(function(){
-        let optionDOM = optionCreator.addOptionButtons(backFace, [`Copy the text for me and I will send it myself.`, `Open my system default email platform and create the email for me.`]);
-
-        addEventHandlerToButtons(optionDOM, optionEventName, sendOption6);
-    }, 7000);
-}
-
-function sendOption6(){
-    if(lastResponse.includes(`Copy the text for me and I will send it myself.`)){
-        requestTimeout(function(){
-            toCopy.select();
-            document.execCommand("copy");
-
-            //============
-            let optionDOM = optionCreator.addOptionButtons(backFace, [`I've sent it to you.`]);
-            addEventHandlerToButtons(optionDOM, optionEventName, sendOption7);
-        }, 1500);
-    }
-    else{
-        requestTimeout(function(){
-            let emailContent = `Water Conditions:%0D%0A`;
-            for(const [key, val] of Object.entries(sliderInputs)){
-                emailContent += `- ${key.charAt(0).toUpperCase() + key.slice(1)}: ${val}% %0D%0A`;
-            }
-            emailContent += `%0D%0ADelivery Info:%0D%0A`;
-            for(const [key, val] of Object.entries(delivery)){
-                if(key == 'hasUSB'){
-                    emailContent += val ? `- I have an USB drive.%0D%0A` : `- I need a USB drive delivered to me.%0D%0A`
-                }
-                else emailContent += `- ${key.charAt(0).toUpperCase() + key.slice(1)}: ${val}%0D%0A`;
-            }
-
-            let mailToText = emailContent.replace(/ /g, `%20`);
-            window.location.href = `mailto:zhua05nuo@outlook.com?subject=Water&body=${mailToText}`;
-
-            //============
-            let optionDOM = optionCreator.addOptionButtons(backFace, [`I've sent it to you.`]);
-            addEventHandlerToButtons(optionDOM, optionEventName, sendOption7);
-        }, 1500);
-    }
-}
-
-function sendOption7(){
-    requestTimeout(function(){
-        cubeContent.addChat(backFace, `Contact me with this email if you have any questions!`);
-    }, 1500);
-
-    requestTimeout(function(){
-        let optionDOM = optionCreator.addContinueButtons(backFace, ['Leave.']);
-        addEventHandlerToButtons(optionDOM, continueEventName, sendEnd);
+        cubeContent.addChat(backFace, "Afterwards we delivered the ice blocks to them in packages. Continue to see the documentation or click on the top left button.");
     }, 3000);
+
+    requestTimeout(function(){
+        /******************* Enable Switch to Archive cube ****************** */
+        //add archive cube
+        addArchiveCube("archive-cube");
+        archiveFrontFace.children[0].style.setProperty("opacity", "1");
+
+        //populate archive cube faces
+
+
+        //add switch button
+        let button = new SwitchButton("switch");
+        let optionDOM = optionCreator.addContinueButtons(backFace, ['See documentation.']);
+        optionDOM.addEventListener(continueEventName, ()=>{
+            button.switchClick();
+            hasClickedLastContinue = false;
+        });
+
+        /******************************************************************* */
+
+        //put go back to fornt face button
+        let continueDOM = optionCreator.addContinueButtons(backFace, ['Go back']);
+        addEventHandlerToButtons(continueDOM, continueEventName, sendEnd);
+    }, 5300);
 }
+
+// function sendOption2(){
+//     requestTimeout(function(){
+//         cubeContent.addChat(backFace, `To conduct this whole process for you, we can start by figuring out a time and place to pick up your data.`);
+//     }, 500);
+
+//     requestTimeout(function(){
+//         let optionDOM = optionCreator.addOptionButtons(backFace, [`I can prepare my data in a thumb drive.`, `I don’t have a thumb drive.`]);
+
+//         addEventHandlerToButtons(optionDOM, optionEventName, sendOption3);
+//     }, 2500);
+// }
+
+// function sendOption3(){
+//     if (lastResponse.includes(`I don’t have a thumb drive.`)){
+//         delivery.hasUSB = false;
+//         requestTimeout(function(){
+//             cubeContent.addChat(backFace, `We can deliver a thumb drive to you when we come to pick up your data.`);
+//         }, 1500);
+
+//         requestTimeout(function(){
+//             cubeContent.addChat(backFace, `What’s the best time and date for the thumb drive pick up (within next few days, 10 am. to 8 pm.) ?`);
+//         }, 4000);
+
+//         requestTimeout(function(){
+//             let input = cubeContent.addInput(backFace, `time`);
+//             deliveryInputs.push(input);
+//         }, 6000);
+
+//         requestTimeout(function(){
+//             let optionDOM = optionCreator.addOptionButtons(backFace, [next]);
+
+//             addEventHandlerToButtons(optionDOM, optionEventName, sendOption4);
+//         }, 7000);
+//     }
+//     else{
+//         delivery.hasUSB = true;
+//         requestTimeout(function(){
+//             cubeContent.addChat(backFace, `What’s the best time and date for the thumb drive pick up (May 6 to May 9, 10 am. to 8 pm.) ?`);
+//         }, 1500);
+
+//         requestTimeout(function(){
+//             let input = cubeContent.addInput(backFace, `time`);
+//             deliveryInputs.push(input);
+//         }, 3000);
+
+//         requestTimeout(function(){
+//             let optionDOM = optionCreator.addOptionButtons(backFace, [next]);
+
+//             addEventHandlerToButtons(optionDOM, optionEventName, sendOption4);
+//         }, 4000);
+//     }
+// }
+
+// function sendOption4(){
+//     requestTimeout(function(){
+//         cubeContent.addChat(backFace, `What’s your address?`);
+//     }, 500);
+
+//     requestTimeout(function(){
+//         let input = cubeContent.addInput(backFace, `address`);
+//         deliveryInputs.push(input);
+//     }, 2000);
+
+//     requestTimeout(function(){
+//         let optionDOM = optionCreator.addOptionButtons(backFace, [`I'll be home.`,`See you then.`]);
+
+//         addEventHandlerToButtons(optionDOM, optionEventName, sendOption5);
+//     }, 4500);
+// }
+
+// function sendOption5(){
+//     deliveryInputs.forEach((input) => {
+//         input.disabled = true;
+//         delivery[`${input.id}`] = input.value;
+//     });
+
+//     requestTimeout(function(){
+//         cubeContent.addChat(backFace, `From all your inputs here, we generated a text for you to send us via email: <a href="mailto:zhua05nuo@outlook.com">zhua05nuo@outlook.com</a>`);
+//     }, 1500);
+
+//     //generate email text
+//     let emailContent = `Water Conditions:&#13;&#10;`;
+//     for(const [key, val] of Object.entries(sliderInputs)){
+//         emailContent += `- ${key.charAt(0).toUpperCase() + key.slice(1)}: ${val}% &#13;&#10;`;
+//     }
+//     emailContent += `&#13;&#10;Delivery Info:&#13;&#10;`;
+//     for(const [key, val] of Object.entries(delivery)){
+//         if(key == 'hasUSB'){
+//             emailContent += val ? `- I have an USB drive.&#13;&#10;` : `- I need a USB drive delivered to me.&#13;&#10;`
+//         }
+//         else {
+//             emailContent += `- ${key.charAt(0).toUpperCase() + key.slice(1)}: ${val}&#13;&#10;`;
+//         }
+//     }
+
+//     emailContent = emailContent.slice(0, -10);
+
+//     requestTimeout(function(){
+//         toCopy = cubeContent.addTextArea(backFace, emailContent);
+//     }, 5000);
+
+//     requestTimeout(function(){
+//         let optionDOM = optionCreator.addOptionButtons(backFace, [`Copy the text for me and I will send it myself.`, `Open my system default email platform and create the email for me.`]);
+
+//         addEventHandlerToButtons(optionDOM, optionEventName, sendOption6);
+//     }, 7000);
+// }
+
+// function sendOption6(){
+//     if(lastResponse.includes(`Copy the text for me and I will send it myself.`)){
+//         requestTimeout(function(){
+//             toCopy.select();
+//             document.execCommand("copy");
+
+//             //============
+//             let optionDOM = optionCreator.addOptionButtons(backFace, [`I've sent it to you.`]);
+//             addEventHandlerToButtons(optionDOM, optionEventName, sendOption7);
+//         }, 1500);
+//     }
+//     else{
+//         requestTimeout(function(){
+//             let emailContent = `Water Conditions:%0D%0A`;
+//             for(const [key, val] of Object.entries(sliderInputs)){
+//                 emailContent += `- ${key.charAt(0).toUpperCase() + key.slice(1)}: ${val}% %0D%0A`;
+//             }
+//             emailContent += `%0D%0ADelivery Info:%0D%0A`;
+//             for(const [key, val] of Object.entries(delivery)){
+//                 if(key == 'hasUSB'){
+//                     emailContent += val ? `- I have an USB drive.%0D%0A` : `- I need a USB drive delivered to me.%0D%0A`
+//                 }
+//                 else emailContent += `- ${key.charAt(0).toUpperCase() + key.slice(1)}: ${val}%0D%0A`;
+//             }
+
+//             let mailToText = emailContent.replace(/ /g, `%20`);
+//             window.location.href = `mailto:zhua05nuo@outlook.com?subject=Water&body=${mailToText}`;
+
+//             //============
+//             let optionDOM = optionCreator.addOptionButtons(backFace, [`I've sent it to you.`]);
+//             addEventHandlerToButtons(optionDOM, optionEventName, sendOption7);
+//         }, 1500);
+//     }
+// }
+
+// function sendOption7(){
+//     requestTimeout(function(){
+//         cubeContent.addChat(backFace, `Contact me with this email if you have any questions!`);
+//     }, 1500);
+
+//     requestTimeout(function(){
+//         let optionDOM = optionCreator.addContinueButtons(backFace, ['Leave.']);
+//         addEventHandlerToButtons(optionDOM, continueEventName, sendEnd);
+//     }, 3000);
+// }
 
 function sendEnd(e){
     if(chatCube.curstate == 5){

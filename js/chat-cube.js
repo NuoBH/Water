@@ -1,3 +1,44 @@
+function addArchiveCube(id){
+    let archiveDOM = document.createElement("div");
+    archiveDOM.id = id;
+    archiveDOM.classList.add("chat-cube", "archive-cube", "noselect");
+
+    let chatCubeFaceClass = "chat-cube-face";
+    let commonName = "chat-cube-";
+    let faceNames = ["front", "left", "right", "top", "bottom", "back"];
+
+    for(let i = 0; i < faceNames.length; i++){
+        let diffClass = "face-four";
+        if(i == 1 || i == 2){
+            diffClass = "face-two";
+        }
+        else if(i == 3 || i == 4){
+            diffClass = "face-four-tb";
+        }
+
+        let faceDOM = document.createElement("div");
+        faceDOM.id = "a" + faceNames[i];
+        faceDOM.classList.add(chatCubeFaceClass, diffClass, `${commonName}${faceNames[i]}`);
+
+        let textDOM = document.createElement("div");
+        textDOM.classList.add("text");
+
+        faceDOM.appendChild(textDOM);
+        archiveDOM.appendChild(faceDOM);
+    }
+
+    document.body.insertBefore(archiveDOM, chatCubeDOM.nextElementSibling);
+
+    archiveCube = new ChatCube(id, 0.1, 0.1);
+    archiveCubeDOM = document.getElementById(id);
+    archiveFrontFace = document.getElementById(`afront`);
+    archiveLeftFace = document.getElementById(`aleft`);
+    archiveRightFace = document.getElementById(`aright`);
+    archiveTopFace = document.getElementById(`atop`);
+    archiveBottomFace = document.getElementById(`abottom`);
+    archiveBackFace = document.getElementById(`aback`);
+}
+
 class ChatCube{
     constructor(id, lerpVFaceChange, lerpVRotate){
         this.cube = document.getElementById(id);
@@ -418,4 +459,3 @@ class ChatCube{
 }
 
 var chatCube = new ChatCube("instruction-cube", 0.1, 0.1);
-var archiveCube = new ChatCube("archive-cube", 0.1, 0.1);
