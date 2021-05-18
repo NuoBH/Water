@@ -415,6 +415,19 @@ body{
     clear: both;
 }
 
+.input-value{
+    float: right;
+    text-align: right;
+    opacity: 0;
+    -webkit-transform: rotateX(90deg);
+            transform: rotateX(90deg);
+}
+.input-value.send{
+    opacity: 1;
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+}
+
 .chat{
     opacity: 0;
     float: left;

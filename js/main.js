@@ -78,7 +78,7 @@ window.addEventListener(`firstCollide`, function(){
         // chatCube.rotate();
         // chatCube.rotate();
 
-     prepareOption4();
+     prepareOption13();
     }, 1000);
 });
 
@@ -627,7 +627,12 @@ function prepareOption13(){
 
     //add slider
     requestTimeout(function(){
-        sliders.push(cubeContent.addSlider(leftFace, 'weightSlider', 0, 100, 0));
+        let wslider = cubeContent.addSlider(leftFace, 'weightSlider', 0, 100, 0);
+        sliders.push(wslider);
+
+        wslider.disabled = true;
+        cubeContent.animateSlider(wslider, weightSliderArchiveValues);
+
     }, 6000);
 
     requestTimeout(function(){
@@ -648,7 +653,12 @@ function prepareOption14(){
 
     //add slider
     requestTimeout(function(){
-        sliders.push(cubeContent.addSlider(leftFace, 'hardnessSlider', 0, 100, 0));
+        let hslider = cubeContent.addSlider(leftFace, 'hardnessSlider', 0, 100, 0);
+        sliders.push(hslider);
+
+        hslider.disabled = true;
+        cubeContent.animateSlider(hslider, hardnessSliderArchiveValues);
+
     }, 5500);
 
     requestTimeout(function(){
@@ -689,7 +699,12 @@ function prepareOption17(){
 
     //add slider
     requestTimeout(function(){
-        sliders.push(cubeContent.addSlider(leftFace, 'phValueSlider', -100, 100, 0));
+        let pslider = cubeContent.addSlider(leftFace, 'phValueSlider', -100, 100, 0);
+        sliders.push(pslider);
+
+        pslider.disabled = true;
+        cubeContent.animateSlider(pslider, phvalueSliderArchiveValues);
+
     }, 4000);
 
     requestTimeout(function(){
@@ -710,7 +725,12 @@ function prepareOption18(){
 
     //add slider
     requestTimeout(function(){
-        sliders.push(cubeContent.addSlider(leftFace, 'turbiditySlider', 0, 100, 0));
+        let tslider = cubeContent.addSlider(leftFace, 'turbiditySlider', 0, 100, 0);
+        sliders.push(tslider);
+
+        tslider.disabled = true;
+        cubeContent.animateSlider(tslider, turbiditySliderArchiveValues);
+
     }, 5000);
 
     requestTimeout(function(){

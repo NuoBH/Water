@@ -70,7 +70,13 @@ class CubeContent{
         
         slider.classList.add(`slider`);
         slider.id = id;
+
+        let sliderVal = document.createElement(`div`);
+        sliderVal.classList.add("paragraph", "response");
+        sliderVal.innerHTML = slider.value;
+
         textDOM.append(slider);
+        textDOM.append(sliderVal);
 
         slider.addEventListener(`input`, function(e){
             let val = e.target.value;
@@ -118,8 +124,61 @@ class CubeContent{
         else{slider.previousElementSibling.style.setProperty(`padding-bottom`, `5%`);}
 
         this.scrollDown(slider);
+        this.scrollDown(sliderVal);
 
         return slider;
+    }
+
+    //works only for values with length = 3
+    animateSlider(slider, values){
+        let sliderVal = slider.nextElementSibling;
+
+        let end = function(){
+            $({val:values[2]}).animate({val:values[0]},            //stage 3 animate , loop back
+                {duration: 1000,
+                easing: "linear",
+                step: function(now){
+                    let n = Math.round(now * 100) / 100;
+                    slider.value = now;
+                    sliderVal.innerHTML =`%${n}`;
+                },
+                complete: function(){
+                    requestTimeout(start, 500);
+                }
+            });
+        }
+
+        let state1 = function(){
+            $({val:values[1]}).animate({val:values[2]},            //stage 2 animate
+                {duration: 1000,
+                easing: "linear",
+                step: function(now){
+                    let n = Math.round(now * 100) / 100;
+                    slider.value = now;
+                    sliderVal.innerHTML =`%${n}`;
+                },
+                complete: function(){
+                    requestTimeout(end, 500);
+                }
+            });
+        }
+
+        let start = function(){
+            $({val:values[0]}).animate({val:values[1]},            //stage 1 animate
+                {duration: 1000,
+                easing: "linear",
+                step: function(now){
+                    let n = Math.round(now * 100) / 100;
+                    slider.value = now;
+                    sliderVal.innerHTML =`%${n}`;
+                },
+                complete: function(){
+                    requestTimeout(state1, 500);
+                }
+            });
+        }
+
+        start();
     }
 
     showVideo(face, src){
