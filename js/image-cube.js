@@ -52,7 +52,8 @@ function addImageCube(id, face, mediaLinks, isVideoCube=false, videoCubeAutoPlay
             let mediaDOM = document.createElement("video");
             mediaDOM.classList.add(`${mediaClass}`, `${dragClass}`);
 
-            if(!isVideoCube || (isVideoCube && videoCubeAutoPlay) || filepath.toLowerCase().includes("animation")){
+            if(!isVideoCube || (isVideoCube && videoCubeAutoPlay && !mobileAndTabletCheck()) 
+            || (filepath.toLowerCase().includes("animation") && !mobileAndTabletCheck()) ){
                 mediaDOM.setAttribute("autoplay", "autoplay");
                 mediaDOM.setAttribute("loop", "loop");
                 mediaDOM.setAttribute("muted", "muted");
@@ -435,7 +436,7 @@ class ImageCube{
 
     setVideoCube(){
         this.videos.forEach(function(curVid){
-            if(this.videoCubeAutoPlay){
+            if(this.videoCubeAutoPlay && !mobileAndTabletCheck()){
                 curVid.muted = false;
                 curVid.volume = 1 / this.videos.length;
             }
@@ -461,38 +462,45 @@ class ImageCube{
                     });
 
                     //play all other videos in this video cube when play one video
-                    this.videos.forEach(function(iterPlay){
-                        if(iterPlay.paused){
-                            iterPlay.play();
-                        }
-                    });
+                    if(!mobileAndTabletCheck()){
+                        this.videos.forEach(function(iterPlay){
+                            if(iterPlay.paused){
+                                iterPlay.play();
+                            }
+                        });
+                    }
 
                     //pause other video cubes if there are any
-                    let otherVideoCubes = this.cube.parentElement.querySelectorAll('[id^="videocube"]');
+                    if(!mobileAndTabletCheck()){
+                        let otherVideoCubes = this.cube.parentElement.querySelectorAll('[id^="videocube"]');
 
-                    for(let i = 0; i < otherVideoCubes.length; i++){
-                        if(otherVideoCubes[i].id != this.cube.id){
-                            let videos = otherVideoCubes[i].querySelectorAll("video");
-                            for(let j = 0 ; j < videos.length; j ++){
-                                if(!videos[j].getElementsByTagName("source")[0].src.toLowerCase().includes("animation")){
-                                    videos[j].pause();
+                        for(let i = 0; i < otherVideoCubes.length; i++){
+                            if(otherVideoCubes[i].id != this.cube.id){
+                                let videos = otherVideoCubes[i].querySelectorAll("video");
+                                for(let j = 0 ; j < videos.length; j ++){
+                                    if(!videos[j].getElementsByTagName("source")[0].src.toLowerCase().includes("animation")){
+                                        videos[j].pause();
+                                    }
                                 }
                             }
                         }
                     }
                 }.bind(this));
 
+
+                if(mobileAndTabletCheck()){
                 //pause event for videos
-                curVid.addEventListener("pause", function(e){
-                    //pause all other videos in this video cube
-                    this.videos.forEach(function(iterPause){
-                        if(!iterPause.paused){
-                            if(!iterPause.getElementsByTagName("source")[0].src.toLowerCase().includes("animation")){
-                                iterPause.pause();
+                    curVid.addEventListener("pause", function(e){
+                        //pause all other videos in this video cube
+                        this.videos.forEach(function(iterPause){
+                            if(!iterPause.paused){
+                                if(!iterPause.getElementsByTagName("source")[0].src.toLowerCase().includes("animation")){
+                                    iterPause.pause();
+                                }
                             }
-                        }
-                    });
-                }.bind(this));
+                        });
+                    }.bind(this));
+                }
             }
         }.bind(this));
     }

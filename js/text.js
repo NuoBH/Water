@@ -148,7 +148,7 @@ class CubeContent{
                     slider.value = now;
                     sliderVal.innerHTML =`%${n}`;
 
-                    slider.dispatchEvent("sliderMove");
+                    slider.dispatchEvent(sliderMoveEvent);
                 },
                 complete: function(){
                     requestTimeout(start, 500);
@@ -165,7 +165,7 @@ class CubeContent{
                     slider.value = now;
                     sliderVal.innerHTML =`%${n}`;
                     
-                    slider.dispatchEvent("sliderMove");
+                    slider.dispatchEvent(sliderMoveEvent);
                 },
                 complete: function(){
                     requestTimeout(end, 500);
@@ -182,7 +182,7 @@ class CubeContent{
                     slider.value = now;
                     sliderVal.innerHTML =`%${n}`;
                     
-                    slider.dispatchEvent("sliderMove");
+                    slider.dispatchEvent(sliderMoveEvent);
                 },
                 complete: function(){
                     requestTimeout(state1, 500);
