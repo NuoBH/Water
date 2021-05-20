@@ -441,15 +441,17 @@ class ImageCube{
                 curVid.volume = 1 / this.videos.length;
             }
             else{
-                let promise = curVid.play();
-                if (promise !== undefined) {
-                    promise.then(_ => {
-                      // Autoplay started!
-                    }).catch(error => {
-                      // Autoplay was prevented.
-                      // Show a "Play" button so that user can start playback.
-                    });
-                  }
+                if(!mobileAndTabletCheck()){
+                    let promise = curVid.play();
+                    if (promise !== undefined) {
+                        promise.then(_ => {
+                            // Autoplay started!
+                        }).catch(error => {
+                            // Autoplay was prevented.
+                            // Show a "Play" button so that user can start playback.
+                        });
+                        }
+                }
             }
 
             if(!curVid.getElementsByTagName("source")[0].src.toLowerCase().includes("animation")){
