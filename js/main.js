@@ -53,34 +53,34 @@ cubeContent.addTitle(frontFace, `Water`, 1.8);
 
 /************ uncomment code below after test is done ***********/
 
-// window.addEventListener(`firstCollide`, function(){
-//     requestTimeout(function(){
-//         cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
-//     }, 1000);
-//     requestTimeout(function(){
-//         let optionDOM = optionCreator.addOptionButtons(frontFace, 
-//                         [next]);
+window.addEventListener(`firstCollide`, function(){
+    requestTimeout(function(){
+        cubeContent.addChat(frontFace, `<b>Water</b> is an unstable data structure with which you store, share and delete your data.`);
+    }, 1000);
+    requestTimeout(function(){
+        let optionDOM = optionCreator.addOptionButtons(frontFace, 
+                        [next]);
             
-//         addEventHandlerToButtons(optionDOM, optionEventName, waterOption0);
-//     }, 2500);
+        addEventHandlerToButtons(optionDOM, optionEventName, waterOption0);
+    }, 2500);
     
-// });
+});
 
 /** **************************************************** */
 
 /**test part delete later */
-window.addEventListener(`firstCollide`, function(){
-    requestTimeout(function(){
-        cubeContent.addTitle(backFace, "Send<br>Water");
-        chatCube.rotate();
-        chatCube.rotate();
-        chatCube.rotate();
-        chatCube.rotate();
-        chatCube.rotate();
+// window.addEventListener(`firstCollide`, function(){
+//     requestTimeout(function(){
+//         cubeContent.addTitle(backFace, "Send<br>Water");
+//         chatCube.rotate();
+//         chatCube.rotate();
+//         chatCube.rotate();
+//         chatCube.rotate();
+//         chatCube.rotate();
 
-     sendOption2Doc();
-    }, 1000);
-});
+//      sendOption2Doc();
+//     }, 1000);
+// });
 
 
 /************************** */
@@ -622,7 +622,7 @@ function prepareOption13(){
     }, 1500)
 
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `First, for the weight of the water: How large is your file size? How much information does your data have? Adjust the slider to the <b>LEFT</b> according to how large your file size and/or the weight of your data is?`);       
+        cubeContent.addChat(leftFace, `First, for the weight of the water: how large is your file size? How much information does your data have? Adjust the slider to the <b>LEFT</b> according to how large your file size and/or the weight of your data is?`);       
     }, 2500);
 
     //add slider
@@ -644,12 +644,12 @@ function prepareOption13(){
 
 function prepareOption14(){
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `For the hardness of the water: Does your file require a specific software to open? If so, how hard is it to find and download that software? How hard was it for you to create the data in the first place? How hard the content is for you to digest?`);       
+        cubeContent.addChat(leftFace, `For the hardness of the water: does your file require a specific software to open? If so, how hard is it to find and download that software? How hard was it for you to create the data in the first place? How hard the content is for you to digest?`);       
     }, 1500);
 
     requestTimeout(function(){
         cubeContent.addChat(leftFace, `Adjust the slider to the <b>LEFT</b> according to how positive your answers are for the above questions.`);
-    }, 3500)
+    }, 6500)
 
     //add slider
     requestTimeout(function(){
@@ -659,18 +659,18 @@ function prepareOption14(){
         hslider.disabled = true;
         cubeContent.animateSlider(hslider, hardnessSliderArchiveValues);
 
-    }, 5500);
+    }, 8500);
 
     requestTimeout(function(){
         let optionDOM = optionCreator.addOptionButtons(leftFace, [next]);
 
         addEventHandlerToButtons(optionDOM, optionEventName, prepareOption15);
-    }, 7500);
+    }, 10500);
 }
 
 function prepareOption15(){
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `For the pH value of water: Is your data neutral? If not, to what extent does your data contain inclined opinions? How much do you agree or disagree with the opinions in your data?`);       
+        cubeContent.addChat(leftFace, `For the pH value of water: is your data neutral? If not, to what extent does your data contain inclined opinions? How much do you agree or disagree with the opinions in your data?`);       
     }, 500);
 
     requestTimeout(function(){
@@ -716,7 +716,7 @@ function prepareOption17(){
 
 function prepareOption18(){
     requestTimeout(function(){
-        cubeContent.addChat(leftFace, `For the turbidity of the water: Is your data encrypted? How hard is it to decrypt the data? How private or personal is your data? How many people have you shared the data with?`);       
+        cubeContent.addChat(leftFace, `For the turbidity of the water: is your data encrypted? How hard is it to decrypt the data? How private or personal is your data? How many people have you shared the data with?`);       
     }, 500);
 
     requestTimeout(function(){
@@ -998,15 +998,31 @@ function sendOption2Doc(){
         addArchiveCube("archive-cube");
         archiveFrontFace.children[0].style.setProperty("opacity", "1");
 
-        //populate archive cube faces
-
+        /************** populate archive cube faces here *****************/
+        addArchivePage1(archiveFrontFace, 0);
+        addArchivePage2(archiveTopFace, 1);
+        addArchivePage3(archiveLeftFace, 2);
 
         //add switch button
         let button = new SwitchButton("switch");
         let optionDOM = optionCreator.addContinueButtons(backFace, ['See documentation.']);
         optionDOM.addEventListener(continueEventName, ()=>{
+            //switch to archive cube
             button.switchClick();
+            //scroll all contents up in archive cube
+            let faces = [archiveFrontFace, archiveTopFace, archiveLeftFace, archiveBottomFace, archiveRightFace, archiveBackFace];
+            faces.forEach((face) => {
+                let textDOM = face.firstElementChild;
+                let title = textDOM.firstElementChild;
+    
+                scrollIntoView(title, {
+                    time: 1
+                });
+            })
+
             hasClickedLastContinue = false;
+
+            changeGravity(0, 0)
         });
 
         /******************************************************************* */

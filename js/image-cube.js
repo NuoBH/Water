@@ -1,4 +1,4 @@
-function addImageCube(id, face, mediaLinks, isVideoCube=false, videoCubeAutoPlay=false, addBorder=false){
+function addImageCube(id, face, mediaLinks, isVideoCube=false, videoCubeAutoPlay=false, addBorder=false, isArchiveImageCube = false){
     if(!Array.isArray(mediaLinks) || mediaLinks.length != 6){
         console.debug("add image cube, media links not valid");
         return;
@@ -86,11 +86,11 @@ function addImageCube(id, face, mediaLinks, isVideoCube=false, videoCubeAutoPlay
         lerpSpeed = 0.35;
     }
 
-    return new ImageCube(id, -15, 30, lerpSpeed, isVideoCube, videoCubeAutoPlay);
+    return new ImageCube(id, -15, 30, lerpSpeed, isVideoCube, videoCubeAutoPlay, isArchiveImageCube);
 }
 
 class ImageCube{
-    constructor(id, startRotateX, startRotateY, lerpV, isVideoCube, videoCubeAutoPlay){
+    constructor(id, startRotateX, startRotateY, lerpV, isVideoCube, videoCubeAutoPlay, isArchiveImageCube){
         this.cube = document.getElementById(id);
 
         //properties used to rotate cube
@@ -146,6 +146,12 @@ class ImageCube{
             this.setVideoCube();
         }
 
+        if(isArchiveImageCube){
+            this.videos.forEach(function(vid){
+                vid.muted = true;
+            });
+        }
+
         this.dragRotate();
 
         this.checkBlur();
@@ -153,17 +159,20 @@ class ImageCube{
         this.resizeCube();
 
         window.addEventListener("resize", this.resizeCube.bind(this));
+        this.cube.addEventListener("resizeImageCube", this.resizeCube.bind(this));
     }
 
     resizeCube(){
+        let cubeDOM = this.cube.parentElement.parentElement.parentElement;
+
         if(this.isVideoCube){
-            let resizeH = chatCubeDOM.offsetHeight * 0.735;
+            let resizeH = cubeDOM.offsetHeight * 0.735;
             let resizeW = resizeH * 16 / 9;
             this.cube.style.setProperty("--faceWidth", `${resizeW}px`);
             this.cube.style.setProperty("--faceHeight", `${resizeH}px`);
         }
         else{
-            let resizeS = chatCubeDOM.offsetHeight * 0.65;
+            let resizeS = cubeDOM.offsetHeight * 0.65;
             this.cube.style.setProperty("--faceSize", `${resizeS}px`);
         }
     }

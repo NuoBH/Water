@@ -26,6 +26,19 @@ class SwitchButton{
                 this.button.style.setProperty(`--switchRotate`, `${now}deg`);
               }.bind(this)
             });
+
+            //reset cube size and title sizes
+            archiveCube.cubeOnResize();
+            
+            let titles = archiveCubeDOM.querySelectorAll(".title");
+            titles.forEach(function(title){
+              title.dispatchEvent(resizeTitleEvent);
+            });
+
+            let imgCubes = archiveCubeDOM.querySelectorAll(".media-cube");
+            imgCubes.forEach(function(val){
+              val.dispatchEvent(resizeImageCubeEvent);
+            });
           }
           else{
             showInstructionCube();
@@ -37,8 +50,20 @@ class SwitchButton{
                 this.button.style.setProperty(`--switchRotate`, `${now}deg`);
               }.bind(this)
             });
+
+            //reset cube and title sizes
+            chatCube.cubeOnResize();
+
+            let titles = chatCubeDOM.querySelectorAll(".title");
+            titles.forEach(function(title){
+              title.dispatchEvent(resizeTitleEvent);
+            });
+
+            let imgCubes = chatCubeDOM.querySelectorAll(".media-cube");
+            imgCubes.forEach(function(val){
+              val.dispatchEvent(resizeImageCubeEvent);
+            });
           }
-      
         }
       }
       

@@ -112,6 +112,7 @@ var backFace = document.getElementById(`back`);
 var archiveCube;
 var archiveCubeDOM;
 var archiveFrontFace;
+var archiveLeftFace;
 var archiveRightFace;
 var archiveTopFace;
 var archiveBottomFace;
@@ -121,6 +122,10 @@ const firstCollideEvent = new CustomEvent(`firstCollide`);
 var lastResponse = '';
 const optionEndedEvent = new CustomEvent(`optionEnded`);
 const rotateFaceEvent = new CustomEvent(`rotateFace`);
+const resizeTitleEvent = new CustomEvent(`resizeTitle`);
+const resizeImageCubeEvent = new CustomEvent(`resizeImageCube`);
+const sliderMoveEvent = new CustomEvent(`sliderMove`);
+
 var hasClickedLastOption = false;
 var hasClickedLastContinue = false;
 

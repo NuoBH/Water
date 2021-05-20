@@ -11,15 +11,18 @@ class CubeContent{
         titleDOM.innerHTML = str;
         textDOM.prepend(titleDOM);
 
-        let fontSize = chatCube.targetFaceHeightFour / factor
+        let cube = face.parentElement.id.includes("instruction") ? chatCube : archiveCube;
+
+        let fontSize = cube.targetFaceHeightFour / factor
         titleDOM.style.setProperty(`font-size`, `${fontSize}px`);
         titleDOM.style.setProperty(`opacity`, `1`);
 
-        window.addEventListener(`resize`, ()=>{this.resizeTitle(titleDOM, factor)});
+        window.addEventListener(`resize`, ()=>{this.resizeTitle(titleDOM, factor, cube)});
+        titleDOM.addEventListener(`resizeTitle`, ()=>{this.resizeTitle(titleDOM, factor, cube)});
     }
 
-    resizeTitle(title, factor){
-        title.style.setProperty(`font-size`, `${chatCube.targetFaceHeightFour / factor}px`);
+    resizeTitle(title, factor, cube){
+        title.style.setProperty(`font-size`, `${cube.targetFaceHeightFour / factor}px`);
     }
 
     scrollDown(textToSend){
@@ -78,32 +81,8 @@ class CubeContent{
         textDOM.append(slider);
         textDOM.append(sliderVal);
 
-        slider.addEventListener(`input`, function(e){
-            let val = e.target.value;
-            let max = e.target.max;
-            let min = e.target.min;
-
-            let total = max - min;
-            let scale = 1;
-            let color = 0;
-
-            if( total > Math.max(Math.abs(max), Math.abs(min)) ){
-                scale = Math.abs(val) / ((max-min)*0.75);
-                if(val <= 0){
-                    let maxmap = Math.max(Math.abs(max), Math.abs(min)) / ((max-min)*0.75)
-                    color = map(scale*50, 0, maxmap*50, 0, 255);
-                }
-                else{
-                    color = 0;
-                }
-            }
-            else{
-                scale = Math.abs(val) / ((max-min)*1.5);
-            }
-            scale += 1;
-            e.target.style.setProperty(`--scaling`, scale);
-            e.target.style.setProperty(`--coloring`, color);
-        });
+        slider.addEventListener(`input`, this.changeSliderCircle);
+        slider.addEventListener(`sliderMove`, this.changeSliderCircle);
 
         slider.addEventListener('touchstart', function(){
             canAddScroll = false;
@@ -129,6 +108,33 @@ class CubeContent{
         return slider;
     }
 
+    changeSliderCircle(e){
+        let val = e.target.value;
+        let max = e.target.max;
+        let min = e.target.min;
+
+        let total = max - min;
+        let scale = 1;
+        let color = 0;
+
+        if( total > Math.max(Math.abs(max), Math.abs(min)) ){
+            scale = Math.abs(val) / ((max-min)*0.75);
+            if(val <= 0){
+                let maxmap = Math.max(Math.abs(max), Math.abs(min)) / ((max-min)*0.75)
+                color = map(scale*50, 0, maxmap*50, 0, 255);
+            }
+            else{
+                color = 0;
+            }
+        }
+        else{
+            scale = Math.abs(val) / ((max-min)*1.5);
+        }
+        scale += 1;
+        e.target.style.setProperty(`--scaling`, scale);
+        e.target.style.setProperty(`--coloring`, color);
+    }
+
     //works only for values with length = 3
     animateSlider(slider, values){
         let sliderVal = slider.nextElementSibling;
@@ -141,6 +147,8 @@ class CubeContent{
                     let n = Math.round(now * 100) / 100;
                     slider.value = now;
                     sliderVal.innerHTML =`%${n}`;
+
+                    slider.dispatchEvent("sliderMove");
                 },
                 complete: function(){
                     requestTimeout(start, 500);
@@ -156,6 +164,8 @@ class CubeContent{
                     let n = Math.round(now * 100) / 100;
                     slider.value = now;
                     sliderVal.innerHTML =`%${n}`;
+                    
+                    slider.dispatchEvent("sliderMove");
                 },
                 complete: function(){
                     requestTimeout(end, 500);
@@ -171,6 +181,8 @@ class CubeContent{
                     let n = Math.round(now * 100) / 100;
                     slider.value = now;
                     sliderVal.innerHTML =`%${n}`;
+                    
+                    slider.dispatchEvent("sliderMove");
                 },
                 complete: function(){
                     requestTimeout(state1, 500);
