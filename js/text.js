@@ -121,7 +121,9 @@ class CubeContent{
             scale = Math.abs(val) / ((max-min)*0.75);
             if(val <= 0){
                 let maxmap = Math.max(Math.abs(max), Math.abs(min)) / ((max-min)*0.75)
-                color = map(scale*50, 0, maxmap*50, 0, 255);
+                color = map(scale*50, 0, maxmap/2.5*50, 0, 255);
+
+                color = Math.max(Math.min(255, color), 0);
             }
             else{
                 color = 0;

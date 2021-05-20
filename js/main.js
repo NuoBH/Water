@@ -73,12 +73,12 @@ window.addEventListener(`firstCollide`, function(){
     requestTimeout(function(){
         cubeContent.addTitle(leftFace, "Send<br>Water");
         chatCube.rotate();
-        //chatCube.rotate();
-        // chatCube.rotate();
-        // chatCube.rotate();
+        chatCube.rotate();
+        chatCube.rotate();
+        chatCube.rotate();
         // chatCube.rotate();
 
-     cleanStart();
+     setupStart();
     }, 1000);
 });
 

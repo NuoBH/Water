@@ -490,7 +490,7 @@ class ImageCube{
                 }.bind(this));
 
 
-                if(mobileAndTabletCheck()){
+                if(!mobileAndTabletCheck()){
                 //pause event for videos
                     curVid.addEventListener("pause", function(e){
                         //pause all other videos in this video cube
