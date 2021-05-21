@@ -288,7 +288,7 @@ class Option{
 
                     scrollIntoView(prev, {
                         time: 1000,
-                        align:{top: 1, topOffset: padding*2}
+                        align:{top: 1, topOffset: padding*4}
                     })
                 }
             }
