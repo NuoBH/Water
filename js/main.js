@@ -244,7 +244,7 @@ function waterOption10(){
     }, 1500);
 
     requestTimeout(function(){
-        cubeContent.addChat(frontFace, `They sent their data to us via thumb drives and we transferred their data to water through electrmagnetic radiation.`);
+        cubeContent.addChat(frontFace, `They sent their data to us via thumb drives and we transferred their data to water through electromagnetic radiation.`);
     }, 3500)
 
     requestTimeout(function(){
