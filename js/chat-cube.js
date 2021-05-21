@@ -302,39 +302,40 @@ class ChatCube{
 
     adaptScrollSafariMobile(face){
         let allow;
-        switch (face.id){
-            case 'front':
+
+        if(face.id.includes("front")){
+            ;
+        }
+        else if(face.id.includes("top")){
+            if(this.hasAddScroll.top){
                 return;
-            case 'top':
-                if(this.hasAddScroll.top){
-                    return;
-                }
-                this.hasAddScroll.top = true;
-                allow = 1;
-                break;
-            case 'left':
-                if(this.hasAddScroll.left){
-                    return;
-                }
-                this.hasAddScroll.left = true;
-                allow = 2;
-                break;
-            case 'bottom':
-                if(this.hasAddScroll.bottom){
-                    return;
-                }
-                this.hasAddScroll.bottom = true;
-                allow = 3;
-                break;
-            case 'right':
-                if(this.hasAddScroll.right){
-                    return;
-                }
-                this.hasAddScroll.right = true;
-                allow = 4;
-                break;
-            case 'back':
+            }
+            this.hasAddScroll.top = true;
+            allow = 1;
+        }
+        else if(face.id.includes("left")){
+            if(this.hasAddScroll.left){
                 return;
+            }
+            this.hasAddScroll.left = true;
+            allow = 2;
+        }
+        else if(face.id.includes("bottom")){
+            if(this.hasAddScroll.bottom){
+                return;
+            }
+            this.hasAddScroll.bottom = true;
+            allow = 3;
+        }
+        else if(face.id.includes("right")){
+            if(this.hasAddScroll.right){
+                return;
+            }
+            this.hasAddScroll.right = true;
+            allow = 4;
+        }
+        else if(face.id.includes("back")){
+            ;
         }
 
         let textDOM = face.firstElementChild;
