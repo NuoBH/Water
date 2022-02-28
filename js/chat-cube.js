@@ -339,11 +339,11 @@ class ChatCube{
         }
 
         let textDOM = face.firstElementChild;
-        if(isSafari){
-            textDOM.addEventListener(`wheel`, function(e){
-                if(this.curstate == allow) this.safariScroll(e, face);
-            }.bind(this));
-        }
+        // if(isSafari){
+        //     textDOM.addEventListener(`wheel`, function(e){
+        //         if(this.curstate == allow) this.safariScroll(e, face);
+        //     }.bind(this));
+        // }
 
         if(mobileAndTabletCheck()){
             textDOM.addEventListener(`touchstart`, function(e){
@@ -352,6 +352,11 @@ class ChatCube{
 
             textDOM.addEventListener(`touchmove`, function(e){
                 if(this.curstate == allow && canAddScroll) this.mobileScroll(e, face);  
+            }.bind(this));
+        }
+        else{
+            textDOM.addEventListener(`wheel`, function(e){
+                if(this.curstate == allow) this.safariScroll(e, face);
             }.bind(this));
         }
     }
