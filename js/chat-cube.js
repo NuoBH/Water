@@ -97,6 +97,7 @@ class ChatCube{
 
 
         this.front.style.setProperty(`z-index`, `2`);
+        this.front.style.setProperty(`pointer-events`, `all`);
 
     }
 
@@ -265,6 +266,9 @@ class ChatCube{
         toRemove.children[0].style.setProperty(`opacity`, `0`);
         toAdd.children[0].style.setProperty(`opacity`, `1`);
 
+        toRemove.style.setProperty(`pointer-events`, `none`);
+        toAdd.style.setProperty(`pointer-events`, `all`);
+
         let videos = toRemove.firstElementChild.querySelectorAll("video");
         videos.forEach(function(curVideo){
             curVideo.pause();
@@ -339,11 +343,11 @@ class ChatCube{
         }
 
         let textDOM = face.firstElementChild;
-        // if(isSafari){
-        //     textDOM.addEventListener(`wheel`, function(e){
-        //         if(this.curstate == allow) this.safariScroll(e, face);
-        //     }.bind(this));
-        // }
+        if(isSafari){
+            textDOM.addEventListener(`wheel`, function(e){
+                if(this.curstate == allow) this.safariScroll(e, face);
+            }.bind(this));
+        }
 
         if(mobileAndTabletCheck()){
             textDOM.addEventListener(`touchstart`, function(e){
@@ -354,11 +358,7 @@ class ChatCube{
                 if(this.curstate == allow && canAddScroll) this.mobileScroll(e, face);  
             }.bind(this));
         }
-        else{
-            textDOM.addEventListener(`wheel`, function(e){
-                if(this.curstate == allow) this.safariScroll(e, face);
-            }.bind(this));
-        }
+
     }
 
 
